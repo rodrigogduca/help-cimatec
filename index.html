@@ -3,194 +3,263 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Help SENAI - Calculadora de Média e Faltas | SENAI CIMATEC</title>
-  <meta name="description" content="Calcule sua média semestral e controle suas faltas no SENAI CIMATEC. Ferramentas acadêmicas gratuitas para estudantes: calculadora de notas AV1, AV2, AV3, EDAG e simulador de faltas.">
-  <meta name="keywords" content="SENAI, CIMATEC, calculadora média, calculadora faltas, passei SENAI, estudante SENAI, nota final, média semestral">
+  <title>Help CIMATEC — Calculadora de Média e Faltas | Universidade SENAI CIMATEC</title>
+  <meta name="description" content="Calcule sua média semestral e o limite de faltas no SENAI CIMATEC. Média com os pesos de AV1, AV2, AV3 e EDAG, nota necessária na Final e quantos dias você ainda pode faltar.">
+  <meta name="keywords" content="Help CIMATEC, SENAI CIMATEC, calculadora média, calculadora faltas, passei CIMATEC, nota final, AG, EDAG, média semestral, Passei Senai, Faltei Senai">
   <meta name="author" content="Clube de Programação SENAI CIMATEC">
   <meta name="robots" content="index, follow">
-  <link rel="canonical" href="https://rodrigogduca.github.io/help-senai/">
+  <meta name="theme-color" content="#F1F5FA">
+  <link rel="canonical" href="https://rodrigogduca.github.io/help-cimatec/">
+  <meta name="google-site-verification" content="bEjwL1SdlNlf9pZgTga21gT5IwiEgbxZDpAvBjXV52U" />
 
   <!-- Open Graph / Redes Sociais -->
   <meta property="og:type" content="website">
-  <meta property="og:title" content="Help SENAI - Calculadora de Média e Faltas">
-  <meta property="og:description" content="Ferramentas acadêmicas gratuitas para estudantes do SENAI CIMATEC. Calcule sua média e controle suas faltas.">
-  <meta property="og:url" content="https://rodrigogduca.github.io/help-senai/">
-  <meta property="og:image" content="https://rodrigogduca.github.io/help-senai/logo.png">
+  <meta property="og:site_name" content="Help CIMATEC">
+  <meta property="og:locale" content="pt_BR">
+  <meta property="og:title" content="Help CIMATEC — Calculadora de Média e Faltas">
+  <meta property="og:description" content="Média com os pesos certos, nota necessária na Final e o seu saldo de faltas. Para quem estuda no SENAI CIMATEC.">
+  <meta property="og:url" content="https://rodrigogduca.github.io/help-cimatec/">
+  <meta property="og:image" content="https://rodrigogduca.github.io/help-cimatec/og-image.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta name="twitter:card" content="summary_large_image">
 
-  <link rel="icon" type="image/png" href="logo.png">
+  <link rel="icon" href="favicon.ico" sizes="any">
+  <link rel="icon" type="image/png" href="favicon.png">
+  <link rel="apple-touch-icon" href="apple-touch-icon.png">
+
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600;700&family=IBM+Plex+Sans+Condensed:wght@600;700&family=IBM+Plex+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
-  <div class="bg-grid"></div>
+  <a href="#ferramentas" class="skip-link">Pular para as calculadoras</a>
 
   <!-- NAVBAR -->
   <nav>
-    <a href="#" class="nav-logo">
-      <img src="logo.png" alt="Help SENAI">
-      <span>Help SENAI</span>
-    </a>
-    <ul class="nav-links">
-      <li><a href="#ferramentas">Ferramentas</a></li>
-      <li><a href="https://clube-de-programacao.vercel.app/" class="nav-cta" target="_blank" rel="noopener noreferrer">Site Principal</a></li>
-    </ul>
-    <button class="hamburger" aria-label="Menu">
-      <span></span><span></span><span></span>
-    </button>
+    <div class="nav-inner">
+      <a href="#topo" class="nav-logo">
+        <img src="logo.png" alt="Help CIMATEC" width="720" height="235">
+      </a>
+      <ul class="nav-links">
+        <li><a href="#ferramentas">Calculadoras</a></li>
+        <li><a href="#regras">Como funciona</a></li>
+        <li><a href="https://clube-de-programacao.vercel.app/" class="nav-cta" target="_blank" rel="noopener noreferrer">Clube de Programação</a></li>
+      </ul>
+      <button class="hamburger" aria-label="Abrir menu" aria-expanded="false" aria-controls="mobileMenu">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+    <div class="mobile-menu" id="mobileMenu">
+      <a href="#ferramentas">Calculadoras</a>
+      <a href="#regras">Como funciona</a>
+      <a href="https://clube-de-programacao.vercel.app/" target="_blank" rel="noopener noreferrer">Clube de Programação</a>
+    </div>
   </nav>
 
-  <!-- MOBILE MENU -->
-  <div class="mobile-menu">
-    <a href="#ferramentas">Ferramentas</a>
-    <a href="#contato">Contato</a>
-    <a href="https://clube-de-programacao.vercel.app/" target="_blank" rel="noopener noreferrer">Site Principal</a>
-  </div>
-
   <!-- HERO -->
-  <section class="hero">
-    <div class="container hero-content">
-      <div class="hero-badge">Ferramentas Acadêmicas</div>
-      <h1 class="fade-in">Calculadoras do<br><span class="highlight">Estudante SENAI</span></h1>
-      <p class="fade-in">Ferramentas úteis para acompanhar seu desempenho acadêmico no SENAI CIMATEC.</p>
-      <div class="hero-buttons fade-in">
-        <a href="#ferramentas" class="btn-primary">Calcular Agora</a>
-        <a href="https://clube-de-programacao.vercel.app/" class="btn-secondary" target="_blank" rel="noopener noreferrer">Site Principal →</a>
-      </div>
-    </div>
-  </section>
-
-  <div class="container"><hr class="divider"></div>
-
-  <!-- FERRAMENTAS ACADEMICAS -->
-  <section id="ferramentas">
+  <header class="hero" id="topo">
     <div class="container">
-      <span class="section-label fade-in">// ferramentas acadêmicas</span>
-      <h2 class="section-title fade-in">Calculadoras<br>do estudante</h2>
-      <p class="section-desc fade-in">Ferramentas úteis para acompanhar seu desempenho acadêmico no SENAI CIMATEC.</p>
+      <p class="eyebrow reveal" style="--d:0">SENAI CIMATEC · régua acadêmica</p>
+      <h1 class="reveal" style="--d:1">Você está<br>a quanto do <em>7,0</em>?</h1>
+      <p class="lede reveal" style="--d:2">
+        Duas contas decidem o seu semestre: a média com o peso de cada avaliação
+        e o limite de 25% de faltas. Aqui as duas saem certas.
+      </p>
 
-      <div class="tools-grid">
-
-        <!-- PASSEI SENAI? -->
-        <div class="tool-card fade-in">
-          <div class="tool-header">
-            <div class="tool-icon">
-              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#F28A1F" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
-            </div>
-            <h3>Passei SENAI?</h3>
-            <p class="tool-desc">Calcule sua média semestral e descubra a nota mínima para a final.</p>
+      <!-- SIGNATURE: a régua do regulamento -->
+      <figure class="hero-regua reveal" style="--d:3" aria-labelledby="reguaCaption">
+        <div class="regua regua--hero" style="--cut-a:30%; --cut-b:70%">
+          <div class="regua-track">
+            <span class="regua-zone zone-fail" style="--from:0%;   --to:30%"></span>
+            <span class="regua-zone zone-warn" style="--from:30%;  --to:70%"></span>
+            <span class="regua-zone zone-pass" style="--from:70%;  --to:100%"></span>
+            <span class="regua-ticks" style="--minor:5%; --major:10%"></span>
+            <span class="regua-cut" style="--at:30%"><b>3,0</b></span>
+            <span class="regua-cut" style="--at:70%"><b>7,0</b></span>
           </div>
-          <div class="tool-body">
-            <div class="tool-pesos">
-              <span class="tool-peso-tag">AV1: 25%</span>
-              <span class="tool-peso-tag">AV2: 25%</span>
-              <span class="tool-peso-tag">AV3: 30%</span>
-              <span class="tool-peso-tag">EDAG: 20%</span>
-            </div>
-            <div class="tool-notas-grid">
-              <div class="tool-field">
-                <label for="notaAV1">AV1 <span class="tool-peso-label">(25%)</span></label>
-                <div class="tool-number-wrap">
-                  <input type="number" id="notaAV1" min="0" max="10" step="0.1" placeholder="0 a 10" class="tool-input">
-                  <div class="tool-number-btns">
-                    <button type="button" class="tool-number-btn" data-dir="up" aria-label="Aumentar"><svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M2 8L6 4L10 8"/></svg></button>
-                    <button type="button" class="tool-number-btn" data-dir="down" aria-label="Diminuir"><svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M2 4L6 8L10 4"/></svg></button>
-                  </div>
-                </div>
-              </div>
-              <div class="tool-field">
-                <label for="notaAV2">AV2 <span class="tool-peso-label">(25%)</span></label>
-                <div class="tool-number-wrap">
-                  <input type="number" id="notaAV2" min="0" max="10" step="0.1" placeholder="0 a 10" class="tool-input">
-                  <div class="tool-number-btns">
-                    <button type="button" class="tool-number-btn" data-dir="up" aria-label="Aumentar"><svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M2 8L6 4L10 8"/></svg></button>
-                    <button type="button" class="tool-number-btn" data-dir="down" aria-label="Diminuir"><svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M2 4L6 8L10 4"/></svg></button>
-                  </div>
-                </div>
-              </div>
-              <div class="tool-field">
-                <label for="notaAV3">AV3 <span class="tool-peso-label">(30%)</span></label>
-                <div class="tool-number-wrap">
-                  <input type="number" id="notaAV3" min="0" max="10" step="0.1" placeholder="0 a 10" class="tool-input">
-                  <div class="tool-number-btns">
-                    <button type="button" class="tool-number-btn" data-dir="up" aria-label="Aumentar"><svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M2 8L6 4L10 8"/></svg></button>
-                    <button type="button" class="tool-number-btn" data-dir="down" aria-label="Diminuir"><svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M2 4L6 8L10 4"/></svg></button>
-                  </div>
-                </div>
-              </div>
-              <div class="tool-field">
-                <label for="notaEDAG">EDAG <span class="tool-peso-label">(20%)</span></label>
-                <div class="tool-number-wrap">
-                  <input type="number" id="notaEDAG" min="0" max="10" step="0.1" placeholder="0 a 10" class="tool-input">
-                  <div class="tool-number-btns">
-                    <button type="button" class="tool-number-btn" data-dir="up" aria-label="Aumentar"><svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M2 8L6 4L10 8"/></svg></button>
-                    <button type="button" class="tool-number-btn" data-dir="down" aria-label="Diminuir"><svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M2 4L6 8L10 4"/></svg></button>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <button type="button" id="btnCalcularMedia" class="tool-btn">Calcular</button>
-            <div id="resultadoMedia" class="tool-result" style="display:none;"></div>
+          <div class="regua-axis">
+            <span style="--at:0%">0</span>
+            <span style="--at:20%">2</span>
+            <span style="--at:40%">4</span>
+            <span style="--at:60%">6</span>
+            <span style="--at:80%">8</span>
+            <span style="--at:100%">10</span>
           </div>
         </div>
+        <figcaption class="regua-legend" id="reguaCaption">
+          <span class="key key-fail">0 a 3,0 — reprovado direto</span>
+          <span class="key key-warn">3,0 a 7,0 — vai pra Final</span>
+          <span class="key key-pass">7,0 a 10 — aprovado</span>
+        </figcaption>
+      </figure>
 
-        <!-- CALCULADORA DE FALTAS -->
-        <div class="tool-card fade-in">
-          <div class="tool-header">
-            <div class="tool-icon">
-              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#F28A1F" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
-            </div>
-            <h3>Calculadora de Faltas</h3>
-            <p class="tool-desc">Descubra quantas faltas você ainda pode ter. Cada dia = 2 aulas de 50min. Presença mínima: 75%.</p>
+      <div class="hero-actions reveal" style="--d:4">
+        <a href="#media" class="btn btn-primary">Calcular minha média</a>
+        <a href="#faltas" class="btn btn-ghost">Contar minhas faltas</a>
+      </div>
+    </div>
+  </header>
+
+  <main id="ferramentas">
+    <div class="container">
+
+      <!-- ============ CALCULADORA DE MÉDIA ============ -->
+      <section class="panel reveal" id="media">
+        <div class="panel-head">
+          <div>
+            <p class="eyebrow">Calculadora 1</p>
+            <h2>Passei CIMATEC?</h2>
+            <p class="panel-desc">
+              Sua média do semestre (AG) é a soma das notas multiplicadas pelo peso de cada
+              avaliação. Cada campo abaixo é do tamanho do seu peso.
+            </p>
           </div>
-          <div class="tool-body">
-            <div class="tool-field">
+          <p class="panel-formula" aria-hidden="true">AG = <span>AV1·25 + AV2·25 + AV3·30 + EDAG·20</span> ÷ 100</p>
+        </div>
+
+        <div class="panel-body">
+          <!-- the weighting drawn to scale, above the field it belongs to -->
+          <div class="pesos" aria-hidden="true">
+            <span></span><span></span><span></span><span></span>
+          </div>
+
+          <div class="notas">
+            <div class="field">
+              <label for="notaAV1">AV1 <span class="peso">25%</span></label>
+              <div class="stepper">
+                <input type="number" id="notaAV1" min="0" max="10" step="0.1" inputmode="decimal" placeholder="0,0" autocomplete="off">
+                <span class="stepper-btns">
+                  <button type="button" class="step" data-dir="up" aria-label="Aumentar AV1"><svg viewBox="0 0 12 12" aria-hidden="true"><path d="M2 8L6 4L10 8"/></svg></button>
+                  <button type="button" class="step" data-dir="down" aria-label="Diminuir AV1"><svg viewBox="0 0 12 12" aria-hidden="true"><path d="M2 4L6 8L10 4"/></svg></button>
+                </span>
+              </div>
+            </div>
+            <div class="field">
+              <label for="notaAV2">AV2 <span class="peso">25%</span></label>
+              <div class="stepper">
+                <input type="number" id="notaAV2" min="0" max="10" step="0.1" inputmode="decimal" placeholder="0,0" autocomplete="off">
+                <span class="stepper-btns">
+                  <button type="button" class="step" data-dir="up" aria-label="Aumentar AV2"><svg viewBox="0 0 12 12" aria-hidden="true"><path d="M2 8L6 4L10 8"/></svg></button>
+                  <button type="button" class="step" data-dir="down" aria-label="Diminuir AV2"><svg viewBox="0 0 12 12" aria-hidden="true"><path d="M2 4L6 8L10 4"/></svg></button>
+                </span>
+              </div>
+            </div>
+            <div class="field">
+              <label for="notaAV3">AV3 <span class="peso">30%</span></label>
+              <div class="stepper">
+                <input type="number" id="notaAV3" min="0" max="10" step="0.1" inputmode="decimal" placeholder="0,0" autocomplete="off">
+                <span class="stepper-btns">
+                  <button type="button" class="step" data-dir="up" aria-label="Aumentar AV3"><svg viewBox="0 0 12 12" aria-hidden="true"><path d="M2 8L6 4L10 8"/></svg></button>
+                  <button type="button" class="step" data-dir="down" aria-label="Diminuir AV3"><svg viewBox="0 0 12 12" aria-hidden="true"><path d="M2 4L6 8L10 4"/></svg></button>
+                </span>
+              </div>
+            </div>
+            <div class="field">
+              <label for="notaEDAG">EDAG <span class="peso">20%</span></label>
+              <div class="stepper">
+                <input type="number" id="notaEDAG" min="0" max="10" step="0.1" inputmode="decimal" placeholder="0,0" autocomplete="off">
+                <span class="stepper-btns">
+                  <button type="button" class="step" data-dir="up" aria-label="Aumentar EDAG"><svg viewBox="0 0 12 12" aria-hidden="true"><path d="M2 8L6 4L10 8"/></svg></button>
+                  <button type="button" class="step" data-dir="down" aria-label="Diminuir EDAG"><svg viewBox="0 0 12 12" aria-hidden="true"><path d="M2 4L6 8L10 4"/></svg></button>
+                </span>
+              </div>
+            </div>
+          </div>
+
+          <button type="button" id="btnCalcularMedia" class="btn btn-primary btn-block">Calcular média</button>
+          <div id="resultadoMedia" class="readout" role="status" aria-live="polite" hidden></div>
+        </div>
+      </section>
+
+      <!-- ============ CALCULADORA DE FALTAS ============ -->
+      <section class="panel reveal" id="faltas">
+        <div class="panel-head">
+          <div>
+            <p class="eyebrow">Calculadora 2</p>
+            <h2>Quanto ainda dá pra faltar</h2>
+            <p class="panel-desc">
+              Cada dia letivo vale 2 aulas de 50 minutos. Você precisa de 75% de presença,
+              então 25% da carga é o seu saldo de faltas.
+            </p>
+          </div>
+          <p class="panel-formula" aria-hidden="true">Saldo = <span>dias letivos × 25%</span></p>
+        </div>
+
+        <div class="panel-body">
+          <div class="faltas-inputs">
+            <div class="field">
               <label for="cargaHoraria">Carga horária da disciplina</label>
-              <div class="tool-select-wrap">
-                <select id="cargaHoraria" class="tool-input">
-                  <option value="" disabled selected>Selecione a carga horária</option>
+              <div class="select">
+                <select id="cargaHoraria">
+                  <option value="" disabled selected>Selecione</option>
                   <option value="30">30 horas</option>
                   <option value="60">60 horas</option>
                   <option value="90">90 horas</option>
                   <option value="105">105 horas</option>
                 </select>
-                <div class="tool-select-arrow">
-                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg>
-                </div>
+                <span class="select-arrow" aria-hidden="true">
+                  <svg viewBox="0 0 24 24"><path d="M6 9l6 6 6-6"/></svg>
+                </span>
               </div>
             </div>
-            <div class="tool-field">
-              <label for="faltasAtuais">Faltas já acumuladas (dias)</label>
-              <div class="tool-number-wrap">
-                <input type="number" id="faltasAtuais" min="0" max="500" value="0" placeholder="ex: 3" class="tool-input">
-                <div class="tool-number-btns">
-                  <button type="button" class="tool-number-btn" data-dir="up" aria-label="Aumentar"><svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M2 8L6 4L10 8"/></svg></button>
-                  <button type="button" class="tool-number-btn" data-dir="down" aria-label="Diminuir"><svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M2 4L6 8L10 4"/></svg></button>
-                </div>
+            <div class="field">
+              <label for="faltasAtuais">Dias que você já faltou</label>
+              <div class="stepper">
+                <input type="number" id="faltasAtuais" min="0" max="500" value="0" step="1" inputmode="numeric" autocomplete="off">
+                <span class="stepper-btns">
+                  <button type="button" class="step" data-dir="up" aria-label="Aumentar faltas"><svg viewBox="0 0 12 12" aria-hidden="true"><path d="M2 8L6 4L10 8"/></svg></button>
+                  <button type="button" class="step" data-dir="down" aria-label="Diminuir faltas"><svg viewBox="0 0 12 12" aria-hidden="true"><path d="M2 4L6 8L10 4"/></svg></button>
+                </span>
               </div>
             </div>
-            <button type="button" id="btnCalcularFaltas" class="tool-btn">Calcular</button>
-            <div id="resultadoFaltas" class="tool-result" style="display:none;"></div>
           </div>
-        </div>
 
-      </div>
+          <button type="button" id="btnCalcularFaltas" class="btn btn-primary btn-block">Contar faltas</button>
+          <div id="resultadoFaltas" class="readout" role="status" aria-live="polite" hidden></div>
+        </div>
+      </section>
+
+      <!-- ============ REGRAS ============ -->
+      <section class="regras reveal" id="regras">
+        <p class="eyebrow">Como funciona</p>
+        <h2>O regulamento, em quatro linhas</h2>
+        <dl class="regras-list">
+          <div>
+            <dt>Média do semestre (AG)</dt>
+            <dd>AV1 e AV2 valem 25% cada, AV3 vale 30% e o EDAG vale 20%. Somando dá 100%.</dd>
+          </div>
+          <div>
+            <dt>Aprovação direta</dt>
+            <dd>AG igual ou maior que 7,0. Acabou o semestre.</dd>
+          </div>
+          <div>
+            <dt>Avaliação Final (AF)</dt>
+            <dd>Com AG entre 3,0 e 7,0 você faz a AF. A nota necessária sai de (50 − 6 × AG) ÷ 4.</dd>
+          </div>
+          <div>
+            <dt>Frequência</dt>
+            <dd>Presença mínima de 75% da carga horária. Passou de 25% de faltas, reprova por falta.</dd>
+          </div>
+        </dl>
+        <p class="regras-note">
+          As contas seguem o regulamento acadêmico do SENAI CIMATEC. Confira sempre a nota
+          oficial no portal antes de tomar qualquer decisão pelo resultado daqui.
+        </p>
+      </section>
+
     </div>
-  </section>
+  </main>
 
-  <div class="container"><hr class="divider"></div>
-
-  <!-- FOOTER -->
   <footer>
-    <div class="container">
-      <div class="footer-inner">
-        <div class="footer-left">
-          <span>© 2026 Help SENAI — Rodrigo Gandarela</span>
-        </div>
-        <span class="footer-tech"><a href="https://github.com/rodrigogduca/help-senai" target="_blank" rel="noopener noreferrer">Código Fonte</a></span>
-      </div>
+    <div class="container footer-inner">
+      <p>© 2026 Help CIMATEC — Rodrigo Gandarela</p>
+      <p class="footer-links">
+        <a href="https://clube-de-programacao.vercel.app/" target="_blank" rel="noopener noreferrer">Clube de Programação</a>
+        <a href="https://github.com/rodrigogduca/help-cimatec" target="_blank" rel="noopener noreferrer">Código fonte</a>
+      </p>
     </div>
   </footer>
 
