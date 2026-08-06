@@ -32,6 +32,95 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600;700&family=IBM+Plex+Sans+Condensed:wght@600;700&family=IBM+Plex+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="style.css">
+
+  <!-- Dados estruturados: aplicativo -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebApplication",
+    "name": "Help CIMATEC",
+    "alternateName": ["Passei CIMATEC", "Faltei CIMATEC"],
+    "url": "https://rodrigogduca.github.io/help-cimatec/",
+    "description": "Calculadora de média semestral (AG), nota necessária na Avaliação Final e limite de faltas para alunos da Universidade SENAI CIMATEC.",
+    "applicationCategory": "EducationalApplication",
+    "operatingSystem": "Any",
+    "browserRequirements": "Requer JavaScript",
+    "inLanguage": "pt-BR",
+    "image": "https://rodrigogduca.github.io/help-cimatec/og-image.png",
+    "isAccessibleForFree": true,
+    "offers": {
+      "@type": "Offer",
+      "price": "0",
+      "priceCurrency": "BRL"
+    },
+    "author": {
+      "@type": "Person",
+      "name": "Rodrigo Gandarela"
+    },
+    "about": {
+      "@type": "CollegeOrUniversity",
+      "name": "Universidade SENAI CIMATEC"
+    }
+  }
+  </script>
+
+  <!-- Dados estruturados: perguntas frequentes -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "Como calcular a média do semestre no SENAI CIMATEC?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "A média geral (AG) é a soma das notas multiplicadas pelos pesos, dividida por 100: AG = (AV1 × 25 + AV2 × 25 + AV3 × 30 + EDAG × 20) ÷ 100. Com AG igual ou maior que 7,0 você está aprovado direto."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Quanto vale cada avaliação (AV1, AV2, AV3 e EDAG)?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "AV1 vale 25%, AV2 vale 25%, AV3 vale 30% e o EDAG vale 20% da média do semestre. Os quatro pesos somam 100%."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Que nota eu preciso tirar na Avaliação Final do CIMATEC?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Com a média geral entre 3,0 e 7,0 você vai para a Avaliação Final (AF). A nota necessária é (50 − 6 × AG) ÷ 4. Por exemplo, com AG 5,0 a AF precisa ser 5,0. Abaixo de 3,0 não há Final: a reprovação é direta."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Quantas faltas eu posso ter em uma disciplina?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "A presença mínima é de 75% da carga horária, ou seja, o limite de faltas é 25% das aulas. Em uma disciplina de 60 horas isso dá 15 horas-aula de saldo; em uma de 30 horas, 7 horas-aula. Cada dia letivo costuma valer 2 aulas de 50 minutos."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "O que é EDAG no CIMATEC?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "EDAG é a Escala de Desempenho e Atitude Geral, a avaliação de postura e desempenho do aluno ao longo do semestre. Ela vale 20% da média geral."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "O Help CIMATEC é um site oficial da universidade?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Não. O Help CIMATEC é um projeto independente feito por alunos e segue o regulamento acadêmico da Universidade SENAI CIMATEC. Confirme sempre suas notas e faltas no portal oficial antes de tomar qualquer decisão."
+        }
+      }
+    ]
+  }
+  </script>
 </head>
 <body>
 
@@ -46,6 +135,7 @@
       <ul class="nav-links">
         <li><a href="#ferramentas">Calculadoras</a></li>
         <li><a href="#regras">Como funciona</a></li>
+        <li><a href="#faq">Dúvidas</a></li>
       </ul>
       <button class="hamburger" aria-label="Abrir menu" aria-expanded="false" aria-controls="mobileMenu">
         <span></span><span></span><span></span>
@@ -54,6 +144,7 @@
     <div class="mobile-menu" id="mobileMenu">
       <a href="#ferramentas">Calculadoras</a>
       <a href="#regras">Como funciona</a>
+      <a href="#faq">Dúvidas</a>
     </div>
   </nav>
 
@@ -253,6 +344,60 @@
           As contas seguem o regulamento acadêmico da Universidade SENAI CIMATEC. Confira sempre a nota
           oficial no portal antes de tomar qualquer decisão pelo resultado daqui.
         </p>
+      </section>
+
+      <!-- ============ PERGUNTAS FREQUENTES ============ -->
+      <section class="regras reveal" id="faq">
+        <p class="eyebrow">Perguntas frequentes</p>
+        <h2>As dúvidas que todo mundo tem</h2>
+        <dl class="regras-list">
+          <div>
+            <dt>Como calcular a média do semestre no SENAI CIMATEC?</dt>
+            <dd>
+              A média geral (AG) é a soma das notas multiplicadas pelos pesos, dividida por 100:
+              AG = (AV1 × 25 + AV2 × 25 + AV3 × 30 + EDAG × 20) ÷ 100. Com AG igual ou maior que
+              7,0 você está aprovado direto.
+            </dd>
+          </div>
+          <div>
+            <dt>Quanto vale cada avaliação (AV1, AV2, AV3 e EDAG)?</dt>
+            <dd>
+              AV1 vale 25%, AV2 vale 25%, AV3 vale 30% e o EDAG vale 20% da média do semestre.
+              Os quatro pesos somam 100%.
+            </dd>
+          </div>
+          <div>
+            <dt>Que nota eu preciso tirar na Avaliação Final?</dt>
+            <dd>
+              Com a média geral entre 3,0 e 7,0 você vai para a Avaliação Final (AF). A nota
+              necessária é (50 − 6 × AG) ÷ 4. Por exemplo, com AG 5,0 a AF precisa ser 5,0.
+              Abaixo de 3,0 não há Final: a reprovação é direta.
+            </dd>
+          </div>
+          <div>
+            <dt>Quantas faltas eu posso ter em uma disciplina?</dt>
+            <dd>
+              A presença mínima é de 75% da carga horária, ou seja, o limite de faltas é 25% das
+              aulas. Em uma disciplina de 60 horas isso dá 15 horas-aula de saldo; em uma de 30
+              horas, 7 horas-aula. Cada dia letivo costuma valer 2 aulas de 50 minutos.
+            </dd>
+          </div>
+          <div>
+            <dt>O que é EDAG?</dt>
+            <dd>
+              EDAG é a Escala de Desempenho e Atitude Geral, a avaliação de postura e desempenho
+              do aluno ao longo do semestre. Ela vale 20% da média geral.
+            </dd>
+          </div>
+          <div>
+            <dt>O Help CIMATEC é um site oficial da universidade?</dt>
+            <dd>
+              Não. O Help CIMATEC é um projeto independente feito por alunos e segue o regulamento
+              acadêmico da Universidade SENAI CIMATEC. Confirme sempre suas notas e faltas no
+              portal oficial antes de tomar qualquer decisão.
+            </dd>
+          </div>
+        </dl>
       </section>
 
     </div>
