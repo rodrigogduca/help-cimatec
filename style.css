@@ -170,15 +170,6 @@ nav.scrolled {
 }
 .nav-links a:hover { color: var(--ink); background: rgba(29, 78, 137, .07); }
 
-.nav-cta {
-  color: var(--paper-hi) !important;
-  background: var(--blue);
-  padding: 9px 18px !important;
-  font-weight: 600 !important;
-  margin-left: 8px;
-}
-.nav-cta:hover { background: var(--ink) !important; color: var(--paper-hi) !important; }
-
 .hamburger {
   display: none;
   flex-direction: column;
@@ -214,7 +205,7 @@ nav.scrolled {
   text-decoration: none;
   border-bottom: 1px solid var(--rule-soft);
 }
-.mobile-menu a:last-child { border-bottom: none; color: var(--blue); font-weight: 600; }
+.mobile-menu a:last-child { border-bottom: none; }
 
 /* ============================================================
    HERO
@@ -439,12 +430,20 @@ nav.scrolled {
 .btn-primary { background: var(--orange); color: #FFF; }
 .btn-primary:hover { background: var(--orange-hi); }
 
+.btn-blue { background: var(--blue); color: #FFF; }
+.btn-blue:hover { background: var(--ink); }
+
 .btn-ghost {
-  background: transparent;
-  color: var(--ink);
-  border-color: var(--rule);
+  background: var(--paper-hi);
+  color: var(--blue);
+  border-color: #A6BFDA;
+  box-shadow: 0 1px 2px rgba(14, 35, 64, .06);
 }
-.btn-ghost:hover { border-color: var(--blue); color: var(--blue); background: rgba(29, 78, 137, .05); }
+.btn-ghost:hover {
+  border-color: var(--blue);
+  background: var(--blue);
+  color: var(--paper-hi);
+}
 
 .btn-block { min-width: 250px; margin-top: 26px; }
 
@@ -509,8 +508,84 @@ main { padding-bottom: 40px; }
 
 .faltas-inputs {
   display: grid;
-  grid-template-columns: 1.6fr 1fr;
+  grid-template-columns: 1.5fr 1.15fr 1fr;
   gap: 16px;
+}
+
+/* ---- live projection: what the remaining avaliações must deliver ---- */
+.projecao {
+  margin-top: 22px;
+  padding: 16px 18px;
+  border: 1px dashed var(--rule);
+  border-left: 2px solid var(--blue);
+  border-radius: var(--r);
+  background: rgba(29, 78, 137, .035);
+  animation: readoutIn .3s var(--ease);
+}
+.projecao-msg {
+  font-size: 14.5px;
+  color: var(--ink-2);
+}
+.projecao-msg.is-pass { color: var(--pass); font-weight: 500; }
+.projecao-msg.is-warn { color: var(--orange-hi); font-weight: 500; }
+.projecao-msg.is-fail { color: var(--fail); font-weight: 500; }
+
+.chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: 12px;
+}
+.chip {
+  display: inline-flex;
+  align-items: baseline;
+  gap: 8px;
+  padding: 6px 12px;
+  border: 1px solid var(--rule);
+  border-radius: var(--r);
+  background: var(--paper-hi);
+  font-family: var(--mono);
+}
+.chip b {
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: .08em;
+  color: var(--ink-3);
+}
+.chip i {
+  font-style: normal;
+  font-size: 16px;
+  font-weight: 700;
+  color: var(--blue);
+}
+
+/* ---- unit toggle ---- */
+.segmented {
+  display: flex;
+  height: 52px;
+  padding: 4px;
+  gap: 4px;
+  background: var(--paper);
+  border: 1px solid var(--rule);
+  border-radius: var(--r);
+}
+.seg {
+  flex: 1;
+  border: none;
+  border-radius: 2px;
+  background: transparent;
+  font-family: var(--sans);
+  font-size: 13.5px;
+  font-weight: 600;
+  color: var(--ink-3);
+  cursor: pointer;
+  white-space: nowrap;
+  transition: background .18s var(--ease), color .18s var(--ease);
+}
+.seg:hover { color: var(--ink-2); }
+.seg.is-on {
+  background: var(--blue);
+  color: var(--paper-hi);
 }
 
 /* ---- fields ---- */
@@ -636,6 +711,7 @@ main { padding-bottom: 40px; }
 .verdict-value.is-pass { color: var(--pass); }
 .verdict-value.is-warn { color: var(--orange-hi); }
 .verdict-value.is-fail { color: var(--fail); }
+.verdict-value.is-info { color: var(--blue); }
 
 .verdict-label {
   font-family: var(--mono);
@@ -657,6 +733,21 @@ main { padding-bottom: 40px; }
 .tag.is-pass { background: var(--z-pass); color: var(--pass); }
 .tag.is-warn { background: var(--z-warn); color: var(--orange-hi); }
 .tag.is-fail { background: var(--z-fail); color: var(--fail); }
+.tag.is-info { background: rgba(29, 78, 137, .10); color: var(--blue); }
+
+/* where the final média can still land, given what is missing */
+.regua-faixa {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: var(--from);
+  width: calc(var(--to) - var(--from));
+  background: repeating-linear-gradient(45deg,
+    rgba(29, 78, 137, .16) 0 3px, transparent 3px 7px);
+  border-left: 1px solid rgba(29, 78, 137, .4);
+  border-right: 1px solid rgba(29, 78, 137, .4);
+  z-index: 1;
+}
 
 .readout .regua { margin: 30px 0 34px; }
 .readout .regua-track { height: 54px; background: var(--paper); }
@@ -701,36 +792,74 @@ main { padding-bottom: 40px; }
 
 .breakdown {
   width: 100%;
-  max-width: 540px;
   border-collapse: collapse;
+  table-layout: fixed;
   font-size: 14px;
   margin: 20px 0 4px;
 }
 .breakdown th {
-  text-align: left;
   font-family: var(--mono);
   font-size: 10.5px;
   font-weight: 600;
-  letter-spacing: .1em;
+  letter-spacing: .08em;
   text-transform: uppercase;
   color: var(--ink-3);
-  padding: 0 12px 9px 0;
+  padding: 0 0 9px;
   border-bottom: 1px solid var(--rule);
 }
-.breakdown th:last-child, .breakdown td:last-child { text-align: right; padding-right: 0; }
 .breakdown td {
-  padding: 10px 12px 10px 0;
+  padding: 10px 0;
   border-bottom: 1px solid var(--rule-soft);
   font-family: var(--mono);
   color: var(--ink-2);
 }
-.breakdown td:first-child { color: var(--ink); font-weight: 600; }
+
+/* columns scale with the panel instead of sitting at a fixed width */
+.breakdown .c-nome { width: 40%; text-align: left; color: var(--ink); font-weight: 600; }
+.breakdown .c-nota,
+.breakdown .c-peso,
+.breakdown .c-pts  { width: 20%; text-align: right; }
+
+/* the peso rides along with the name once the column is dropped */
+.td-peso { display: none; }
 .breakdown tfoot td {
   border-bottom: none;
   border-top: 1.5px solid var(--rule);
   color: var(--ink);
   font-weight: 700;
   padding-top: 12px;
+}
+
+/* ---- the one number that tells you what to do ---- */
+.af {
+  margin: 26px 0 10px;
+  padding: 26px 28px;
+  background: var(--ink);
+  border-left: 4px solid var(--orange);
+  border-radius: var(--r-lg);
+}
+.af-label {
+  font-family: var(--mono);
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: .12em;
+  text-transform: uppercase;
+  color: #9FB8D6;
+  margin-bottom: 10px;
+}
+.af-value {
+  font-family: var(--cond);
+  font-size: clamp(56px, 10vw, 84px);
+  font-weight: 700;
+  line-height: .88;
+  letter-spacing: -.03em;
+  color: var(--paper-hi);
+}
+.af-note {
+  margin-top: 14px;
+  font-family: var(--mono);
+  font-size: 12.5px;
+  color: #8AA6C8;
 }
 
 .formula {
@@ -764,6 +893,8 @@ main { padding-bottom: 40px; }
 }
 .tally-marks i.used { background: var(--orange); border-color: var(--orange); }
 .tally-marks i.over { background: var(--fail); border-color: var(--fail); }
+/* half a day still counts: one aula of the two */
+.tally-marks i.meia { width: 6px; }
 @keyframes markIn { from { opacity: 0; transform: scaleY(.4); } }
 
 .error {
@@ -860,6 +991,8 @@ main .reveal.visible, .regras.reveal.visible {
 @media (max-width: 860px) {
   .panel-head { flex-direction: column; gap: 18px; }
   .panel-formula { text-align: left; padding-top: 0; }
+  .faltas-inputs { grid-template-columns: 1fr 1fr; }
+  .field-carga { grid-column: 1 / -1; }
 }
 
 @media (max-width: 720px) {
@@ -880,9 +1013,27 @@ main .reveal.visible, .regras.reveal.visible {
   .notas { grid-template-columns: 1fr 1fr; gap: 12px; }
   .faltas-inputs { grid-template-columns: 1fr; }
   .btn-block { width: 100%; }
+  .chip { flex: 1 1 auto; justify-content: space-between; }
 
   .regras-list > div { grid-template-columns: 1fr; gap: 6px; }
   .footer-inner { flex-direction: column; align-items: flex-start; }
+}
+
+@media (max-width: 560px) {
+  /* drop the peso column and fold it into the name */
+  .breakdown .c-peso { display: none; }
+  .breakdown .c-nome { width: 46%; }
+  .breakdown .c-nota,
+  .breakdown .c-pts { width: 27%; }
+  .breakdown { font-size: 13px; }
+  .breakdown th { font-size: 9.5px; letter-spacing: .04em; }
+  .td-peso {
+    display: block;
+    font-size: 11px;
+    font-weight: 400;
+    color: var(--ink-3);
+  }
+  .af { padding: 22px 20px; }
 }
 
 @media (max-width: 420px) {

@@ -1,6 +1,6 @@
 # Help CIMATEC
 
-Ferramentas acadêmicas para estudantes do **SENAI CIMATEC**.
+Ferramentas acadêmicas para estudantes da **Universidade SENAI CIMATEC**.
 
 🔗 **Site:** [rodrigogduca.github.io/help-cimatec](https://rodrigogduca.github.io/help-cimatec/)
 
@@ -46,4 +46,4 @@ redimensionamento.
 
 ## Autor
 
-Rodrigo Gandarela — [Clube de Programação SENAI CIMATEC](https://clube-de-programacao.vercel.app/)
+Rodrigo Gandarela — [Clube de Programação — Universidade SENAI CIMATEC](https://clube-de-programacao.vercel.app/)

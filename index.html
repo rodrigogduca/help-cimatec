@@ -4,9 +4,9 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Help CIMATEC — Calculadora de Média e Faltas | Universidade SENAI CIMATEC</title>
-  <meta name="description" content="Calcule sua média semestral e o limite de faltas no SENAI CIMATEC. Média com os pesos de AV1, AV2, AV3 e EDAG, nota necessária na Final e quantos dias você ainda pode faltar.">
-  <meta name="keywords" content="Help CIMATEC, SENAI CIMATEC, calculadora média, calculadora faltas, passei CIMATEC, nota final, AG, EDAG, média semestral, Passei Senai, Faltei Senai">
-  <meta name="author" content="Clube de Programação SENAI CIMATEC">
+  <meta name="description" content="Calcule sua média semestral e o limite de faltas na Universidade SENAI CIMATEC. Média com os pesos de AV1, AV2, AV3 e EDAG, nota necessária na Final e quantos dias você ainda pode faltar.">
+  <meta name="keywords" content="Help CIMATEC, Universidade SENAI CIMATEC, calculadora média, calculadora faltas, passei CIMATEC, nota final, AG, EDAG, média semestral, Passei Senai, Faltei Senai">
+  <meta name="author" content="Clube de Programação — Universidade SENAI CIMATEC">
   <meta name="robots" content="index, follow">
   <meta name="theme-color" content="#F1F5FA">
   <link rel="canonical" href="https://rodrigogduca.github.io/help-cimatec/">
@@ -17,7 +17,7 @@
   <meta property="og:site_name" content="Help CIMATEC">
   <meta property="og:locale" content="pt_BR">
   <meta property="og:title" content="Help CIMATEC — Calculadora de Média e Faltas">
-  <meta property="og:description" content="Média com os pesos certos, nota necessária na Final e o seu saldo de faltas. Para quem estuda no SENAI CIMATEC.">
+  <meta property="og:description" content="Média com os pesos certos, nota necessária na Final e o seu saldo de faltas. Para quem estuda na Universidade SENAI CIMATEC.">
   <meta property="og:url" content="https://rodrigogduca.github.io/help-cimatec/">
   <meta property="og:image" content="https://rodrigogduca.github.io/help-cimatec/og-image.png">
   <meta property="og:image:width" content="1200">
@@ -46,7 +46,6 @@
       <ul class="nav-links">
         <li><a href="#ferramentas">Calculadoras</a></li>
         <li><a href="#regras">Como funciona</a></li>
-        <li><a href="https://clube-de-programacao.vercel.app/" class="nav-cta" target="_blank" rel="noopener noreferrer">Clube de Programação</a></li>
       </ul>
       <button class="hamburger" aria-label="Abrir menu" aria-expanded="false" aria-controls="mobileMenu">
         <span></span><span></span><span></span>
@@ -55,14 +54,13 @@
     <div class="mobile-menu" id="mobileMenu">
       <a href="#ferramentas">Calculadoras</a>
       <a href="#regras">Como funciona</a>
-      <a href="https://clube-de-programacao.vercel.app/" target="_blank" rel="noopener noreferrer">Clube de Programação</a>
     </div>
   </nav>
 
   <!-- HERO -->
   <header class="hero" id="topo">
     <div class="container">
-      <p class="eyebrow reveal" style="--d:0">SENAI CIMATEC · régua acadêmica</p>
+      <p class="eyebrow reveal" style="--d:0">Universidade SENAI CIMATEC · régua acadêmica</p>
       <h1 class="reveal" style="--d:1">Você está<br>a quanto do <em>7,0</em>?</h1>
       <p class="lede reveal" style="--d:2">
         Duas contas decidem o seu semestre: a média com o peso de cada avaliação
@@ -97,8 +95,8 @@
       </figure>
 
       <div class="hero-actions reveal" style="--d:4">
-        <a href="#media" class="btn btn-primary">Calcular minha média</a>
-        <a href="#faltas" class="btn btn-ghost">Contar minhas faltas</a>
+        <a href="#media" class="btn btn-primary">Passei CIMATEC</a>
+        <a href="#faltas" class="btn btn-blue">Faltei CIMATEC</a>
       </div>
     </div>
   </header>
@@ -110,8 +108,8 @@
       <section class="panel reveal" id="media">
         <div class="panel-head">
           <div>
-            <p class="eyebrow">Calculadora 1</p>
-            <h2>Passei CIMATEC?</h2>
+            <p class="eyebrow">Calculadora de Notas</p>
+            <h2>Passei CIMATEC</h2>
             <p class="panel-desc">
               Sua média do semestre (AG) é a soma das notas multiplicadas pelo peso de cada
               avaliação. Cada campo abaixo é do tamanho do seu peso.
@@ -169,6 +167,9 @@
             </div>
           </div>
 
+          <!-- live: what the remaining avaliações still have to deliver -->
+          <div id="projecao" class="projecao" aria-live="polite" hidden></div>
+
           <button type="button" id="btnCalcularMedia" class="btn btn-primary btn-block">Calcular média</button>
           <div id="resultadoMedia" class="readout" role="status" aria-live="polite" hidden></div>
         </div>
@@ -178,27 +179,27 @@
       <section class="panel reveal" id="faltas">
         <div class="panel-head">
           <div>
-            <p class="eyebrow">Calculadora 2</p>
-            <h2>Quanto ainda dá pra faltar</h2>
+            <p class="eyebrow">Calculadora de Faltas</p>
+            <h2>Faltei CIMATEC</h2>
             <p class="panel-desc">
               Cada dia letivo vale 2 aulas de 50 minutos. Você precisa de 75% de presença,
               então 25% da carga é o seu saldo de faltas.
             </p>
           </div>
-          <p class="panel-formula" aria-hidden="true">Saldo = <span>dias letivos × 25%</span></p>
+          <p class="panel-formula" aria-hidden="true">Saldo = <span>25% das aulas</span></p>
         </div>
 
         <div class="panel-body">
           <div class="faltas-inputs">
-            <div class="field">
+            <div class="field field-carga">
               <label for="cargaHoraria">Carga horária da disciplina</label>
               <div class="select">
                 <select id="cargaHoraria">
                   <option value="" disabled selected>Selecione</option>
-                  <option value="30">30 horas</option>
-                  <option value="60">60 horas</option>
-                  <option value="90">90 horas</option>
-                  <option value="105">105 horas</option>
+                  <option value="30">30 horas — 1 aula por semana</option>
+                  <option value="60">60 horas — 2 aulas por semana</option>
+                  <option value="90">90 horas — 3 aulas por semana</option>
+                  <option value="105">105 horas — Práticas Integradas</option>
                 </select>
                 <span class="select-arrow" aria-hidden="true">
                   <svg viewBox="0 0 24 24"><path d="M6 9l6 6 6-6"/></svg>
@@ -206,7 +207,14 @@
               </div>
             </div>
             <div class="field">
-              <label for="faltasAtuais">Dias que você já faltou</label>
+              <label id="labelUnidade">Contar por</label>
+              <div class="segmented" role="radiogroup" aria-labelledby="labelUnidade">
+                <button type="button" class="seg is-on" data-unit="dias" role="radio" aria-checked="true">Dias</button>
+                <button type="button" class="seg" data-unit="aulas" role="radio" aria-checked="false">Faltas lançadas</button>
+              </div>
+            </div>
+            <div class="field">
+              <label for="faltasAtuais" id="labelFaltas">Dias que você já faltou</label>
               <div class="stepper">
                 <input type="number" id="faltasAtuais" min="0" max="500" value="0" step="1" inputmode="numeric" autocomplete="off">
                 <span class="stepper-btns">
@@ -245,7 +253,7 @@
           </div>
         </dl>
         <p class="regras-note">
-          As contas seguem o regulamento acadêmico do SENAI CIMATEC. Confira sempre a nota
+          As contas seguem o regulamento acadêmico da Universidade SENAI CIMATEC. Confira sempre a nota
           oficial no portal antes de tomar qualquer decisão pelo resultado daqui.
         </p>
       </section>
@@ -257,7 +265,6 @@
     <div class="container footer-inner">
       <p>© 2026 Help CIMATEC — Rodrigo Gandarela</p>
       <p class="footer-links">
-        <a href="https://clube-de-programacao.vercel.app/" target="_blank" rel="noopener noreferrer">Clube de Programação</a>
         <a href="https://github.com/rodrigogduca/help-cimatec" target="_blank" rel="noopener noreferrer">Código fonte</a>
       </p>
     </div>
