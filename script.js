@@ -293,6 +293,22 @@ function erro(el, mensagem) {
           '<strong>' + fmt(minimo) + '</strong> se você zerar ' + nomesFalta +
           ', <strong>' + fmt(maximo) + '</strong> se tirar 10.</p>';
 
+      /* one card per pending avaliação, each with its own weight and target —
+         rounded up, because 7,4 would land just under the line */
+      function alvos(precisaBruto) {
+        var nota = Math.min(10, Math.ceil(precisaBruto * 10) / 10);
+        return '<div class="alvos">' + faltando.map(function (p) {
+          return '<div class="alvo">' +
+                   '<p class="alvo-nome">' + p.nome + ' <span>' + p.peso + '%</span></p>' +
+                   '<p class="alvo-nota">' + fmt(nota) + '</p>' +
+                 '</div>';
+        }).join('') + '</div>';
+      }
+
+      var trocaJusta = faltando.length > 1
+        ? ' Tirando mais em uma, dá para tirar menos na outra — o que conta é o peso somado.'
+        : '';
+
       if (precisa <= 0) {
         htmlP += '<div class="af">' +
                    '<p class="af-label">Situação</p>' +
@@ -301,24 +317,31 @@ function erro(el, mensagem) {
                  '</div>';
       } else if (precisa <= 10) {
         htmlP += '<div class="af">' +
-                   '<p class="af-label">Você precisa tirar em ' + nomesFalta + '</p>' +
-                   '<p class="af-value">' + fmt(Math.ceil(precisa * 10) / 10) + '</p>' +
-                   '<p class="af-note">em cada uma, para fechar o semestre com 7,0</p>' +
+                   '<p class="af-label">Nota mínima em cada avaliação para fechar em 7,0</p>' +
+                   alvos(precisa) +
+                   '<p class="af-note">Esse é o mínimo em ' + nomesFalta + '.' + trocaJusta + '</p>' +
                  '</div>';
       } else {
         var paraFinal = (300 - pontos) / pesoRestante;
-        htmlP += '<div class="af">' +
-                   '<p class="af-label">' + (paraFinal <= 10
-                      ? 'O 7,0 não é mais alcançável. Para chegar na Final'
-                      : 'Situação') + '</p>' +
-                   '<p class="af-value">' + (paraFinal <= 0 ? 'Final'
-                      : (paraFinal <= 10 ? fmt(Math.ceil(paraFinal * 10) / 10) : '—')) + '</p>' +
-                   '<p class="af-note">' + (paraFinal <= 0
-                      ? 'a Final já está garantida, o 7,0 não é mais alcançável'
-                      : (paraFinal <= 10
-                          ? 'em cada uma das que faltam'
-                          : 'nem com 10 em ' + nomesFalta + ' a média chega aos 3,0')) + '</p>' +
-                 '</div>';
+        if (paraFinal <= 0) {
+          htmlP += '<div class="af">' +
+                     '<p class="af-label">Situação</p>' +
+                     '<p class="af-value">Final</p>' +
+                     '<p class="af-note">a Final já está garantida, o 7,0 não é mais alcançável</p>' +
+                   '</div>';
+        } else if (paraFinal <= 10) {
+          htmlP += '<div class="af">' +
+                     '<p class="af-label">O 7,0 não é mais alcançável. Mínimo para chegar na Final</p>' +
+                     alvos(paraFinal) +
+                     '<p class="af-note">Abaixo disso é reprovação direta, sem direito à Final.' + trocaJusta + '</p>' +
+                   '</div>';
+        } else {
+          htmlP += '<div class="af">' +
+                     '<p class="af-label">Situação</p>' +
+                     '<p class="af-value">—</p>' +
+                     '<p class="af-note">nem com 10 em ' + nomesFalta + ' a média chega aos 3,0</p>' +
+                   '</div>';
+        }
       }
 
       htmlP += tabela('<tr><td class="c-nome">Parcial</td><td class="c-nota"></td>' +
