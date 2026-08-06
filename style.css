@@ -512,53 +512,6 @@ main { padding-bottom: 40px; }
   gap: 16px;
 }
 
-/* ---- live projection: what the remaining avaliações must deliver ---- */
-.projecao {
-  margin-top: 22px;
-  padding: 16px 18px;
-  border: 1px dashed var(--rule);
-  border-left: 2px solid var(--blue);
-  border-radius: var(--r);
-  background: rgba(29, 78, 137, .035);
-  animation: readoutIn .3s var(--ease);
-}
-.projecao-msg {
-  font-size: 14.5px;
-  color: var(--ink-2);
-}
-.projecao-msg.is-pass { color: var(--pass); font-weight: 500; }
-.projecao-msg.is-warn { color: var(--orange-hi); font-weight: 500; }
-.projecao-msg.is-fail { color: var(--fail); font-weight: 500; }
-
-.chips {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 8px;
-  margin-top: 12px;
-}
-.chip {
-  display: inline-flex;
-  align-items: baseline;
-  gap: 8px;
-  padding: 6px 12px;
-  border: 1px solid var(--rule);
-  border-radius: var(--r);
-  background: var(--paper-hi);
-  font-family: var(--mono);
-}
-.chip b {
-  font-size: 11px;
-  font-weight: 600;
-  letter-spacing: .08em;
-  color: var(--ink-3);
-}
-.chip i {
-  font-style: normal;
-  font-size: 16px;
-  font-weight: 700;
-  color: var(--blue);
-}
-
 /* ---- unit toggle ---- */
 .segmented {
   display: flex;
@@ -689,6 +642,13 @@ main { padding-bottom: 40px; }
   border-top: 1px dashed var(--rule);
   animation: readoutIn .4s var(--ease);
 }
+
+/* updating as you type: land on the values, don't replay the entrance */
+.readout.ao-vivo { animation: none; }
+.readout.ao-vivo .regua-zone { animation: none; transform: none; }
+.readout.ao-vivo .regua-cut { animation: none; opacity: 1; }
+.readout.ao-vivo .tally-marks i { animation: none; }
+.readout.ao-vivo .regua-marker { transition: none; }
 @keyframes readoutIn {
   from { opacity: 0; transform: translateY(8px); }
   to   { opacity: 1; transform: translateY(0); }
@@ -893,8 +853,6 @@ main { padding-bottom: 40px; }
 }
 .tally-marks i.used { background: var(--orange); border-color: var(--orange); }
 .tally-marks i.over { background: var(--fail); border-color: var(--fail); }
-/* half a day still counts: one aula of the two */
-.tally-marks i.meia { width: 6px; }
 @keyframes markIn { from { opacity: 0; transform: scaleY(.4); } }
 
 .error {
@@ -1013,7 +971,6 @@ main .reveal.visible, .regras.reveal.visible {
   .notas { grid-template-columns: 1fr 1fr; gap: 12px; }
   .faltas-inputs { grid-template-columns: 1fr; }
   .btn-block { width: 100%; }
-  .chip { flex: 1 1 auto; justify-content: space-between; }
 
   .regras-list > div { grid-template-columns: 1fr; gap: 6px; }
   .footer-inner { flex-direction: column; align-items: flex-start; }

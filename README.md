@@ -9,8 +9,10 @@ Ferramentas acadêmicas para estudantes da **Universidade SENAI CIMATEC**.
 - **Passei CIMATEC?** — Calcula a média do semestre (AG) com os pesos de AV1 (25%), AV2 (25%),
   AV3 (30%) e EDAG (20%), mostra em qual faixa do regulamento você caiu e, se for o caso,
   a nota necessária na Avaliação Final: `(50 − 6 × AG) ÷ 4`.
-- **Saldo de faltas** — Mostra quantos dias você ainda pode faltar. Cada dia letivo vale
-  2 aulas de 50 minutos e a presença mínima é de 75%, então o saldo é 25% dos dias letivos.
+- **Faltei CIMATEC?** — Mostra o saldo de faltas, contado em **dias** ou em **faltas lançadas**.
+  Cada dia letivo vale 2 aulas de 50 min e a presença mínima é 75%, então o limite é 25% das
+  aulas. Em dias o limite é arredondado para baixo, porque meio dia de falta não existe:
+  30 h = 36 aulas = 9 faltas = **4 dias inteiros**.
 
 ## Design
 

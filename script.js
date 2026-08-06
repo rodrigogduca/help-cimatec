@@ -62,20 +62,38 @@ function regua(cfg) {
     '</div>';
 }
 
-/** Reveal a readout and let the marker travel to its value. */
-function mostrar(el, html, markerAt) {
+/** Waits for typing to settle before recalculating. */
+function debounce(fn, ms) {
+  var t;
+  return function () {
+    clearTimeout(t);
+    t = setTimeout(fn, ms);
+  };
+}
+
+/**
+ * Reveal a readout and let the marker travel to its value.
+ * While typing (aoVivo) the entry animations are skipped — replaying them
+ * on every keystroke reads as flicker, not as feedback.
+ */
+function mostrar(el, html, markerAt, aoVivo) {
   el.innerHTML = html;
   el.hidden = false;
+  el.classList.toggle('ao-vivo', !!aoVivo);
 
-  if (markerAt !== undefined) {
-    var marker = el.querySelector('.regua-marker');
-    if (marker) {
+  if (markerAt === undefined) return;
+
+  var marker = el.querySelector('.regua-marker');
+  if (!marker) return;
+
+  if (aoVivo) {
+    marker.style.setProperty('--marker', markerAt + '%');
+  } else {
+    requestAnimationFrame(function () {
       requestAnimationFrame(function () {
-        requestAnimationFrame(function () {
-          marker.style.setProperty('--marker', markerAt + '%');
-        });
+        marker.style.setProperty('--marker', markerAt + '%');
       });
-    }
+    });
   }
 }
 
@@ -180,7 +198,6 @@ function erro(el, mensagem) {
 (function () {
   var botao = document.getElementById('btnCalcularMedia');
   var saida = document.getElementById('resultadoMedia');
-  var projecao = document.getElementById('projecao');
   if (!botao || !saida) return;
 
   var PESOS = [
@@ -190,10 +207,6 @@ function erro(el, mensagem) {
     { id: 'notaEDAG', nome: 'EDAG', peso: 20 }
   ];
 
-  /* thresholds expressed in weighted points, where AG 7,0 = 700 */
-  var ALVO_APROVACAO = 700;
-  var ALVO_FINAL = 300;
-
   function lerNotas() {
     return PESOS.map(function (p) {
       var bruto = parseFloat(document.getElementById(p.id).value);
@@ -201,75 +214,15 @@ function erro(el, mensagem) {
     });
   }
 
-  /* ---- live: what the remaining avaliações still have to deliver ---- */
-
-  function alvos(titulo, precisa, restantes, tom) {
-    /* round up: 7,4 would fall just short of the target, 7,5 clears it */
-    var nota = Math.min(10, Math.ceil(precisa * 10) / 10);
-    var chips = restantes.map(function (p) {
-      return '<span class="chip"><b>' + p.nome + '</b><i>' + fmt(nota) + '</i></span>';
-    }).join('');
-    return '<p class="projecao-msg' + (tom ? ' is-' + tom : '') + '">' + titulo + '</p>' +
-           '<div class="chips">' + chips + '</div>';
-  }
-
-  function atualizarProjecao() {
-    var notas = lerNotas();
-    var feito = 0;
-    var pesoRestante = 0;
-    var restantes = [];
-
-    notas.forEach(function (nota, i) {
-      if (nota === null) {
-        pesoRestante += PESOS[i].peso;
-        restantes.push(PESOS[i]);
-      } else {
-        feito += nota * PESOS[i].peso;
-      }
-    });
-
-    /* only useful once something is filled and something is still missing */
-    if (!restantes.length || restantes.length === PESOS.length) {
-      projecao.hidden = true;
-      return;
-    }
-
-    var precisa = (ALVO_APROVACAO - feito) / pesoRestante;
-    var html;
-
-    if (precisa <= 0) {
-      html = '<p class="projecao-msg is-pass">O 7,0 já está garantido, mesmo zerando o que falta.</p>';
-    } else if (precisa <= 10) {
-      html = alvos('Para fechar 7,0, é isso que falta em cada avaliação:', precisa, restantes);
-    } else {
-      var paraFinal = (ALVO_FINAL - feito) / pesoRestante;
-      if (paraFinal <= 0) {
-        html = '<p class="projecao-msg is-warn">O 7,0 não é mais alcançável, mas a Final já está garantida.</p>';
-      } else if (paraFinal <= 10) {
-        html = alvos('O 7,0 não é mais alcançável. Para chegar na Final você precisa de:', paraFinal, restantes, 'warn');
-      } else {
-        html = '<p class="projecao-msg is-fail">Nem com 10 no que falta a média chega aos 3,0. Procure a coordenação.</p>';
-      }
-    }
-
-    projecao.innerHTML = html;
-    projecao.hidden = false;
-  }
-
-  if (projecao) {
-    PESOS.forEach(function (p) {
-      document.getElementById(p.id).addEventListener('input', atualizarProjecao);
-    });
-  }
-
-  /* ---- the full result ---- */
-  botao.addEventListener('click', function () {
+  function calcular(aoVivo) {
     var notas = lerNotas();
     var faltando = PESOS.filter(function (p, i) { return notas[i] === null; });
 
     var preenchidas = PESOS.filter(function (p, i) { return notas[i] !== null; });
 
     if (!preenchidas.length) {
+      /* while typing, an empty form is just an empty form — not an error */
+      if (aoVivo) { saida.hidden = true; return; }
       erro(saida, 'Preencha pelo menos uma nota para calcular.');
       return;
     }
@@ -372,7 +325,7 @@ function erro(el, mensagem) {
                       '<td class="c-peso">' + pesoFeito + '%</td>' +
                       '<td class="c-pts">' + fmt(pontos / 100, 2) + '</td></tr>');
 
-      mostrar(saida, htmlP, pct(parcial, 10));
+      mostrar(saida, htmlP, pct(parcial, 10), aoVivo);
       return;
     }
 
@@ -415,8 +368,15 @@ function erro(el, mensagem) {
                    '<td class="c-peso">100%</td>' +
                    '<td class="c-pts">' + fmt(ag, 2) + '</td></tr>');
 
-    mostrar(saida, html, pct(agRedondo, 10));
+    mostrar(saida, html, pct(agRedondo, 10), aoVivo);
+  }
+
+  /* the result follows what you type; the button stays for who prefers it */
+  var aoDigitar = debounce(function () { calcular(true); }, 220);
+  PESOS.forEach(function (p) {
+    document.getElementById(p.id).addEventListener('input', aoDigitar);
   });
+  botao.addEventListener('click', function () { calcular(false); });
 })();
 
 /* ============================================================
@@ -437,10 +397,6 @@ function erro(el, mensagem) {
   var AULAS_POR_DIA = 2;
   var unidade = 'dias';
 
-  function emUnidade(aulas) {
-    return unidade === 'dias' ? aulas / AULAS_POR_DIA : aulas;
-  }
-
   function nomeUnidade(n) {
     return unidade === 'dias' ? plural(n, 'dia', 'dias') : plural(n, 'falta', 'faltas');
   }
@@ -456,9 +412,10 @@ function erro(el, mensagem) {
          situation instead of silently turning it into a different one */
       var valor = parseFloat(atuais.value);
       if (!isNaN(valor)) {
+        /* going back to dias rounds up: 7 faltas ocupam 4 dias, nunca 3 */
         atuais.value = anterior === 'dias'
           ? valor * AULAS_POR_DIA
-          : valor / AULAS_POR_DIA;
+          : Math.ceil(valor / AULAS_POR_DIA);
       }
 
       segs.forEach(function (b) {
@@ -476,7 +433,7 @@ function erro(el, mensagem) {
     });
   });
 
-  function calcular() {
+  function calcular(aoVivo) {
     var horas = parseFloat(carga.value);
     var valor = parseFloat(atuais.value) || 0;
 
@@ -489,27 +446,29 @@ function erro(el, mensagem) {
       return;
     }
 
-    /* everything is computed in aulas, the unit the diário actually records */
     var totalAulas = Math.round((horas * 60) / AULA_MIN);
     var totalDias = totalAulas / AULAS_POR_DIA;
     var limiteAulas = Math.floor(totalAulas * 0.25);
-    var faltasAulas = unidade === 'dias' ? valor * AULAS_POR_DIA : valor;
-    var restantesAulas = Math.max(0, limiteAulas - faltasAulas);
+
+    /* dias are indivisible: meio dia de falta não existe, então o limite
+       em dias é arredondado para baixo (9 aulas = 4 dias, não 4,5) */
+    var emDias = unidade === 'dias';
+    var limiteUnit = emDias ? Math.floor(limiteAulas / AULAS_POR_DIA) : limiteAulas;
+    var faltasUnit = emDias ? Math.round(valor) : valor;
+    var restantesUnit = Math.max(0, limiteUnit - faltasUnit);
+    var excedenteUnit = Math.max(0, faltasUnit - limiteUnit);
+
+    var faltasAulas = emDias ? faltasUnit * AULAS_POR_DIA : faltasUnit;
     var presenca = Math.max(0, 100 - (faltasAulas / totalAulas) * 100);
 
-    var estourou = faltasAulas > limiteAulas;
-    var limiteUnit = emUnidade(limiteAulas);
-    var faltasUnit = emUnidade(faltasAulas);
-    var restantesUnit = emUnidade(restantesAulas);
-    var excedenteUnit = emUnidade(faltasAulas - limiteAulas);
-
-    /* measured in aulas so the verdict doesn't change with the unit on screen */
-    var apertado = restantesAulas <= AULAS_POR_DIA * 2;
+    var estourou = faltasUnit > limiteUnit;
+    /* two days' worth either way, so the warning fires at the same real point */
+    var apertado = restantesUnit <= (emDias ? 2 : AULAS_POR_DIA * 2);
     var estado = estourou ? 'fail' : (apertado ? 'warn' : 'pass');
     var rotulo = estourou
       ? 'Reprovado por falta'
-      : (restantesAulas === 0 ? 'No limite — não pode mais faltar'
-                              : (apertado ? 'No limite' : 'Dentro do permitido'));
+      : (restantesUnit === 0 ? 'No limite — não pode mais faltar'
+                             : (apertado ? 'No limite' : 'Dentro do permitido'));
 
     var valorPrincipal = estourou ? excedenteUnit : restantesUnit;
     var legenda = estourou
@@ -517,16 +476,10 @@ function erro(el, mensagem) {
       : nomeUnidade(restantesUnit) + ' ainda ' + plural(restantesUnit, 'disponível', 'disponíveis');
 
     /* one mark per allowed unit — countable, like a tally in a notebook */
-    var inteiros = Math.floor(limiteUnit);
-    var temMeia = (limiteUnit - inteiros) >= 0.5;
     var marcas = '';
-    for (var i = 0; i < inteiros; i++) {
+    for (var i = 0; i < limiteUnit; i++) {
       marcas += '<i class="' + (estourou ? 'over' : ((i + 1) <= faltasUnit ? 'used' : '')) +
                 '" style="--i:' + i + '"></i>';
-    }
-    if (temMeia) {
-      marcas += '<i class="meia ' + (estourou ? 'over' : (faltasUnit >= limiteUnit ? 'used' : '')) +
-                '" style="--i:' + inteiros + '"></i>';
     }
 
     var html =
@@ -561,10 +514,15 @@ function erro(el, mensagem) {
     }
 
     html += '<span class="formula">' + horas + 'h × 60 ÷ 50 = ' + totalAulas +
-            ' aulas · 25% = ' + limiteAulas + ' faltas (' + qtd(limiteAulas / AULAS_POR_DIA) + ' dias)</span>';
+            ' aulas · 25% = ' + limiteAulas + ' faltas' +
+            (emDias ? ' = ' + limiteUnit + ' ' + plural(limiteUnit, 'dia inteiro', 'dias inteiros') : '') +
+            '</span>';
 
-    mostrar(saida, html);
+    mostrar(saida, html, undefined, aoVivo);
   }
 
-  botao.addEventListener('click', calcular);
+  var aoDigitar = debounce(function () { calcular(true); }, 220);
+  atuais.addEventListener('input', aoDigitar);
+  carga.addEventListener('change', function () { calcular(true); });
+  botao.addEventListener('click', function () { calcular(false); });
 })();
