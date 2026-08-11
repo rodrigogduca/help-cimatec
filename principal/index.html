@@ -1,0 +1,1215 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Help CIMATEC — Calculadora de Média e Faltas | Universidade SENAI CIMATEC</title>
+  <meta name="description" content="Calcule sua média semestral e o limite de faltas na Universidade SENAI CIMATEC. Média com os pesos de AV1, AV2, AV3 e EDAG, nota necessária na Final e quantos dias você ainda pode faltar.">
+  <meta name="keywords" content="Help CIMATEC, Universidade SENAI CIMATEC, calculadora média, calculadora faltas, passei CIMATEC, nota final, AG, EDAG, média semestral, Passei Senai, Faltei Senai">
+  <meta name="author" content="Clube de Programação — Universidade SENAI CIMATEC">
+  <meta name="robots" content="index, follow">
+  <meta name="theme-color" content="#F1F5FA" media="(prefers-color-scheme: light)">
+  <meta name="theme-color" content="#0B1522" media="(prefers-color-scheme: dark)">
+  <meta name="color-scheme" content="light dark">
+  <link rel="canonical" href="https://help-cimatec.netlify.app/">
+  <meta name="google-site-verification" content="bEjwL1SdlNlf9pZgTga21gT5IwiEgbxZDpAvBjXV52U" />
+
+  <!-- Open Graph / Redes Sociais -->
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="Help CIMATEC">
+  <meta property="og:locale" content="pt_BR">
+  <meta property="og:title" content="Help CIMATEC — Calculadora de Média e Faltas">
+  <meta property="og:description" content="Média com os pesos certos, nota necessária na Final e o seu saldo de faltas. Para quem estuda na Universidade SENAI CIMATEC.">
+  <meta property="og:url" content="https://help-cimatec.netlify.app/">
+  <meta property="og:image" content="https://help-cimatec.netlify.app/assets/img/og-image.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta name="twitter:card" content="summary_large_image">
+
+  <link rel="icon" href="assets/img/favicon.ico" sizes="any">
+  <link rel="icon" type="image/png" href="assets/img/favicon.png">
+  <link rel="apple-touch-icon" href="assets/img/apple-touch-icon.png">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600;700&family=IBM+Plex+Sans+Condensed:wght@600;700&family=IBM+Plex+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="assets/css/style.css">
+
+  <!-- Resolve o tema antes da primeira pintura, para a página não piscar no tema errado -->
+  <script>
+    (function () {
+      var salvo = null;
+      try { salvo = localStorage.getItem('help-cimatec-tema'); } catch (e) { /* storage bloqueado */ }
+      var escolhido = (salvo === 'claro' || salvo === 'escuro') ? salvo
+        : (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches ? 'escuro' : 'claro');
+      document.documentElement.setAttribute('data-tema', escolhido);
+    })();
+  </script>
+
+  <!-- Dados estruturados: aplicativo -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebApplication",
+    "name": "Help CIMATEC",
+    "alternateName": ["Passei CIMATEC", "Faltei CIMATEC"],
+    "url": "https://help-cimatec.netlify.app/",
+    "description": "Calculadora de média semestral (AG), nota necessária na Avaliação Final e limite de faltas para alunos da Universidade SENAI CIMATEC.",
+    "applicationCategory": "EducationalApplication",
+    "operatingSystem": "Any",
+    "browserRequirements": "Requer JavaScript",
+    "inLanguage": "pt-BR",
+    "image": "https://help-cimatec.netlify.app/assets/img/og-image.png",
+    "isAccessibleForFree": true,
+    "offers": {
+      "@type": "Offer",
+      "price": "0",
+      "priceCurrency": "BRL"
+    },
+    "author": {
+      "@type": "Person",
+      "name": "Rodrigo Gandarela"
+    },
+    "about": {
+      "@type": "CollegeOrUniversity",
+      "name": "Universidade SENAI CIMATEC"
+    }
+  }
+  </script>
+
+  <!-- Dados estruturados: perguntas frequentes -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "Que nota eu preciso tirar na Avaliação Final do CIMATEC?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Com a média geral entre 3,0 e 7,0 você vai para a Avaliação Final (AF). A nota necessária é (50 − 6 × AG) ÷ 4. Por exemplo, com AG 5,0 a AF precisa ser 5,0. Abaixo de 3,0 não há Final: a reprovação é direta."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Quantas faltas eu posso ter em uma disciplina?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "A presença mínima é de 75% da carga horária, ou seja, o limite de faltas é 25% das aulas. Em uma disciplina de 60 horas isso dá 15 horas-aula de saldo; em uma de 30 horas, 7 horas-aula. Cada dia letivo costuma valer 2 aulas de 50 minutos."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "O que é EDAG no CIMATEC?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "EDAG é o Exame de Desempenho dos Alunos de Graduação. Ela vale 20% da média geral."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "O Help CIMATEC é um site oficial da universidade?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Não. O Help CIMATEC é um projeto independente feito por alunos e segue o regulamento acadêmico da Universidade SENAI CIMATEC. Confirme sempre suas notas e faltas no portal oficial antes de tomar qualquer decisão."
+        }
+      }
+    ]
+  }
+  </script>
+</head>
+<body>
+
+  <a href="#ferramentas" class="skip-link">Pular para as calculadoras</a>
+
+  <!-- NAVBAR -->
+  <nav>
+    <div class="nav-inner">
+      <a href="#topo" class="nav-logo">
+        <img class="logo-claro" src="assets/img/logo.png" alt="Help CIMATEC" width="720" height="235">
+        <img class="logo-escuro" src="assets/img/logo-dark.png" alt="" aria-hidden="true" width="720" height="235">
+      </a>
+      <ul class="nav-links">
+        <li><a href="#ferramentas">Calculadoras</a></li>
+        <li><a href="#recursos">Recursos</a></li>
+        <li><a href="#faq">Dúvidas</a></li>
+      </ul>
+      <div class="nav-actions">
+        <div class="nav-quicklinks">
+          <a class="nav-quick" href="https://senaicimatec.instructure.com/" target="_blank" rel="noopener noreferrer">
+            Canvas
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 17L17 7M9 7h8v8"/></svg>
+          </a>
+          <a class="nav-quick" href="https://senaiweb6.fieb.org.br/framehtml/web/app/edu/PortalEducacional/login/" target="_blank" rel="noopener noreferrer">
+            Portal do Aluno
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 17L17 7M9 7h8v8"/></svg>
+          </a>
+        </div>
+        <button type="button" class="tema-toggle" id="temaToggle" aria-label="Mudar para o tema escuro">
+          <svg class="tema-lua" viewBox="0 0 24 24" aria-hidden="true"><path d="M20 14.4A8.5 8.5 0 0 1 9.6 4 8.5 8.5 0 1 0 20 14.4Z"/></svg>
+          <svg class="tema-sol" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="4.2"/><path d="M12 2.5v2M12 19.5v2M2.5 12h2M19.5 12h2M5.3 5.3l1.4 1.4M17.3 17.3l1.4 1.4M18.7 5.3l-1.4 1.4M6.7 17.3l-1.4 1.4"/></svg>
+        </button>
+        <button class="hamburger" aria-label="Abrir menu" aria-expanded="false" aria-controls="mobileMenu">
+          <span></span><span></span><span></span>
+        </button>
+      </div>
+    </div>
+    <div class="mobile-menu" id="mobileMenu">
+      <a href="#ferramentas">Calculadoras</a>
+      <a href="#recursos">Recursos</a>
+      <a href="#faq">Dúvidas</a>
+      <div class="mobile-quicklinks">
+        <a class="nav-quick" href="https://senaicimatec.instructure.com/" target="_blank" rel="noopener noreferrer">
+          Canvas
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 17L17 7M9 7h8v8"/></svg>
+        </a>
+        <a class="nav-quick" href="https://senaiweb6.fieb.org.br/framehtml/web/app/edu/PortalEducacional/login/" target="_blank" rel="noopener noreferrer">
+          Portal do Aluno
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 17L17 7M9 7h8v8"/></svg>
+        </a>
+      </div>
+    </div>
+  </nav>
+
+  <!-- HERO -->
+  <header class="hero" id="topo">
+    <div class="container">
+      <p class="eyebrow reveal" style="--d:0">Universidade SENAI CIMATEC · régua acadêmica</p>
+      <h1 class="reveal" style="--d:1">Você está<br>a quanto do <em>7,0</em>?</h1>
+      <p class="lede reveal" style="--d:2">
+        Duas contas decidem o seu semestre: a média com o peso de cada avaliação
+        e o limite de 25% de faltas. Aqui as duas saem certas.
+      </p>
+
+      <!-- SIGNATURE: a régua do regulamento -->
+      <figure class="hero-regua reveal" style="--d:3" aria-labelledby="reguaCaption">
+        <div class="regua regua--hero" style="--cut-a:30%; --cut-b:70%">
+          <div class="regua-track">
+            <span class="regua-zone zone-fail" style="--from:0%;   --to:30%"></span>
+            <span class="regua-zone zone-warn" style="--from:30%;  --to:70%"></span>
+            <span class="regua-zone zone-pass" style="--from:70%;  --to:100%"></span>
+            <span class="regua-ticks" style="--minor:5%; --major:10%"></span>
+            <span class="regua-cut" style="--at:30%"><b>3,0</b></span>
+            <span class="regua-cut" style="--at:70%"><b>7,0</b></span>
+          </div>
+          <div class="regua-axis">
+            <span style="--at:0%">0</span>
+            <span style="--at:20%">2</span>
+            <span style="--at:40%">4</span>
+            <span style="--at:60%">6</span>
+            <span style="--at:80%">8</span>
+            <span style="--at:100%">10</span>
+          </div>
+        </div>
+        <figcaption class="regua-legend" id="reguaCaption">
+          <span class="key key-fail">0 a 3,0 — reprovado direto</span>
+          <span class="key key-warn">3,0 a 7,0 — vai pra Final</span>
+          <span class="key key-pass">7,0 a 10 — aprovado</span>
+        </figcaption>
+      </figure>
+
+      <div class="hero-actions reveal" style="--d:4">
+        <a href="#media" class="btn btn-primary">
+          Passei CIMATEC
+          <svg class="btn-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 13l4 4L19 7"/></svg>
+        </a>
+        <a href="#faltas" class="btn btn-blue">
+          Faltei CIMATEC
+          <svg class="btn-icon" viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M3 10h18M8 3v4M16 3v4"/></svg>
+        </a>
+      </div>
+    </div>
+  </header>
+
+  <main id="ferramentas">
+    <div class="container">
+
+      <!-- ============ CALCULADORA DE MÉDIA ============ -->
+      <section class="panel reveal" id="media">
+        <div class="panel-head">
+          <div>
+            <p class="eyebrow">Calculadora de Notas</p>
+            <h2>Passei CIMATEC</h2>
+            <p class="panel-desc">
+              Sua média do semestre (AG) é a soma das notas multiplicadas pelo peso de cada
+              avaliação. Cada campo abaixo é do tamanho do seu peso.
+            </p>
+            <button type="button" class="btn btn-ghost btn-regulamento" data-modal="modalRegulamentoMedia">Ver regulamento da AG</button>
+          </div>
+          <div class="panel-head-right">
+            <span class="icon-badge" aria-hidden="true">
+              <svg viewBox="0 0 24 24"><path d="M5 13l4 4L19 7"/></svg>
+            </span>
+            <p class="panel-formula" aria-hidden="true">AG = <span>AV1·25 + AV2·25 + AV3·30 + EDAG·20</span> ÷ 100</p>
+          </div>
+        </div>
+
+        <div class="panel-body">
+          <!-- the weighting drawn to scale, above the field it belongs to -->
+          <div class="pesos" aria-hidden="true">
+            <span></span><span></span><span></span><span></span>
+          </div>
+
+          <div class="notas">
+            <div class="field">
+              <label for="notaAV1">AV1 <span class="peso">25%</span></label>
+              <div class="stepper">
+                <input type="number" id="notaAV1" min="0" max="10" step="0.1" inputmode="decimal" placeholder="0,0" autocomplete="off">
+                <span class="stepper-btns">
+                  <button type="button" class="step" data-dir="up" aria-label="Aumentar AV1"><svg viewBox="0 0 12 12" aria-hidden="true"><path d="M2 8L6 4L10 8"/></svg></button>
+                  <button type="button" class="step" data-dir="down" aria-label="Diminuir AV1"><svg viewBox="0 0 12 12" aria-hidden="true"><path d="M2 4L6 8L10 4"/></svg></button>
+                </span>
+              </div>
+            </div>
+            <div class="field">
+              <label for="notaAV2">AV2 <span class="peso">25%</span></label>
+              <div class="stepper">
+                <input type="number" id="notaAV2" min="0" max="10" step="0.1" inputmode="decimal" placeholder="0,0" autocomplete="off">
+                <span class="stepper-btns">
+                  <button type="button" class="step" data-dir="up" aria-label="Aumentar AV2"><svg viewBox="0 0 12 12" aria-hidden="true"><path d="M2 8L6 4L10 8"/></svg></button>
+                  <button type="button" class="step" data-dir="down" aria-label="Diminuir AV2"><svg viewBox="0 0 12 12" aria-hidden="true"><path d="M2 4L6 8L10 4"/></svg></button>
+                </span>
+              </div>
+            </div>
+            <div class="field">
+              <label for="notaAV3">AV3 <span class="peso">30%</span></label>
+              <div class="stepper">
+                <input type="number" id="notaAV3" min="0" max="10" step="0.1" inputmode="decimal" placeholder="0,0" autocomplete="off">
+                <span class="stepper-btns">
+                  <button type="button" class="step" data-dir="up" aria-label="Aumentar AV3"><svg viewBox="0 0 12 12" aria-hidden="true"><path d="M2 8L6 4L10 8"/></svg></button>
+                  <button type="button" class="step" data-dir="down" aria-label="Diminuir AV3"><svg viewBox="0 0 12 12" aria-hidden="true"><path d="M2 4L6 8L10 4"/></svg></button>
+                </span>
+              </div>
+            </div>
+            <div class="field">
+              <label for="notaEDAG">EDAG <span class="peso">20%</span></label>
+              <div class="stepper">
+                <input type="number" id="notaEDAG" min="0" max="10" step="0.1" inputmode="decimal" placeholder="0,0" autocomplete="off">
+                <span class="stepper-btns">
+                  <button type="button" class="step" data-dir="up" aria-label="Aumentar EDAG"><svg viewBox="0 0 12 12" aria-hidden="true"><path d="M2 8L6 4L10 8"/></svg></button>
+                  <button type="button" class="step" data-dir="down" aria-label="Diminuir EDAG"><svg viewBox="0 0 12 12" aria-hidden="true"><path d="M2 4L6 8L10 4"/></svg></button>
+                </span>
+              </div>
+            </div>
+          </div>
+
+          <button type="button" id="btnCalcularMedia" class="btn btn-primary btn-block">Calcular média</button>
+          <div id="resultadoMedia" class="readout" role="status" aria-live="polite" hidden></div>
+        </div>
+      </section>
+
+      <!-- ---- modal: regulamento da AG ---- -->
+      <dialog class="modal" id="modalRegulamentoMedia">
+        <div class="modal-head">
+          <div>
+            <p class="eyebrow">Regulamento</p>
+            <h3>Passei CIMATEC</h3>
+          </div>
+          <button type="button" class="modal-close" aria-label="Fechar">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"/></svg>
+          </button>
+        </div>
+        <div class="modal-body">
+          <dl class="beneficios-list">
+            <div>
+              <dt>Média do semestre (AG)</dt>
+              <dd>AV1 e AV2 valem 25% cada, AV3 vale 30% e o EDAG vale 20%. Somando dá 100%.</dd>
+            </div>
+            <div>
+              <dt>Aprovação direta</dt>
+              <dd>AG igual ou maior que 7,0. Acabou o semestre.</dd>
+            </div>
+            <div>
+              <dt>Avaliação Final (AF)</dt>
+              <dd>
+                Com AG entre 3,0 e 7,0 você faz a AF. A nota necessária sai de (50 − 6 × AG) ÷ 4.
+                Abaixo de 3,0 não há Final: a reprovação é direta.
+              </dd>
+            </div>
+          </dl>
+          <p class="modal-intro">
+            As contas seguem o regulamento acadêmico da Universidade SENAI CIMATEC. Confira sempre
+            a nota oficial no portal antes de tomar qualquer decisão pelo resultado daqui.
+          </p>
+        </div>
+      </dialog>
+
+      <!-- ============ CALCULADORA DE FALTAS ============ -->
+      <section class="panel reveal" id="faltas">
+        <div class="panel-head">
+          <div>
+            <p class="eyebrow">Calculadora de Faltas</p>
+            <h2>Faltei CIMATEC</h2>
+            <p class="panel-desc">
+              Cada dia letivo vale 2 aulas de 50 minutos. Você precisa de 75% de presença,
+              então 25% da carga é o seu saldo de faltas.
+            </p>
+            <button type="button" class="btn btn-ghost btn-regulamento" data-modal="modalRegulamentoFaltas">Ver regulamento de frequência</button>
+          </div>
+          <div class="panel-head-right">
+            <span class="icon-badge" aria-hidden="true">
+              <svg viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M3 10h18M8 3v4M16 3v4"/></svg>
+            </span>
+            <p class="panel-formula" aria-hidden="true">Saldo = <span>25% das aulas</span></p>
+          </div>
+        </div>
+
+        <div class="panel-body">
+          <div class="faltas-inputs">
+            <div class="field field-carga">
+              <label for="cargaHoraria">Carga horária da disciplina</label>
+              <div class="select">
+                <select id="cargaHoraria">
+                  <option value="" disabled selected>Selecione</option>
+                  <option value="15">15 horas — (Ex.: Desafio Pesquisador)</option>
+                  <option value="30">30 horas — 1 aula por semana</option>
+                  <option value="60">60 horas — 2 aulas por semana</option>
+                  <option value="90">90 horas — 3 aulas por semana</option>
+                  <option value="120">120 horas — (Ex.: Arquitetura de Residências)</option>
+                </select>
+                <span class="select-arrow" aria-hidden="true">
+                  <svg viewBox="0 0 24 24"><path d="M6 9l6 6 6-6"/></svg>
+                </span>
+              </div>
+            </div>
+            <div class="field">
+              <label id="labelUnidade">Contar por</label>
+              <div class="segmented" role="radiogroup" aria-labelledby="labelUnidade">
+                <button type="button" class="seg is-on" data-unit="dias" role="radio" aria-checked="true">Dias</button>
+                <button type="button" class="seg" data-unit="aulas" role="radio" aria-checked="false">Faltas lançadas</button>
+              </div>
+            </div>
+            <div class="field">
+              <label for="faltasAtuais" id="labelFaltas">Dias que você já faltou</label>
+              <div class="stepper">
+                <input type="number" id="faltasAtuais" min="0" max="500" value="0" step="1" inputmode="numeric" autocomplete="off">
+                <span class="stepper-btns">
+                  <button type="button" class="step" data-dir="up" aria-label="Aumentar faltas"><svg viewBox="0 0 12 12" aria-hidden="true"><path d="M2 8L6 4L10 8"/></svg></button>
+                  <button type="button" class="step" data-dir="down" aria-label="Diminuir faltas"><svg viewBox="0 0 12 12" aria-hidden="true"><path d="M2 4L6 8L10 4"/></svg></button>
+                </span>
+              </div>
+            </div>
+          </div>
+
+          <p class="faltas-nota">
+            Práticas Integradas, a partir de 2026.2: a presença conta como a de uma disciplina de 90 horas.
+          </p>
+
+          <button type="button" id="btnCalcularFaltas" class="btn btn-primary btn-block">Contar faltas</button>
+          <div id="resultadoFaltas" class="readout" role="status" aria-live="polite" hidden></div>
+        </div>
+      </section>
+
+      <!-- ---- modal: regulamento de frequência ---- -->
+      <dialog class="modal" id="modalRegulamentoFaltas">
+        <div class="modal-head">
+          <div>
+            <p class="eyebrow">Regulamento</p>
+            <h3>Faltei CIMATEC</h3>
+          </div>
+          <button type="button" class="modal-close" aria-label="Fechar">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"/></svg>
+          </button>
+        </div>
+        <div class="modal-body">
+          <dl class="beneficios-list">
+            <div>
+              <dt>Frequência mínima</dt>
+              <dd>Presença mínima de 75% da carga horária. Passou de 25% de faltas, reprova por falta.</dd>
+            </div>
+            <div>
+              <dt>Como se conta</dt>
+              <dd>
+                Em uma disciplina de 60 horas isso dá 15 horas-aula de saldo; em uma de 30 horas,
+                7 horas-aula. Cada dia letivo costuma valer 2 aulas de 50 minutos.
+              </dd>
+            </div>
+          </dl>
+          <p class="modal-intro">
+            As contas seguem o regulamento acadêmico da Universidade SENAI CIMATEC. Confira sempre
+            suas faltas oficiais no portal antes de tomar qualquer decisão pelo resultado daqui.
+          </p>
+        </div>
+      </dialog>
+
+      <!-- ============ RECURSOS ============ -->
+      <section class="recursos reveal" id="recursos">
+        <p class="eyebrow">Mais sobre a Universidade SENAI CIMATEC</p>
+        <h2>Recursos para o dia a dia</h2>
+        <p class="recursos-desc">
+          O wifi do campus, os grupos estudantis ativos e tudo que todo calouro devia saber sobre
+          matrícula, notas, Canvas e benefícios de estudante.
+        </p>
+
+        <div class="recurso-cards">
+          <button type="button" class="recurso-card recurso-card-featured" data-modal="modalGuiaEstudante">
+            <span class="icon-badge is-orange" aria-hidden="true">
+              <svg viewBox="0 0 24 24"><path d="M12 6c-2-1.3-5-2-8-2v14c3 0 6 .7 8 2 2-1.3 5-2 8-2V4c-3 0-6 .7-8 2Z"/><path d="M12 6v14"/></svg>
+            </span>
+            <span class="recurso-card-badge">Comece por aqui</span>
+            <span class="recurso-card-title">Guia do Estudante</span>
+            <span class="recurso-card-desc">Matrícula, notas, Canvas e benefícios de estudante</span>
+            <span class="recurso-card-cta">Abrir guia
+              <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+            </span>
+          </button>
+          <button type="button" class="recurso-card" data-modal="modalWifi">
+            <span class="icon-badge" aria-hidden="true">
+              <svg viewBox="0 0 24 24"><path d="M2 8.5a16 16 0 0 1 20 0M5.5 12a11 11 0 0 1 13 0M9 15.5a6 6 0 0 1 6 0"/><circle cx="12" cy="19" r="1" fill="currentColor" stroke="none"/></svg>
+            </span>
+            <span class="recurso-card-title">Wifi Cimatec</span>
+            <span class="recurso-card-desc">As redes disponíveis no campus e como se conectar</span>
+            <span class="recurso-card-cta">Ver redes
+              <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+            </span>
+          </button>
+          <button type="button" class="recurso-card" data-modal="modalIniciativas">
+            <span class="icon-badge" aria-hidden="true">
+              <svg viewBox="0 0 24 24"><circle cx="9" cy="8" r="3.2"/><path d="M3 19c0-3.3 2.7-6 6-6s6 2.7 6 6"/><circle cx="17" cy="9" r="2.6"/><path d="M14.5 13.3A5 5 0 0 1 21 19"/></svg>
+            </span>
+            <span class="recurso-card-title">Iniciativas Estudantis</span>
+            <span class="recurso-card-desc">Clubes, ligas e times do Cimatec</span>
+            <span class="recurso-card-cta">Ver lista
+              <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+            </span>
+          </button>
+        </div>
+      </section>
+
+      <!-- ---- modal: Wifi Cimatec ---- -->
+      <dialog class="modal" id="modalWifi">
+        <div class="modal-head">
+          <div>
+            <p class="eyebrow">Conexão no campus</p>
+            <h3>Wifi no CIMATEC</h3>
+          </div>
+          <button type="button" class="modal-close" aria-label="Fechar">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"/></svg>
+          </button>
+        </div>
+        <div class="modal-body">
+          <p class="modal-intro">
+            A lista de redes que aparece no campus é longa, e boa parte dela não é para aluno.
+            O que muda entre elas é como você entra: cadastro, senha ou nada feito.
+          </p>
+          <dl class="wifi-list">
+            <div class="wifi-aberta">
+              <span class="wifi-ico" aria-hidden="true">
+                <svg viewBox="0 0 24 24"><path d="M2.6 8.6a15.5 15.5 0 0 1 18.8 0"/><path d="M5.7 12.2a10.7 10.7 0 0 1 12.6 0"/><path d="M8.8 15.8a5.9 5.9 0 0 1 6.4 0"/><circle cx="12" cy="19.4" r="1.25" fill="currentColor" stroke="none"/></svg>
+              </span>
+              <dt>CIMATEC_WIFI <span class="wifi-tag wifi-tag-open">Rede aberta</span></dt>
+              <dd>Sem senha, mas é preciso fazer o cadastro com seus dados ao conectar para liberar o acesso.</dd>
+            </div>
+            <div class="wifi-aberta">
+              <span class="wifi-ico" aria-hidden="true">
+                <svg viewBox="0 0 24 24"><path d="M2.6 8.6a15.5 15.5 0 0 1 18.8 0"/><path d="M5.7 12.2a10.7 10.7 0 0 1 12.6 0"/><path d="M8.8 15.8a5.9 5.9 0 0 1 6.4 0"/><circle cx="12" cy="19.4" r="1.25" fill="currentColor" stroke="none"/></svg>
+              </span>
+              <dt>CIMATEC-VISITANTE <span class="wifi-tag wifi-tag-open">Rede aberta</span></dt>
+              <dd>Sem senha, aberta para todos.</dd>
+            </div>
+            <div>
+              <span class="wifi-ico" aria-hidden="true">
+                <svg viewBox="0 0 24 24"><rect x="4.5" y="10.5" width="15" height="10.5" rx="2.2"/><path d="M8 10.5V7.2a4 4 0 0 1 8 0v3.3"/><circle cx="12" cy="15.6" r="1.15" fill="currentColor" stroke="none"/></svg>
+              </span>
+              <dt>CIMATEC - LABORATORIOS <span class="wifi-tag">Com senha</span></dt>
+              <dd>Consulte o professor responsável para pegar a senha.</dd>
+            </div>
+            <div>
+              <span class="wifi-ico" aria-hidden="true">
+                <svg viewBox="0 0 24 24"><rect x="4.5" y="10.5" width="15" height="10.5" rx="2.2"/><path d="M8 10.5V7.2a4 4 0 0 1 8 0v3.3"/><circle cx="12" cy="15.6" r="1.15" fill="currentColor" stroke="none"/></svg>
+              </span>
+              <dt>CIMATEC-LABS-2.X.X <span class="wifi-tag">Com senha</span></dt>
+              <dd>São várias, com numerações diferentes no fim do nome. Todas pedem senha, que fica com o responsável de cada laboratório.</dd>
+            </div>
+            <div class="wifi-interna">
+              <span class="wifi-ico" aria-hidden="true">
+                <svg viewBox="0 0 24 24"><path d="M4 21V4.8A.8.8 0 0 1 4.8 4h8.4a.8.8 0 0 1 .8.8V21"/><path d="M14 11h5.2a.8.8 0 0 1 .8.8V21"/><path d="M2.5 21h19"/><path d="M7.2 8h3.6M7.2 12h3.6M7.2 16h3.6"/></svg>
+              </span>
+              <dt>CIMATEC - FORD <span class="wifi-tag wifi-tag-interna">Uso interno</span></dt>
+              <dd>Rede com senha dos funcionários da Ford no campus. Alunos não têm acesso.</dd>
+            </div>
+            <div class="wifi-interna">
+              <span class="wifi-ico" aria-hidden="true">
+                <svg viewBox="0 0 24 24"><path d="M4 21V4.8A.8.8 0 0 1 4.8 4h8.4a.8.8 0 0 1 .8.8V21"/><path d="M14 11h5.2a.8.8 0 0 1 .8.8V21"/><path d="M2.5 21h19"/><path d="M7.2 8h3.6M7.2 12h3.6M7.2 16h3.6"/></svg>
+              </span>
+              <dt>CIMATEC_EQP <span class="wifi-tag wifi-tag-interna">Uso interno</span></dt>
+              <dd>Rede fechada, só para funcionários do Cimatec.</dd>
+            </div>
+            <div class="wifi-interna">
+              <span class="wifi-ico" aria-hidden="true">
+                <svg viewBox="0 0 24 24"><path d="M4 21V4.8A.8.8 0 0 1 4.8 4h8.4a.8.8 0 0 1 .8.8V21"/><path d="M14 11h5.2a.8.8 0 0 1 .8.8V21"/><path d="M2.5 21h19"/><path d="M7.2 8h3.6M7.2 12h3.6M7.2 16h3.6"/></svg>
+              </span>
+              <dt>CIMATEC-WCORP <span class="wifi-tag wifi-tag-interna">Uso interno</span></dt>
+              <dd>Rede corporativa do Cimatec. Alunos não têm acesso.</dd>
+            </div>
+          </dl>
+        </div>
+      </dialog>
+
+      <!-- ---- modal: Iniciativas Estudantis ---- -->
+      <dialog class="modal" id="modalIniciativas">
+        <div class="modal-head">
+          <div>
+            <p class="eyebrow">Clubes, ligas e times</p>
+            <h3>Iniciativas Estudantis</h3>
+          </div>
+          <button type="button" class="modal-close" aria-label="Fechar">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"/></svg>
+          </button>
+        </div>
+        <div class="modal-body">
+          <p class="modal-intro">
+            Uma iniciativa estudantil é um grupo tocado pelos próprios alunos — clube, atlética,
+            liga acadêmica, equipe de competição ou empresa júnior — geralmente ligado a uma ou
+            mais áreas de curso. A maioria aceita alunos de vários cursos, não só do curso "dono"
+            da iniciativa.
+          </p>
+          <dl class="iniciativas-list">
+            <div>
+              <span class="iniciativa-logo" data-sigla="CP">
+                <img src="assets/img/iniciativas/clube-de-programacao.png" alt="" loading="lazy" decoding="async">
+              </span>
+              <dt>Clube de Programação <span class="iniciativa-area">Eng. da Computação</span></dt>
+              <dd>
+                Clube voltado a programação e desenvolvimento de software.
+                <a href="https://clube-de-programacao.vercel.app/" target="_blank" rel="noopener noreferrer">Site</a>
+              </dd>
+              <a class="ig-btn" href="https://www.instagram.com/clubedeprogramacaocimatec/" target="_blank" rel="noopener noreferrer">
+                <svg class="ig-icon" viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.3" cy="6.7" r="1.1" fill="currentColor" stroke="none"/></svg>
+                Instagram
+              </a>
+            </div>
+            <div>
+              <span class="iniciativa-logo" data-sigla="AWS">
+                <img src="assets/img/iniciativas/aws-student-builder-group.png" alt="" loading="lazy" decoding="async">
+              </span>
+              <dt>AWS Student Builder Group <span class="iniciativa-area">Eng. da Computação</span></dt>
+              <dd>
+                Comunidade de estudantes voltada a cloud computing com AWS.
+                <a href="https://www.awsclubsenai.com.br/join" target="_blank" rel="noopener noreferrer">Site</a>
+              </dd>
+              <a class="ig-btn" href="https://www.instagram.com/awssbgsenaicimatec/" target="_blank" rel="noopener noreferrer">
+                <svg class="ig-icon" viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.3" cy="6.7" r="1.1" fill="currentColor" stroke="none"/></svg>
+                Instagram
+              </a>
+            </div>
+            <div>
+              <span class="iniciativa-logo" data-sigla="CIM">
+                <img src="assets/img/iniciativas/cimatletica.png" alt="" loading="lazy" decoding="async">
+              </span>
+              <dt>Cimatlética <span class="iniciativa-area">Todos os cursos</span></dt>
+              <dd>A atlética do Cimatec, aberta a alunos de todos os cursos.</dd>
+              <a class="ig-btn" href="https://www.instagram.com/_cimatletica/" target="_blank" rel="noopener noreferrer">
+                <svg class="ig-icon" viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.3" cy="6.7" r="1.1" fill="currentColor" stroke="none"/></svg>
+                Instagram
+              </a>
+            </div>
+            <div>
+              <span class="iniciativa-logo" data-sigla="FAL">
+                <img src="assets/img/iniciativas/falcons.png" alt="" loading="lazy" decoding="async">
+              </span>
+              <dt>Falcons <span class="iniciativa-area">Eng. da Computação</span></dt>
+              <dd>Atlética de e-sports do Cimatec.</dd>
+              <a class="ig-btn" href="https://www.instagram.com/atcfalcons/" target="_blank" rel="noopener noreferrer">
+                <svg class="ig-icon" viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.3" cy="6.7" r="1.1" fill="currentColor" stroke="none"/></svg>
+                Instagram
+              </a>
+            </div>
+            <div>
+              <span class="iniciativa-logo" data-sigla="HOR">
+                <img src="assets/img/iniciativas/horustec.png" alt="" loading="lazy" decoding="async">
+              </span>
+              <dt>Horustec <span class="iniciativa-area">Computação e outros cursos</span></dt>
+              <dd>Aceita alunos de vários cursos.</dd>
+              <a class="ig-btn" href="https://www.instagram.com/_horustec" target="_blank" rel="noopener noreferrer">
+                <svg class="ig-icon" viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.3" cy="6.7" r="1.1" fill="currentColor" stroke="none"/></svg>
+                Instagram
+              </a>
+            </div>
+            <div>
+              <span class="iniciativa-logo" data-sigla="BAJA">
+                <img src="assets/img/iniciativas/calango-tec-baja.png" alt="" loading="lazy" decoding="async">
+              </span>
+              <dt>Calango TEC | Baja <span class="iniciativa-area">Eng. Mecânica</span></dt>
+              <dd>Equipe de competição da categoria Baja SAE.</dd>
+              <a class="ig-btn" href="https://www.instagram.com/calangotecbaja/" target="_blank" rel="noopener noreferrer">
+                <svg class="ig-icon" viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.3" cy="6.7" r="1.1" fill="currentColor" stroke="none"/></svg>
+                Instagram
+              </a>
+            </div>
+            <div>
+              <span class="iniciativa-logo" data-sigla="SAE">
+                <img src="assets/img/iniciativas/tec-racing.png" alt="" loading="lazy" decoding="async">
+              </span>
+              <dt>TEC Racing | Fórmula SAE <span class="iniciativa-area">Eng. Mecânica</span></dt>
+              <dd>Equipe de competição da categoria Fórmula SAE.</dd>
+              <a class="ig-btn" href="https://www.instagram.com/gotecr/" target="_blank" rel="noopener noreferrer">
+                <svg class="ig-icon" viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.3" cy="6.7" r="1.1" fill="currentColor" stroke="none"/></svg>
+                Instagram
+              </a>
+            </div>
+            <div>
+              <span class="iniciativa-logo" data-sigla="IEEE">
+                <img src="assets/img/iniciativas/ieee-cimatec.png" alt="" loading="lazy" decoding="async">
+              </span>
+              <dt>IEEE Cimatec <span class="iniciativa-area">Eng. Elétrica</span></dt>
+              <dd>Ramo estudantil do IEEE no Cimatec.</dd>
+              <a class="ig-btn" href="https://www.instagram.com/ieeecimatec/" target="_blank" rel="noopener noreferrer">
+                <svg class="ig-icon" viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.3" cy="6.7" r="1.1" fill="currentColor" stroke="none"/></svg>
+                Instagram
+              </a>
+            </div>
+            <div>
+              <span class="iniciativa-logo" data-sigla="CJR">
+                <img src="assets/img/iniciativas/cimatec-jr.png" alt="" loading="lazy" decoding="async">
+              </span>
+              <dt>Cimatec JR <span class="iniciativa-area">Todos os cursos</span></dt>
+              <dd>
+                Empresa júnior do Cimatec.
+                <a href="https://cimatecjr.com.br/" target="_blank" rel="noopener noreferrer">Site</a>
+              </dd>
+              <a class="ig-btn" href="https://www.instagram.com/cimatecjr/" target="_blank" rel="noopener noreferrer">
+                <svg class="ig-icon" viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.3" cy="6.7" r="1.1" fill="currentColor" stroke="none"/></svg>
+                Instagram
+              </a>
+            </div>
+            <div>
+              <span class="iniciativa-logo" data-sigla="AIAS">
+                <img src="assets/img/iniciativas/aias.png" alt="" loading="lazy" decoding="async">
+              </span>
+              <dt>AIAS <span class="iniciativa-area">Arquitetura</span></dt>
+              <dd>Liga de estudantes de Arquitetura.</dd>
+              <a class="ig-btn" href="https://www.instagram.com/aiascimatec" target="_blank" rel="noopener noreferrer">
+                <svg class="ig-icon" viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.3" cy="6.7" r="1.1" fill="currentColor" stroke="none"/></svg>
+                Instagram
+              </a>
+            </div>
+            <div>
+              <span class="iniciativa-logo" data-sigla="DAEQ">
+                <img src="assets/img/iniciativas/daeq-cimatec.png" alt="" loading="lazy" decoding="async">
+            </span>
+              <dt>DAEQ Cimatec <span class="iniciativa-area">Eng. Química</span></dt>
+              <dd>Diretório acadêmico do curso de Engenharia Química.</dd>
+              <a class="ig-btn" href="https://www.instagram.com/daeqcimatec/" target="_blank" rel="noopener noreferrer">
+                <svg class="ig-icon" viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.3" cy="6.7" r="1.1" fill="currentColor" stroke="none"/></svg>
+                Instagram
+              </a>
+            </div>
+          </dl>
+        </div>
+      </dialog>
+
+      <!-- ---- modal: Guia do Estudante ---- -->
+      <dialog class="modal modal-lg" id="modalGuiaEstudante">
+        <div class="modal-head">
+          <div>
+            <p class="eyebrow">Pra quem tá chegando</p>
+            <h3>Guia do Estudante</h3>
+          </div>
+          <button type="button" class="modal-close" aria-label="Fechar">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"/></svg>
+          </button>
+        </div>
+        <div class="modal-body">
+          <p class="modal-intro">
+            O que ninguém explica no primeiro dia, reunido por tema e na ordem em que
+            costuma aparecer no curso. Abra o tópico que você precisa agora.
+          </p>
+
+          <p class="guia-grupo">Antes do semestre começar</p>
+
+          <details class="guia-item" id="guia-matricula">
+            <summary>Matrícula e horários</summary>
+            <div class="guia-conteudo">
+              <p>
+                A partir do 2º semestre você mesmo monta a sua grade, e a matrícula é por ordem
+                de chegada: as vagas de cada turma vão sendo ocupadas na sequência em que os
+                alunos confirmam. Na prática, isso quer dizer acordar cedo no dia da abertura.
+                Quem entra tarde encontra as turmas boas já cheias e acaba com uma grade cheia
+                de buracos, ou sem a disciplina que precisava cursar.
+              </p>
+              <p>
+                Chegue no dia já decidido: tenha a lista das disciplinas em ordem de prioridade e
+                uma segunda opção de turma ou horário para cada uma. Decidir na hora custa
+                minutos, e minutos são exatamente o que está em disputa.
+              </p>
+              <p>
+                <strong>A vaga só é sua depois do pagamento.</strong> Fazer a pré-matrícula e não
+                pagar não confirma que você vai pegar a disciplina: enquanto o pagamento não entra,
+                a vaga continua disponível para outra pessoa.
+              </p>
+              <p>
+                Se o pagamento não sair dentro do prazo, ele deve ser feito até
+                <strong>uma semana depois</strong>.
+              </p>
+              <p>
+                Depois de matriculado, sua grade de horários fica em <strong>Relatórios</strong>,
+                no
+                <a href="https://senaiweb6.fieb.org.br/framehtml/web/app/edu/PortalEducacional/login/" target="_blank" rel="noopener noreferrer">Portal do Aluno</a>.
+              </p>
+            </div>
+          </details>
+
+          <details class="guia-item" id="guia-inclusao">
+            <summary>Inclusão de disciplina</summary>
+            <div class="guia-conteudo">
+              <p>
+                Ficou sem vaga em alguma matéria durante a matrícula? Ainda dá para pedir. O
+                caminho é abrir, no Portal do Aluno, o requerimento
+                <strong>“Inclusão de Disciplina – Ajuste de Disciplina”</strong>.
+              </p>
+              <p>
+                Informe cada disciplina desejada com <strong>turma e horário</strong>. Sem esses
+                dados não há como avaliar o pedido, e ele volta para você. Envie o quanto antes:
+                a análise depende de a vaga ainda existir quando o requerimento for aberto.
+              </p>
+            </div>
+          </details>
+
+          <p class="guia-grupo">Como o curso é organizado</p>
+
+          <details class="guia-item" id="guia-elementos">
+            <summary>Elementos — as disciplinas de nivelamento</summary>
+            <div class="guia-conteudo">
+              <p>
+                Os Elementos são as disciplinas de nivelamento do início do curso: elas colocam
+                turmas que vêm de escolas muito diferentes no mesmo ponto de partida nas matérias
+                de base. Fazem parte do
+                <a href="https://sites.google.com/doc.senaicimatec.edu.br/nivelamento" target="_blank" rel="noopener noreferrer">Programa de Nivelamento</a>.
+              </p>
+              <p>Duas coisas mudam o seu semestre aqui:</p>
+              <ul class="modal-ul">
+                <li>
+                  <strong>O exame de proficiência é na segunda aula.</strong> Tirando 7 ou mais,
+                  você não precisa cursar a disciplina. Vale estudar antes: um exame bem feito
+                  libera um horário inteiro da sua grade logo no começo do semestre.
+                </li>
+                <li>
+                  <strong>Os quizes online contam.</strong> Fazer todos é a forma mais direta de
+                  garantir um bom desempenho na disciplina, e cada um leva pouco tempo.
+                </li>
+              </ul>
+              <p>
+                Encontrou um erro em algum quiz? Informe no
+                <a href="https://sleet-zenobia-dc6.notion.site/2dae3978a06780e4adb1fea36148323b" target="_blank" rel="noopener noreferrer">canal de erros dos quizes</a>
+                — o enunciado é corrigido para todo mundo, não só para você.
+              </p>
+            </div>
+          </details>
+
+          <details class="guia-item" id="guia-edag">
+            <summary>EDAG — Exame de Desempenho dos Alunos de Graduação</summary>
+            <div class="guia-conteudo">
+              <p>
+                O EDAG vale <strong>20% da sua média do semestre (AG)</strong> em cada disciplina
+                — quase o mesmo peso de uma AV1 ou de uma AV2. Não é uma prova para deixar por
+                último: um EDAG fraco derruba a média mesmo quando as outras notas estão boas.
+              </p>
+              <p>
+                Datas, formato e conteúdo ficam no
+                <a href="https://sites.google.com/doc.senaicimatec.edu.br/edag" target="_blank" rel="noopener noreferrer">site do EDAG</a>.
+              </p>
+            </div>
+          </details>
+
+          <details class="guia-item" id="guia-revisoes">
+            <summary>Programa de Revisões</summary>
+            <div class="guia-conteudo">
+              <p>
+                O Programa de Revisões oferece revisões de conteúdo e, em alguns casos, dá ponto
+                extra no EDAG. Como o EDAG pesa 20% da média, esse ponto extra pode ser
+                exatamente a distância entre fechar o semestre e ir para a Avaliação Final.
+              </p>
+              <p>
+                Quais disciplinas entram e como participar:
+                <a href="https://sites.google.com/doc.senaicimatec.edu.br/revisoes" target="_blank" rel="noopener noreferrer">site do Programa de Revisões</a>.
+              </p>
+            </div>
+          </details>
+
+          <details class="guia-item" id="guia-trilhas">
+            <summary>Trilhas e PFC</summary>
+            <div class="guia-conteudo">
+              <p>
+                As Trilhas são o momento em que a sua grade ganha uma ênfase: ela deixa de ser só
+                “o curso” e passa a ter uma direção escolhida por você. O percurso é o mesmo para
+                todo mundo:
+              </p>
+              <ul class="modal-ul">
+                <li><strong>1º semestre</strong> — Desafio de Engenharia e Arquitetura.</li>
+                <li>
+                  <strong>2º ao 4º</strong> — Desafio das Trilhas, uma introdução às três opções,
+                  para você escolher com alguma base em vez de escolher no escuro.
+                </li>
+                <li>
+                  <strong>5º ao 8º</strong> — você cursa a trilha escolhida, em paralelo aos
+                  outros componentes curriculares.
+                </li>
+                <li><strong>9º e 10º</strong> — PFC, o Projeto Final de Curso.</li>
+              </ul>
+              <p>As três opções:</p>
+              <ul class="modal-ul">
+                <li><strong>Pesquisador</strong> — foco em investigação e iniciação científica.</li>
+                <li><strong>Técnico-Gestor</strong> — foco em trabalho em equipe e gestão de projetos.</li>
+                <li><strong>Empreendedor</strong> — foco em inovação e empreendedorismo.</li>
+              </ul>
+              <p>
+                Mais detalhes no
+                <a href="https://sites.google.com/doc.senaicimatec.edu.br/trilhas" target="_blank" rel="noopener noreferrer">site das Trilhas</a>.
+              </p>
+            </div>
+          </details>
+
+          <p class="guia-grupo">No dia a dia das aulas</p>
+
+          <details class="guia-item" id="guia-canvas">
+            <summary>Canvas</summary>
+            <div class="guia-conteudo">
+              <p>
+                O Canvas é onde a disciplina acontece fora da sala: é lá que os professores
+                publicam slides, listas, PDFs e materiais complementares, e é lá que ficam os
+                avisos da turma.
+              </p>
+              <p>
+                A caixa de entrada do Canvas também é o canal direto com o professor. Para dúvida
+                de conteúdo, de prazo ou de nota, é o primeiro lugar a procurar: a mensagem chega
+                direto a quem pode resolver, sem passar por nenhum intermediário.
+              </p>
+            </div>
+          </details>
+
+          <details class="guia-item" id="guia-notas">
+            <summary>Notas e segunda chamada</summary>
+            <div class="guia-conteudo">
+              <p>Problema com alguma nota? O canal certo depende da disciplina:</p>
+              <ul class="modal-ul">
+                <li>
+                  <strong>Elementos (nivelamento):</strong> e-mail para
+                  <a href="mailto:ProgramadeNivelamento@fieb.org.br">ProgramadeNivelamento@fieb.org.br</a>.
+                </li>
+                <li>
+                  <strong>Práticas Integradas:</strong> e-mail para
+                  <a href="mailto:operacao.academica@fieb.org.br">operacao.academica@fieb.org.br</a>.
+                  Esse endereço é só para notas de Práticas Integradas.
+                </li>
+                <li>
+                  <strong>Demais disciplinas:</strong> fale primeiro com o professor pelo Canvas.
+                  A maior parte dos casos se resolve aí, sem abrir requerimento nenhum.
+                </li>
+              </ul>
+              <p>
+                Em qualquer um dos canais, peça a análise e anexe prints ou fotos que comprovem o
+                erro. Um pedido com evidência anda muito mais rápido do que um “minha nota está
+                errada”.
+              </p>
+              <p>
+                <strong>Segunda chamada:</strong> o atestado precisa ser enviado em até
+                <strong>48 horas</strong> depois da prova, por requerimento no
+                <a href="https://senaiweb6.fieb.org.br/framehtml/web/app/edu/PortalEducacional/login/" target="_blank" rel="noopener noreferrer">Aluno Online</a>.
+                Esse prazo corre sozinho, então resolva isso antes de qualquer outra coisa.
+              </p>
+            </div>
+          </details>
+
+          <details class="guia-item" id="guia-notebooklm">
+            <summary>Dica de estudo: NotebookLM</summary>
+            <div class="guia-conteudo">
+              <p>
+                O <a href="https://notebook.google.com/" target="_blank" rel="noopener noreferrer">NotebookLM</a>,
+                do Google, responde usando apenas os arquivos que você envia. Suba como fontes os
+                slides, PDFs e materiais que os professores disponibilizam no Canvas e peça
+                resumos, guias de estudo ou quizzes.
+              </p>
+              <p>
+                A vantagem sobre um chat genérico é exatamente essa: o material de estudo sai
+                colado no que o seu professor deu, e não no que a internet acha do assunto.
+              </p>
+            </div>
+          </details>
+
+          <details class="guia-item" id="guia-biblioteca">
+            <summary>Biblioteca</summary>
+            <div class="guia-conteudo">
+              <p>
+                Para pegar livros emprestados é preciso fazer o cadastro antes — sem ele o
+                empréstimo não é liberado, mesmo com o livro na mão. Resolva isso no começo do
+                semestre, pelo
+                <a href="https://docs.google.com/forms/d/e/1FAIpQLSfUIyGPY7t4XO5plMdGAB0h3NT-Gp2j2N-IyD_SuAYagd3TLw/viewform" target="_blank" rel="noopener noreferrer">formulário de cadastro na biblioteca</a>.
+              </p>
+              <p>
+                A biblioteca fica no <strong>CIMATEC 3, 1º andar</strong>, e é também onde
+                funciona a secretaria: dentro da própria biblioteca, na
+                <strong>primeira mesa à esquerda</strong>.
+              </p>
+            </div>
+          </details>
+
+          <p class="guia-grupo">Ir além da grade</p>
+
+          <details class="guia-item" id="guia-monitoria">
+            <summary>Monitoria</summary>
+            <div class="guia-conteudo">
+              <p>
+                O Programa de Monitoria coloca estudantes para auxiliar os professores em algumas
+                disciplinas. Ele serve dos dois lados: se você está cursando a matéria, o monitor
+                é um suporte a mais para tirar dúvida; se você já passou por ela, ser monitor fixa
+                o conteúdo e conta como experiência no currículo.
+              </p>
+              <p>
+                As vagas podem ser com ou sem bolsa e são preenchidas por processo seletivo.
+                Como funciona e quando abre:
+                <a href="https://sites.google.com/doc.senaicimatec.edu.br/monitoria" target="_blank" rel="noopener noreferrer">site da Monitoria</a>.
+              </p>
+            </div>
+          </details>
+
+          <details class="guia-item" id="guia-ic">
+            <summary>Iniciação Científica e Tecnológica</summary>
+            <div class="guia-conteudo">
+              <p>
+                A iniciação científica é o primeiro contato do estudante com a vida de
+                pesquisador. Os projetos são propostos por pesquisadores, por líderes técnicos de
+                projetos de pesquisa e desenvolvimento do centro tecnológico e por estudantes de
+                doutorado dos programas de pós-graduação da Universidade SENAI CIMATEC.
+              </p>
+              <p>
+                Dá para participar de duas formas: <strong>voluntária</strong> ou
+                <strong>com bolsa</strong>. Entrar como voluntário é um bom caminho — você conhece
+                os grupos, aprende como a pesquisa funciona por dentro e chega bem mais preparado
+                para concorrer às bolsas depois.
+              </p>
+              <p>As bolsas são fomentadas por agências como:</p>
+              <ul class="modal-ul">
+                <li>Conselho Nacional de Desenvolvimento Científico e Tecnológico (CNPq)</li>
+                <li>Fundação de Amparo à Pesquisa do Estado da Bahia (FAPESB)</li>
+                <li>Programa de Formação de Recursos Humanos da Agência Nacional do Petróleo (PRH27.1 ANP/FINEP)</li>
+              </ul>
+              <p>Os programas de bolsa da graduação:</p>
+              <dl class="beneficios-list">
+                <div>
+                  <dt>PIBIC/FAPESB</dt>
+                  <dd>Iniciação Científica</dd>
+                </div>
+                <div>
+                  <dt>PIBIT/CNPq</dt>
+                  <dd>Iniciação Tecnológica</dd>
+                </div>
+                <div>
+                  <dt>PIBIC/CNPq</dt>
+                  <dd>Iniciação Científica</dd>
+                </div>
+                <div>
+                  <dt>PRH27.1 ANP FINEP</dt>
+                  <dd>Graduação</dd>
+                </div>
+              </dl>
+              <p>
+                Além desses, muitos projetos de inovação tocados na instituição abrem bolsas
+                científicas periodicamente — vale acompanhar.
+              </p>
+            </div>
+          </details>
+
+          <details class="guia-item" id="guia-lattes">
+            <summary>Currículo Lattes e LinkedIn</summary>
+            <div class="guia-conteudo">
+              <p>
+                Comece os dois cedo. O
+                <a href="https://lattes.cnpq.br/" target="_blank" rel="noopener noreferrer">Currículo Lattes</a>
+                é o registro padrão da vida acadêmica no Brasil: é por ele que orientadores e
+                agências de fomento olham a sua trajetória. O
+                <a href="https://www.linkedin.com/feed/" target="_blank" rel="noopener noreferrer">LinkedIn</a>
+                é a vitrine equivalente do lado profissional, onde estágios e vagas circulam.
+              </p>
+              <p>
+                O motivo de começar cedo é prático: registrar cada monitoria, projeto, evento e
+                publicação <strong>na hora que acontece</strong> leva minutos. Reconstruir três
+                anos de memória na véspera de uma inscrição leva um fim de semana — e sempre fica
+                faltando alguma coisa.
+              </p>
+            </div>
+          </details>
+
+          <p class="guia-grupo">Apoio e contato</p>
+
+          <details class="guia-item" id="guia-naae">
+            <summary>NAAE — apoio ao estudante</summary>
+            <div class="guia-conteudo">
+              <p>
+                O NAAE (Núcleo de Acolhimento e Atenção ao Estudante) é o serviço de apoio da
+                universidade aos desafios da vida acadêmica. Ele ajuda a superar barreiras no
+                processo de aprendizagem e no desempenho acadêmico, com atendimentos
+                psicopedagógicos e orientação psicológica.
+              </p>
+              <p>
+                O núcleo também acolhe estudantes com dificuldades relacionadas aos estudos ou com
+                outros impedimentos que interfiram na integração e no desempenho acadêmico,
+                incluindo alunos com deficiência ou impedimento de natureza física, intelectual,
+                mental ou sensorial e transtornos do neurodesenvolvimento da aprendizagem.
+              </p>
+              <p>
+                Não é preciso esperar a situação apertar para procurar.
+                <a href="https://sites.google.com/doc.senaicimatec.edu.br/naae" target="_blank" rel="noopener noreferrer">Site do NAAE</a>.
+              </p>
+            </div>
+          </details>
+
+          <details class="guia-item" id="guia-contato">
+            <summary>Contatos do Cimatec</summary>
+            <div class="guia-conteudo">
+              <ul class="modal-ul">
+                <li>
+                  <strong>WhatsApp do Cimatec:</strong>
+                  <a href="tel:+557181104473">(71) 8110-4473</a>
+                </li>
+                <li>
+                  <strong>Coordenação do seu curso:</strong>
+                  <a href="https://sites.google.com/doc.senaicimatec.edu.br/atendimento-coord/coordena%C3%A7%C3%A3o-de-curso" target="_blank" rel="noopener noreferrer">contato dos coordenadores</a>.
+                </li>
+                <li>
+                  <strong>Secretaria:</strong> presencial, dentro da biblioteca do Cimatec —
+                  CIMATEC 3, 1º andar, <strong>primeira mesa à esquerda</strong>. É para onde
+                  vão as dúvidas que não se encaixam em nenhum outro canal.
+                </li>
+              </ul>
+              <p>
+                Para problema com nota, o caminho é outro: veja o tópico
+                <strong>Notas e segunda chamada</strong>.
+              </p>
+            </div>
+          </details>
+
+          <details class="guia-item" id="guia-beneficios">
+            <summary>Benefícios do e-mail institucional</summary>
+            <div class="guia-conteudo">
+              <p>
+                O e-mail institucional destrava uma lista grande de benefícios de estudante. São
+                dois endereços, e alguns serviços só aceitam um deles — se um for recusado, tente
+                o outro antes de desistir:
+              </p>
+              <ul class="modal-ul">
+                <li><code>RA@universidadesenaicimatec.edu.br</code></li>
+                <li><code>nome@aln.senaicimatec.edu.br</code></li>
+              </ul>
+              <dl class="beneficios-list">
+                <div>
+                  <dt>Notion for Education</dt>
+                  <dd>Desconto para estudantes. <a href="https://www.notion.com/pt/help/notion-for-education" target="_blank" rel="noopener noreferrer">Saiba mais</a></dd>
+                </div>
+                <div>
+                  <dt>GitHub Student Pack</dt>
+                  <dd>Inclui GitHub Copilot e outros benefícios para estudantes. <a href="https://education.github.com/pack" target="_blank" rel="noopener noreferrer">Saiba mais</a></dd>
+                </div>
+                <div>
+                  <dt>Microsoft Office 365</dt>
+                  <dd>Pacote gratuito usando o e-mail <code>RA@universidadesenaicimatec.edu.br</code>.</dd>
+                </div>
+                <div>
+                  <dt>Autodesk Education</dt>
+                  <dd>Acesso gratuito a softwares como o AutoCAD. <a href="https://www.autodesk.com/br/education/home" target="_blank" rel="noopener noreferrer">Saiba mais</a></dd>
+                </div>
+                <div>
+                  <dt>Canva Pro + Google Workspace</dt>
+                  <dd>Liberado com o e-mail <code>nome@aln.senaicimatec.edu.br</code>.</dd>
+                </div>
+                <div>
+                  <dt>Documento do Estudante</dt>
+                  <dd>Carteirinha para meia-entrada. <a href="https://www.documentodoestudante.com.br/" target="_blank" rel="noopener noreferrer">Saiba mais</a></dd>
+                </div>
+                <div>
+                  <dt>Meia passagem</dt>
+                  <dd>Ônibus e metrô, pelo SalvadorCard. <a href="https://www.salvadorcard.com.br/produtos/meia-passagem/" target="_blank" rel="noopener noreferrer">Saiba mais</a></dd>
+                </div>
+                <div>
+                  <dt>Adobe Education</dt>
+                  <dd>Desconto em Photoshop, Illustrator e outras ferramentas. <a href="https://www.adobe.com/br/education.html" target="_blank" rel="noopener noreferrer">Saiba mais</a></dd>
+                </div>
+                <div>
+                  <dt>Spotify Student</dt>
+                  <dd>Desconto de estudante no Premium. <a href="https://www.spotify.com/br-pt/student/" target="_blank" rel="noopener noreferrer">Saiba mais</a></dd>
+                </div>
+                <div>
+                  <dt>YouTube Premium Student</dt>
+                  <dd>Desconto de estudante. <a href="https://www.youtube.com/premium/student" target="_blank" rel="noopener noreferrer">Saiba mais</a></dd>
+                </div>
+                <div>
+                  <dt>Samsung, Dell e Apple</dt>
+                  <dd>Descontos em eletrônicos para universitários: Samsung até 30%, Dell entre 6% e 8%, Apple com ofertas sazonais.</dd>
+                </div>
+                <div>
+                  <dt>Jornais e revistas acadêmicas</dt>
+                  <dd>Assinaturas com preço reduzido em veículos como Folha de S.Paulo, Estadão e revistas científicas.</dd>
+                </div>
+                <div>
+                  <dt>Coursera e Udemy</dt>
+                  <dd>Cursos gratuitos ou com desconto de estudante.</dd>
+                </div>
+                <div>
+                  <dt>LinkedIn Premium Student</dt>
+                  <dd>R$ 24,90/mês (valor normal R$ 59,90). <a href="https://www.linkedin.com/premium/" target="_blank" rel="noopener noreferrer">Saiba mais</a></dd>
+                </div>
+              </dl>
+            </div>
+          </details>
+        </div>
+      </dialog>
+
+      <!-- ============ PERGUNTAS FREQUENTES ============ -->
+      <section class="regras reveal" id="faq">
+        <span class="icon-badge" aria-hidden="true">
+          <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9.5"/><path d="M9.3 9.2a2.7 2.7 0 0 1 5.3.6c0 1.8-2.6 2-2.6 3.7"/><circle cx="12" cy="17.2" r=".6" fill="currentColor" stroke="none"/></svg>
+        </span>
+        <p class="eyebrow">Perguntas frequentes</p>
+        <h2>As dúvidas que todo mundo tem</h2>
+        <dl class="regras-list">
+          <div>
+            <dt>Que nota eu preciso tirar na Avaliação Final?</dt>
+            <dd>
+              Com a média geral entre 3,0 e 7,0 você vai para a Avaliação Final (AF). A nota
+              necessária é (50 − 6 × AG) ÷ 4. Por exemplo, com AG 5,0 a AF precisa ser 5,0.
+              Abaixo de 3,0 não há Final: a reprovação é direta.
+            </dd>
+          </div>
+          <div>
+            <dt>Quantas faltas eu posso ter em uma disciplina?</dt>
+            <dd>
+              A presença mínima é de 75% da carga horária, ou seja, o limite de faltas é 25% das
+              aulas. Em uma disciplina de 60 horas isso dá 15 horas-aula de saldo; em uma de 30
+              horas, 7 horas-aula. Cada dia letivo costuma valer 2 aulas de 50 minutos.
+            </dd>
+          </div>
+          <div>
+            <dt>O que é EDAG?</dt>
+            <dd>
+              EDAG é o Exame de Desempenho dos Alunos de Graduação. Ela vale 20% da média geral.
+              <a href="https://sites.google.com/doc.senaicimatec.edu.br/edag" target="_blank" rel="noopener noreferrer">Site do EDAG</a>.
+            </dd>
+          </div>
+          <div>
+            <dt>O Help CIMATEC é um site oficial da universidade?</dt>
+            <dd>
+              Não. O Help CIMATEC é um projeto independente feito por alunos e segue o regulamento
+              acadêmico da Universidade SENAI CIMATEC. Confirme sempre suas notas e faltas no
+              portal oficial antes de tomar qualquer decisão.
+            </dd>
+          </div>
+        </dl>
+      </section>
+
+    </div>
+  </main>
+
+  <footer>
+    <div class="container footer-inner">
+      <p>Help CIMATEC — Rodrigo Gandarela</p>
+      <p class="footer-links">
+        <a href="https://www.linkedin.com/in/rodrigo-gandarela" target="_blank" rel="noopener noreferrer">LinkedIn</a>
+        <a href="https://github.com/rodrigogduca" target="_blank" rel="noopener noreferrer">GitHub</a>
+      </p>
+    </div>
+  </footer>
+
+  <script src="assets/js/script.js"></script>
+</body>
+</html>
