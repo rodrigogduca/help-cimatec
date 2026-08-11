@@ -1,4 +1,0 @@
-# Site estático sem build: a Netlify publica a raiz do repositório como está.
-[build]
-  publish = "."
-  command = ""
