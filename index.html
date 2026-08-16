@@ -218,6 +218,10 @@
           Faltei CIMATEC
           <svg class="btn-icon" viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M3 10h18M8 3v4M16 3v4"/></svg>
         </a>
+        <a href="grade.html" class="btn btn-grade">
+          Grade CIMATEC
+          <svg class="btn-icon" viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="4.5" width="18" height="16" rx="1.5"/><path d="M3 9.5h18M9 9.5v11M15 9.5v11M8 2.5v4M16 2.5v4"/></svg>
+        </a>
       </div>
     </div>
   </header>
@@ -443,6 +447,17 @@
         </p>
 
         <div class="recurso-cards">
+          <a href="grade.html" class="recurso-card recurso-card-featured">
+            <span class="icon-badge is-orange" aria-hidden="true">
+              <svg viewBox="0 0 24 24"><rect x="3" y="4.5" width="18" height="16" rx="1.5"/><path d="M3 9.5h18M9 9.5v11M15 9.5v11M8 2.5v4M16 2.5v4"/></svg>
+            </span>
+            <span class="recurso-card-badge">Pré-matrícula</span>
+            <span class="recurso-card-title">Simulador de Grade</span>
+            <span class="recurso-card-desc">Monte a grade do semestre e veja os choques de horário antes de se matricular</span>
+            <span class="recurso-card-cta">Abrir simulador
+              <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+            </span>
+          </a>
           <button type="button" class="recurso-card recurso-card-featured" data-modal="modalGuiaEstudante">
             <span class="icon-badge is-orange" aria-hidden="true">
               <svg viewBox="0 0 24 24"><path d="M12 6c-2-1.3-5-2-8-2v14c3 0 6 .7 8 2 2-1.3 5-2 8-2V4c-3 0-6 .7-8 2Z"/><path d="M12 6v14"/></svg>
@@ -863,6 +878,87 @@
 
           <p class="guia-grupo">No dia a dia das aulas</p>
 
+          <details class="guia-item" id="guia-salas">
+            <summary>Onde fica a sua sala</summary>
+            <div class="guia-conteudo">
+              <p>
+                O código da sala tem três números separados por ponto, e a ordem nunca muda:
+                <strong>prédio, andar e sala</strong>. Tomando <code>CIM 1.2.2</code> como exemplo:
+              </p>
+              <ul class="modal-ul">
+                <li><strong>1º número:</strong> o prédio — aqui, o CIMATEC 1.</li>
+                <li><strong>2º número:</strong> o andar — aqui, o 2º.</li>
+                <li><strong>3º número:</strong> a sala daquele andar — aqui, a sala 2.</li>
+              </ul>
+              <p>
+                Ou seja, <code>CIM 1.2.2</code> é a sala 2 do 2º andar do CIMATEC 1. Lendo sempre
+                da esquerda para a direita, o campus inteiro fica navegável.
+              </p>
+            </div>
+          </details>
+
+          <details class="guia-item" id="guia-presenca">
+            <summary>Presença: a tolerância do reconhecimento facial</summary>
+            <div class="guia-conteudo">
+              <p>
+                A presença é registrada por <strong>reconhecimento facial</strong>, e o relógio
+                começa a correr quando o professor faz o registro da aula. A partir dali você ainda
+                tem uma janela para registrar a sua — passou dela, a falta entra:
+              </p>
+              <ul class="modal-ul">
+                <li><strong>20 minutos</strong> nas matérias gerais.</li>
+                <li><strong>15 minutos</strong> nas práticas integradas.</li>
+              </ul>
+              <p>
+                Repare que a prática integrada perdoa cinco minutos a menos. Se for para arriscar o
+                cafezinho antes de subir, que não seja no dia dela.
+              </p>
+            </div>
+          </details>
+
+          <details class="guia-item" id="guia-pico">
+            <summary>Horários de pico: fila, micro-ondas e sala de estudo</summary>
+            <div class="guia-conteudo">
+              <p>
+                Quase todo aperto do campus é questão de horário, e todos eles são previsíveis.
+                Este é o mapa que a turma costuma aprender no susto, no primeiro mês:
+              </p>
+              <dl class="beneficios-list">
+                <div>
+                  <dt>Restaurantes, às 12h</dt>
+                  <dd>
+                    Sempre muito cheios. Se a sua grade deixa, deslocar o almoço em meia hora muda
+                    completamente a experiência — e fique de olho no lendário “garfo de ouro”,
+                    aquele colega que aparece na frente da fila com a maior naturalidade do mundo.
+                  </dd>
+                </div>
+                <div>
+                  <dt>Micro-ondas, às 12h ou antes</dt>
+                  <dd>
+                    Enche antes do restaurante, porque a galera esperta se antecipa. Faça um lanche
+                    leve antes do almoço: entre uma fila e outra, pode demorar mais do que o seu
+                    estômago aguenta.
+                  </dd>
+                </div>
+                <div>
+                  <dt>Salas de estudo, na semana de provas</dt>
+                  <dd>
+                    Lotadas. Chegue cedo se quiser reservar uma — nessa semana, “depois eu reservo”
+                    costuma terminar em mesa de corredor.
+                  </dd>
+                </div>
+                <div>
+                  <dt>Livros, na semana de provas</dt>
+                  <dd>
+                    Os exemplares esgotam, porque todo mundo lembra da bibliografia no mesmo dia.
+                    Sem pânico: a biblioteca online é bem robusta, não tem fila e funciona às duas
+                    da manhã.
+                  </dd>
+                </div>
+              </dl>
+            </div>
+          </details>
+
           <details class="guia-item" id="guia-canvas">
             <summary>Canvas</summary>
             <div class="guia-conteudo">
@@ -941,6 +1037,11 @@
                 A biblioteca fica no <strong>CIMATEC 3, 1º andar</strong>, e é também onde
                 funciona a secretaria: dentro da própria biblioteca, na
                 <strong>primeira mesa à esquerda</strong>.
+              </p>
+              <p>
+                É lá que também se imprime. O pagamento da impressão é feito com
+                <strong>dinheiro em mãos ou pelo PayPal</strong>, então deixe um dos dois preparado
+                antes de descer correndo com o trabalho para entregar.
               </p>
             </div>
           </details>
@@ -1032,6 +1133,17 @@
           </details>
 
           <p class="guia-grupo">Apoio e contato</p>
+
+          <details class="guia-item" id="guia-avaliacao">
+            <summary>Avaliação Institucional</summary>
+            <div class="guia-conteudo">
+              <p>
+                A Avaliação Institucional é o momento em que a universidade pergunta, formalmente,
+                o que está funcionando e o que não está. Responder é rápido e é o caminho que faz
+                reclamação de corredor virar mudança de verdade — vale reservar esses minutos.
+              </p>
+            </div>
+          </details>
 
           <details class="guia-item" id="guia-naae">
             <summary>NAAE — apoio ao estudante</summary>

@@ -1,0 +1,27 @@
+# As planilhas de origem da oferta.
+#
+# Ficam fora do git de propósito. O netlify.toml publica a raiz do
+# repositório como está (publish = "."), então todo arquivo versionado
+# vira uma URL do site — e o GRD_HORARIOS traz o nome de todos os
+# docentes da universidade, curso por curso. O que é público é o JSON
+# gerado a partir delas, em assets/data/, que só tem o que a página
+# desenha.
+#
+# Ver tools/ofertas/README.md para onde conseguir o arquivo.
+tools/ofertas/*
+!tools/ofertas/README.md
+
+# Sistema operacional e editor
+.DS_Store
+Thumbs.db
+desktop.ini
+.vscode/
+.idea/
+
+# Node — o projeto não tem dependências, mas npx e ferramentas soltam isso aqui
+node_modules/
+npm-debug.log*
+package-lock.json
+
+# Netlify CLI (npx netlify dev)
+.netlify/

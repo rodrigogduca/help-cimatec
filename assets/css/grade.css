@@ -1,0 +1,1023 @@
+/* ============================================================
+   SIMULADOR DE GRADE
+   Complemento de style.css — carregado só por grade.html.
+
+   A grade é a folha quadriculada levada a sério: o papel do site
+   vira a própria tabela, e cada aula é um pedaço de fita colado
+   em cima. Toda cor continua sendo token; as poucas que nascem
+   aqui estão declaradas nos dois temas logo abaixo.
+   ============================================================ */
+
+:root {
+  /* fita colorida das aulas: um matiz por disciplina, saturação e
+     luminosidade fixas — assim 50 disciplinas convivem sem gritar */
+  --chip-s:  58%;
+  --chip-l:  93%;
+  --chip-br: 76%;
+  --chip-tx: 28%;
+
+  --celula-vazia: rgba(29, 78, 137, .022);
+  --grade-h: 88px;   /* altura mínima de um bloco de horário */
+}
+
+:root[data-tema="escuro"] {
+  --chip-s:  34%;
+  --chip-l:  24%;
+  --chip-br: 42%;
+  --chip-tx: 86%;
+
+  --celula-vazia: rgba(107, 166, 232, .035);
+}
+
+.container-largo { max-width: 1340px; }
+
+/* o JS liga e desliga passos e botões pelo atributo hidden. Sem esta
+   linha, qualquer display de folha de autor (o .btn é inline-flex)
+   ganharia do hidden do navegador e o elemento continuaria na tela. */
+[hidden] { display: none !important; }
+
+/* rótulo que só o leitor de tela recebe */
+.sr-only {
+  position: absolute;
+  width: 1px; height: 1px;
+  padding: 0; margin: -1px;
+  overflow: hidden;
+  clip-path: inset(50%);
+  white-space: nowrap;
+}
+
+/* ============================================================
+   TOPO
+   ============================================================ */
+/* a navbar é sticky, logo já ocupa lugar no fluxo: somar --nav-h aqui
+   contava a barra duas vezes e abria um vão morto antes do título.
+   O topo é centralizado como o do index: as duas páginas abrem com a
+   mesma cara, e é a partir do passo 1 que a leitura vira à esquerda. */
+.grade-hero {
+  padding: 64px 24px 44px;
+  text-align: center;
+}
+.grade-hero h1 {
+  /* sem teto, a manchete atravessa os 1340px do container e vira uma
+     linha longa demais para o olho voltar ao começo. Com o teto, o
+     balance reparte as duas linhas em vez de deixar uma órfã. */
+  max-width: 24ch;
+  margin-inline: auto;
+  font-family: var(--cond);
+  font-size: clamp(30px, 4vw, 46px);
+  font-weight: 700;
+  line-height: 1.08;
+  letter-spacing: -.01em;
+  text-wrap: balance;
+  margin-bottom: 14px;
+}
+.grade-hero h1 em { font-style: normal; color: var(--blue); }
+.grade-hero .lede { max-width: 58ch; color: var(--ink-2); font-size: 17px; }
+
+/* montando a grade, o topo encolhe: o h1 continua lá para quem lê a
+   página por leitor de tela, mas a apresentação já foi lida uma vez.
+   Aqui ele volta para a esquerda — centralizado, ficaria fora de prumo
+   com a barra do curso, que é o cartão logo abaixo dele. */
+body.is-montando .grade-hero { padding: 22px 24px 4px; text-align: left; }
+body.is-montando .grade-hero .eyebrow,
+body.is-montando .grade-hero .lede { display: none; }
+body.is-montando .grade-hero h1 {
+  max-width: none;
+  margin-inline: 0;
+  font-size: clamp(24px, 2.8vw, 32px);
+  margin-bottom: 0;
+}
+
+.fonte-nota {
+  font-family: var(--mono);
+  font-size: 11.5px;
+  color: var(--ink-3);
+  line-height: 1.5;
+  /* o nome do arquivo da coordenação é uma palavra só e comprida
+     ("Grade_Engenharia_de_Computacao_2026_2.xlsx"): sem quebra
+     forçada ela estica a barra e faz a página inteira rolar de lado */
+  overflow-wrap: anywhere;
+}
+.fonte-nota strong { color: var(--ink-2); font-weight: 600; }
+/* o que a planilha declara ter deixado de fora: linha própria, porque
+   é a resposta para "cadê Cálculo Vetorial?" e não pode virar rodapé */
+.fonte-nota .nota-ressalva {
+  display: block;
+  margin-top: 4px;
+  color: var(--ink-2);
+  font-family: var(--sans);
+  font-size: 12.5px;
+  line-height: 1.45;
+  overflow-wrap: normal;
+}
+
+/* ============================================================
+   PASSO 1 — ESCOLHER O CURSO
+
+   A porta de entrada. Onze cursos cabem na tela sem busca; o que
+   diferencia um do outro é o selo, o nome e o estado da oferta,
+   nessa ordem de leitura.
+   ============================================================ */
+.selecao { padding: 12px 24px 70px; }
+
+.selecao-head {
+  display: flex;
+  align-items: flex-start;
+  gap: 14px;
+  margin-bottom: 22px;
+}
+.passo-num {
+  flex: 0 0 auto;
+  width: 34px; height: 34px;
+  display: grid;
+  place-items: center;
+  font-family: var(--mono);
+  font-size: 14px;
+  font-weight: 700;
+  color: var(--on-orange);
+  background: var(--orange);
+  border-radius: 50%;
+}
+.selecao-head h2 {
+  font-family: var(--cond);
+  font-size: clamp(22px, 2.6vw, 28px);
+  font-weight: 700;
+  line-height: 1.15;
+}
+.selecao-desc { max-width: 60ch; margin-top: 5px; font-size: 15px; color: var(--ink-2); }
+
+/* pílula discreta, logo abaixo da descrição do passo 1: é ajuda, e não
+   pode competir com "Montar minha grade", que é o CTA desta tela. Vem
+   antes da escolha porque é aqui que a dúvida aparece — depois de montar
+   a grade, a página já se explicou sozinha. */
+.btn-ajuda {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  margin-top: 14px;
+  padding: 6px 13px 6px 10px;
+  background: var(--paper-hi);
+  border: 1px solid var(--rule-strong);
+  border-radius: 999px;
+  color: var(--blue);
+  font-family: var(--sans);
+  font-size: 13px;
+  font-weight: 600;
+  white-space: nowrap;
+  cursor: pointer;
+  transition: background .2s var(--ease), border-color .2s var(--ease), color .2s var(--ease);
+}
+.btn-ajuda:hover { background: var(--blue); border-color: var(--blue); color: var(--on-blue); }
+.btn-ajuda svg {
+  width: 16px; height: 16px;
+  fill: none; stroke: currentColor; stroke-width: 1.8;
+  stroke-linecap: round; stroke-linejoin: round;
+  flex-shrink: 0;
+}
+
+.curso-grid {
+  display: grid;
+  /* o min() evita que a coluna de 272px estoure a tela num aparelho
+     mais estreito que isso: aí ela passa a valer 100% do disponível */
+  grid-template-columns: repeat(auto-fill, minmax(min(272px, 100%), 1fr));
+  gap: 10px;
+}
+
+/* rótulo de bloco: ocupa a linha inteira da grade, então os cartões
+   do grupo seguinte sempre recomeçam na primeira coluna */
+.curso-grupo {
+  grid-column: 1 / -1;
+  margin-top: 10px;
+  font-family: var(--mono);
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: .08em;
+  text-transform: uppercase;
+  color: var(--ink-3);
+}
+.curso-grupo:first-child { margin-top: 0; }
+
+/* ---- um curso ---- */
+.curso {
+  --h: 212;
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  width: 100%;
+  padding: 14px 44px 14px 14px;
+  text-align: left;
+  font-family: inherit;
+  color: var(--ink);
+  background: var(--paper-hi);
+  border: 1px solid var(--rule);
+  border-left: 3px solid hsl(var(--h) 50% var(--chip-br));
+  border-radius: var(--r-lg);
+  cursor: pointer;
+  transition: border-color .15s var(--ease), background .15s var(--ease),
+              box-shadow .15s var(--ease), transform .12s var(--ease);
+}
+.curso:hover {
+  border-color: var(--blue);
+  border-left-color: hsl(var(--h) 55% 45%);
+  box-shadow: var(--shadow-md);
+  transform: translateY(-1px);
+}
+.curso.is-ativo {
+  background: hsl(var(--h) var(--chip-s) var(--chip-l));
+  border-color: hsl(var(--h) 50% var(--chip-br));
+  border-left-color: hsl(var(--h) 55% 45%);
+  box-shadow: inset 0 0 0 1px hsl(var(--h) 50% var(--chip-br));
+}
+
+.curso-sigla {
+  flex: 0 0 auto;
+  width: 44px; height: 44px;
+  display: grid;
+  place-items: center;
+  font-family: var(--mono);
+  font-size: 11.5px;
+  font-weight: 700;
+  letter-spacing: .02em;
+  color: hsl(var(--h) 45% var(--chip-tx));
+  background: hsl(var(--h) var(--chip-s) var(--chip-l));
+  border: 1px solid hsl(var(--h) 45% var(--chip-br));
+  border-radius: var(--r);
+}
+.curso.is-ativo .curso-sigla { background: var(--paper-hi); }
+
+.curso-corpo { min-width: 0; display: flex; flex-direction: column; gap: 3px; }
+.curso-nome { font-size: 14.5px; font-weight: 600; line-height: 1.25; }
+.curso-status { font-family: var(--mono); font-size: 10.5px; color: var(--ink-3); }
+.curso-status.is-ok { color: var(--pass); }
+.curso-selos { display: flex; flex-wrap: wrap; gap: 4px; margin-top: 3px; }
+
+/* ---- curso que a universidade ainda não abriu ----
+   Fica na lista para quem procura por ele saber que o site não o
+   esqueceu, mas não é porta para lugar nenhum: sem hover, sem foco,
+   sem clique. O `disabled` no botão já faz o resto. */
+.curso.is-embreve {
+  opacity: .5;
+  cursor: default;
+  border-left-color: var(--rule-strong);
+}
+.curso.is-embreve:hover {
+  border-color: var(--rule);
+  border-left-color: var(--rule-strong);
+  box-shadow: none;
+  transform: none;
+}
+.curso.is-embreve .curso-sigla {
+  color: var(--ink-3);
+  background: var(--paper);
+  border-color: var(--rule);
+}
+.selo-embreve { background: var(--rule-soft); color: var(--ink-2); }
+
+/* o visto só aparece no curso escolhido — sem ele o cartão tem o
+   espaço reservado, então marcar não empurra o texto para o lado */
+.curso-check {
+  position: absolute;
+  top: 50%; right: 14px;
+  transform: translateY(-50%) scale(.7);
+  width: 20px; height: 20px;
+  display: grid;
+  place-items: center;
+  color: var(--on-orange);
+  background: var(--orange);
+  border-radius: 50%;
+  opacity: 0;
+  transition: opacity .15s var(--ease), transform .15s var(--ease);
+}
+.curso.is-ativo .curso-check { opacity: 1; transform: translateY(-50%) scale(1); }
+.curso-check svg {
+  width: 12px; height: 12px;
+  fill: none; stroke: currentColor; stroke-width: 3;
+  stroke-linecap: round; stroke-linejoin: round;
+}
+
+/* ---- barra de ação: gruda no rodapé para o CTA nunca sair da vista ---- */
+.selecao-acao {
+  position: sticky;
+  bottom: 0;
+  z-index: 3;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  margin-top: 18px;
+  padding: 14px 16px;
+  background: var(--nav-bg-solid);
+  backdrop-filter: blur(10px);
+  border: 1px solid var(--rule);
+  border-radius: var(--r-lg);
+  box-shadow: var(--shadow-md);
+}
+/* a frase cresce (curso sem oferta publicada tem explicação junto);
+   deixá-la encolher e quebrar mantém os botões ancorados à direita */
+.selecao-escolhido {
+  flex: 1 1 280px;
+  min-width: 0;
+  font-size: 14px;
+  line-height: 1.5;
+  color: var(--ink-2);
+}
+.selecao-escolhido strong { color: var(--ink); font-weight: 600; }
+
+.selecao-botoes {
+  flex: 0 0 auto;
+  margin-left: auto;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 10px;
+}
+.selecao-botoes .btn { height: 46px; }
+.btn:disabled { opacity: .45; cursor: not-allowed; }
+.btn:disabled:active { transform: none; }
+.btn-primary:disabled:hover { background: var(--orange); }
+
+.selecao-periodo select,
+.campo-inline select {
+  height: 46px;
+  padding: 0 12px;
+  font-family: var(--sans);
+  font-size: 14px;
+  color: var(--ink);
+  background: var(--paper-hi);
+  border: 1px solid var(--rule-strong);
+  border-radius: var(--r);
+  cursor: pointer;
+}
+
+.selecao-nota {
+  max-width: 78ch;
+  margin-top: 16px;
+  font-size: 13.5px;
+  line-height: 1.6;
+  color: var(--ink-3);
+}
+
+/* ============================================================
+   PASSO 2 — DE QUEM É A GRADE NA TELA
+   ============================================================ */
+.curso-barra {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 14px;
+  margin-bottom: 18px;
+  padding: 14px 18px;
+  background: var(--paper-hi);
+  border: 1px solid var(--rule);
+  border-radius: var(--r-lg);
+}
+.curso-barra-info { display: flex; align-items: center; gap: 12px; min-width: 0; }
+/* min-width:auto é o padrão do item flex e impede que ele encolha
+   abaixo do próprio conteúdo — sem isto a quebra acima não adianta */
+.curso-barra-info > div { min-width: 0; }
+.curso-barra-sigla {
+  --h: 212;
+  flex: 0 0 auto;
+  width: 40px; height: 40px;
+  display: grid;
+  place-items: center;
+  font-family: var(--mono);
+  font-size: 11px;
+  font-weight: 700;
+  color: hsl(var(--h) 45% var(--chip-tx));
+  background: hsl(var(--h) var(--chip-s) var(--chip-l));
+  border: 1px solid hsl(var(--h) 45% var(--chip-br));
+  border-radius: var(--r);
+}
+.curso-barra-nome { font-family: var(--cond); font-size: 19px; font-weight: 700; line-height: 1.2; }
+
+.curso-barra-acoes { display: flex; flex-wrap: wrap; align-items: center; gap: 8px; }
+.curso-barra-acoes .btn { height: 42px; padding: 0 16px; font-size: 13.5px; }
+.btn-trocar { gap: 7px; }
+.btn-trocar svg {
+  width: 15px; height: 15px;
+  fill: none; stroke: currentColor; stroke-width: 2;
+  stroke-linecap: round; stroke-linejoin: round;
+}
+
+/* ============================================================
+   LAYOUT
+   ============================================================ */
+.grade-layout {
+  display: grid;
+  grid-template-columns: minmax(300px, 370px) minmax(0, 1fr);
+  gap: 22px;
+  align-items: start;
+  padding-bottom: 60px;
+}
+.grade-layout .catalogo { grid-column: 1; grid-row: 1; }
+.grade-layout .montagem { grid-column: 2; grid-row: 1; }
+
+.bloco {
+  background: var(--paper-hi);
+  border: 1px solid var(--rule);
+  border-radius: var(--r-lg);
+  overflow: hidden;
+}
+.bloco-head {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 16px 18px 12px;
+  border-bottom: 1px solid var(--rule-soft);
+}
+.bloco-head h2 { font-family: var(--cond); font-size: 21px; font-weight: 700; }
+.bloco-head .contador { font-family: var(--mono); font-size: 11.5px; color: var(--ink-3); }
+
+/* ============================================================
+   CATÁLOGO — busca, filtros e lista de turmas
+   ============================================================ */
+.catalogo {
+  position: sticky;
+  top: calc(var(--nav-h) + 14px);
+  display: flex;
+  flex-direction: column;
+  max-height: calc(100vh - var(--nav-h) - 34px);
+}
+
+.busca { padding: 14px 18px; border-bottom: 1px solid var(--rule-soft); }
+.busca input[type="search"] {
+  width: 100%;
+  height: 46px;
+  padding: 0 12px;
+  font-family: var(--sans);
+  font-size: 15px;
+  color: var(--ink);
+  background: var(--paper);
+  border: 1px solid var(--rule);
+  border-radius: var(--r);
+}
+.busca input::placeholder { color: var(--ink-3); }
+
+.filtros {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 8px;
+  margin-top: 10px;
+}
+.filtros select {
+  width: 100%;
+  height: 38px;
+  padding: 0 8px;
+  font-family: var(--sans);
+  font-size: 13px;
+  color: var(--ink-2);
+  background: var(--paper);
+  border: 1px solid var(--rule);
+  border-radius: var(--r);
+}
+
+.filtro-livre {
+  grid-column: 1 / -1;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 13px;
+  color: var(--ink-2);
+  cursor: pointer;
+}
+.filtro-livre input { accent-color: var(--blue); width: 15px; height: 15px; }
+
+.lista {
+  flex: 1;
+  overflow-y: auto;
+  padding: 10px;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+/* uma turma da oferta: o botão inteiro é o alvo */
+.turma {
+  --h: 212;
+  position: relative;
+  display: block;
+  width: 100%;
+  text-align: left;
+  padding: 10px 12px 10px 14px;
+  background: var(--paper-hi);
+  border: 1px solid var(--rule);
+  border-left: 3px solid hsl(var(--h) 50% var(--chip-br));
+  border-radius: var(--r);
+  font-family: inherit;
+  color: var(--ink);
+  cursor: pointer;
+  transition: border-color .15s var(--ease), background .15s var(--ease);
+}
+.turma:hover { border-color: var(--blue); background: var(--tint-blue-soft); }
+.turma[aria-pressed="true"] {
+  background: hsl(var(--h) var(--chip-s) var(--chip-l));
+  border-color: hsl(var(--h) 50% var(--chip-br));
+  border-left-color: hsl(var(--h) 55% 45%);
+}
+.turma.is-choque { border-color: var(--fail); }
+
+.turma-nome { display: block; font-weight: 600; font-size: 14.5px; line-height: 1.3; }
+.turma-meta {
+  display: block;
+  margin-top: 3px;
+  font-family: var(--mono);
+  font-size: 11px;
+  color: var(--ink-3);
+  line-height: 1.55;
+}
+.turma-horarios { display: block; font-family: var(--mono); font-size: 11.5px; color: var(--ink-2); margin-top: 4px; }
+.turma-tags { display: flex; flex-wrap: wrap; gap: 4px; margin-top: 6px; }
+
+.selo {
+  display: inline-block;
+  padding: 1px 6px;
+  border-radius: 100px;
+  font-family: var(--mono);
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: .04em;
+  background: var(--tint-blue);
+  color: var(--blue);
+}
+.selo-alerta { background: var(--tint-orange); color: var(--orange-hi); }
+.selo-choque { background: rgba(190, 58, 43, .12); color: var(--fail); }
+.selo-ead { background: var(--tint-blue-soft); color: var(--ink-2); }
+
+.vazio { padding: 26px 14px; text-align: center; color: var(--ink-3); font-size: 14px; }
+
+/* ============================================================
+   GRADE SEMANAL
+   ============================================================ */
+.grade-rolagem { overflow-x: auto; }
+
+table.grade {
+  width: 100%;
+  min-width: 720px;
+  border-collapse: collapse;
+  table-layout: fixed;
+}
+table.grade th, table.grade td {
+  border: 1px solid var(--rule-soft);
+  vertical-align: top;
+}
+table.grade thead th {
+  padding: 9px 6px;
+  background: var(--paper-hi);
+  font-family: var(--mono);
+  font-size: 11.5px;
+  font-weight: 600;
+  letter-spacing: .06em;
+  text-transform: uppercase;
+  color: var(--ink-2);
+  border-bottom: 1px solid var(--rule);
+}
+table.grade tbody th {
+  width: 84px;
+  padding: 8px 6px;
+  background: var(--paper-hi);
+  font-family: var(--mono);
+  font-size: 11px;
+  font-weight: 500;
+  color: var(--ink-3);
+  text-align: right;
+  white-space: nowrap;
+}
+table.grade tbody th b { display: block; color: var(--ink-2); font-weight: 600; }
+
+table.grade td {
+  height: var(--grade-h);
+  padding: 4px;
+  background: var(--celula-vazia);
+}
+table.grade td.tem-aula { background: transparent; }
+
+/* choque: a célula ganha hachura, como um trecho riscado na régua */
+table.grade td.tem-choque {
+  background:
+    repeating-linear-gradient(45deg,
+      transparent 0 6px,
+      rgba(190, 58, 43, .12) 6px 12px);
+}
+
+.celula { display: flex; flex-direction: column; gap: 4px; }
+
+/* ---- a fita de uma aula ---- */
+.chip {
+  --h: 212;
+  display: block;
+  width: 100%;
+  text-align: left;
+  padding: 6px 7px;
+  font-family: inherit;
+  font-size: 12px;
+  line-height: 1.3;
+  color: var(--ink);
+  background: hsl(var(--h) var(--chip-s) var(--chip-l));
+  border: 1px solid hsl(var(--h) 45% var(--chip-br));
+  border-left: 3px solid hsl(var(--h) 55% 45%);
+  border-radius: var(--r);
+  cursor: pointer;
+  transition: box-shadow .15s var(--ease), transform .12s var(--ease);
+}
+.chip:hover { box-shadow: var(--shadow-sm); transform: translateY(-1px); }
+.chip b { display: block; font-weight: 600; }
+.chip span {
+  display: block;
+  font-family: var(--mono);
+  font-size: 10px;
+  color: hsl(var(--h) 22% var(--chip-tx));
+  margin-top: 2px;
+}
+.chip.is-choque { border-color: var(--fail); box-shadow: inset 0 0 0 1px var(--fail); }
+.chip.is-choque b::before { content: '⚠ '; }
+
+/* ---- entrou depois da grade: EAD e aulas sem horário ---- */
+.sem-horario { padding: 12px 18px; border-top: 1px solid var(--rule-soft); }
+.sem-horario h3 {
+  font-family: var(--mono);
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: .06em;
+  text-transform: uppercase;
+  color: var(--ink-3);
+  margin-bottom: 8px;
+}
+.sem-horario .celula { flex-direction: row; flex-wrap: wrap; }
+.sem-horario .chip { width: auto; min-width: 180px; }
+
+/* ---- a grade em lista ----
+   O desenho manda tabela e lista juntas; só uma aparece. Escondida
+   com display:none, e não com a técnica de leitor de tela, porque as
+   duas dizem a mesma coisa: lida em voz alta, a semana sairia duas
+   vezes. Quem manda no par é o @media lá embaixo. */
+.grade-dias { display: none; }
+.grade-dia h3 {
+  font-family: var(--mono);
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: .06em;
+  text-transform: uppercase;
+  color: var(--ink-3);
+  margin-bottom: 6px;
+}
+.grade-dia + .grade-dia { margin-top: 14px; }
+.grade-dia-livre h3 { color: var(--ink-3); }
+.grade-dia-livre p { font-size: 13px; color: var(--ink-3); }
+.grade-dias-vazia { font-size: 14px; color: var(--ink-3); }
+
+/* ============================================================
+   AVISOS
+   ============================================================ */
+.avisos { padding: 0 18px; }
+.avisos:empty { padding: 0; }
+.aviso {
+  display: flex;
+  gap: 10px;
+  align-items: flex-start;
+  margin-top: 12px;
+  padding: 12px 14px;
+  border: 1px solid var(--rule);
+  border-left: 3px solid var(--ink-3);
+  border-radius: var(--r);
+  background: var(--paper);
+  font-size: 14px;
+  color: var(--ink-2);
+}
+.aviso strong { color: var(--ink); font-weight: 600; }
+.aviso-choque { border-left-color: var(--fail); background: rgba(190, 58, 43, .06); }
+.aviso-duplicada { border-left-color: var(--orange); background: var(--tint-orange-soft); }
+.aviso-acoes { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 10px; }
+.aviso-acoes button {
+  padding: 6px 12px;
+  font-family: var(--mono);
+  font-size: 11.5px;
+  font-weight: 600;
+  color: var(--ink);
+  background: var(--paper-hi);
+  border: 1px solid var(--rule-strong);
+  border-radius: var(--r);
+  cursor: pointer;
+}
+.aviso-acoes button:hover { border-color: var(--blue); color: var(--blue); }
+.aviso-acoes .perigo:hover { border-color: var(--fail); color: var(--fail); }
+
+/* ============================================================
+   RESUMO E AÇÕES
+   ============================================================ */
+.resumo {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px 26px;
+  padding: 14px 18px;
+  border-top: 1px solid var(--rule-soft);
+  background: var(--paper);
+}
+.resumo div { display: flex; flex-direction: column; }
+.resumo dt {
+  font-family: var(--mono);
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: .06em;
+  text-transform: uppercase;
+  color: var(--ink-3);
+}
+.resumo dd { font-family: var(--cond); font-size: 24px; font-weight: 700; color: var(--ink); line-height: 1.1; }
+.resumo dd small { font-family: var(--mono); font-size: 11px; font-weight: 500; color: var(--ink-3); }
+
+.acoes {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  padding: 14px 18px;
+  border-top: 1px solid var(--rule-soft);
+}
+.acoes .btn { flex: none; }
+
+/* lista final: o que o PDF vai levar.
+   O .bloco recorta o que passa da borda (overflow:hidden pelo raio),
+   então a tabela precisa rolar dentro dela mesma — senão, na largura
+   de celular, as colunas da direita ficam cortadas e inalcançáveis. */
+.escolhidas { border-top: 1px solid var(--rule-soft); overflow-x: auto; }
+.escolhidas table { width: 100%; min-width: 520px; border-collapse: collapse; font-size: 13.5px; }
+.escolhidas th, .escolhidas td { padding: 9px 10px; border-bottom: 1px solid var(--rule-soft); text-align: left; }
+.escolhidas thead th {
+  font-family: var(--mono);
+  font-size: 10.5px;
+  font-weight: 600;
+  letter-spacing: .06em;
+  text-transform: uppercase;
+  color: var(--ink-3);
+}
+.escolhidas .c-num { width: 32px; color: var(--ink-3); font-family: var(--mono); font-size: 11px; }
+.escolhidas .c-hora { font-family: var(--mono); font-size: 11.5px; color: var(--ink-2); white-space: nowrap; }
+.escolhidas .c-acao { width: 44px; text-align: right; }
+.escolhidas tbody tr:hover { background: var(--tint-blue-soft); }
+.remover {
+  width: 26px; height: 26px;
+  display: inline-flex; align-items: center; justify-content: center;
+  color: var(--ink-3);
+  background: transparent;
+  border: 1px solid transparent;
+  border-radius: var(--r);
+  cursor: pointer;
+}
+.remover:hover { color: var(--fail); border-color: var(--fail); }
+.remover svg { width: 14px; height: 14px; fill: none; stroke: currentColor; stroke-width: 2; stroke-linecap: round; }
+
+/* ---- como o simulador decide ---- */
+.explicacao { padding-bottom: 70px; }
+.explicacao .regras-list { padding: 22px 18px; }
+.explicacao .regras-note { padding: 0 18px 22px; }
+
+/* ============================================================
+   RESPONSIVO
+   ============================================================ */
+@media (max-width: 1080px) {
+  .grade-layout { grid-template-columns: 1fr; }
+  .grade-layout .catalogo,
+  .grade-layout .montagem { grid-column: 1; }
+  .grade-layout .montagem { grid-row: 1; }
+  .grade-layout .catalogo { grid-row: 2; position: static; max-height: none; }
+  .lista { max-height: 60vh; }
+}
+
+@media (max-width: 760px) {
+  .curso-barra { align-items: flex-start; }
+  .curso-barra-acoes { width: 100%; }
+  .curso-barra-acoes .campo-inline { flex: 1 1 160px; }
+  .curso-barra-acoes .campo-inline select { width: 100%; }
+  .curso-barra-acoes .btn { flex: 1 1 auto; }
+}
+
+@media (max-width: 560px) {
+  .grade-hero { padding: 32px 24px 26px; }
+  /* sem teto no celular: a coluna já é estreita, e um max-width em ch
+     por cima dela empurrava "de a" sozinho para o fim de uma linha */
+  .grade-hero h1 { font-size: 28px; max-width: none; }
+  .grade-hero .lede { font-size: 15px; line-height: 1.55; }
+
+  .filtros { grid-template-columns: 1fr; }
+  .resumo { gap: 8px 18px; }
+  .resumo dd { font-size: 20px; }
+
+  .selecao { padding: 8px 20px 56px; }
+  .selecao-head { gap: 10px; margin-bottom: 18px; }
+  .selecao-desc { font-size: 14px; }
+  .curso-grid { grid-template-columns: 1fr; }
+
+  /* no celular a barra de ação vira rodapé de verdade: empilhada e
+     colada na base, com o CTA ocupando a largura inteira */
+  .selecao-acao {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 10px;
+    padding: 12px 16px;
+    margin-left: -20px;
+    margin-right: -20px;
+    border-radius: var(--r-lg) var(--r-lg) 0 0;
+    border-bottom: 0;
+  }
+
+  /* de pé, o flex-basis passa a valer como ALTURA: os 280px que na
+     horizontal davam a largura mínima do texto viravam um rodapé de
+     280px de altura, metade da tela do celular. */
+  .selecao-escolhido {
+    flex: 0 0 auto;
+    text-align: center;
+    font-size: 13px;
+    line-height: 1.45;
+  }
+  .selecao-botoes { flex-direction: column; align-items: stretch; margin-left: 0; gap: 8px; }
+  .selecao-botoes .btn { height: 44px; padding-inline: 14px; }
+  .selecao-periodo select { width: 100%; }
+  .selecao-nota { font-size: 13px; }
+
+  /* a barra do curso empilha: selo + nome em cima, ações embaixo */
+  .curso-barra { gap: 12px; padding: 12px 14px; }
+  .curso-barra-nome { font-size: 17px; }
+  .curso-barra-acoes .btn { flex: 1 1 auto; height: 40px; padding: 0 12px; }
+
+  /* o nome do arquivo da coordenação tem 42 caracteres e vem em mono:
+     no celular ele sozinho ocupava quatro linhas acima da grade. Some
+     o que só serve de procedência; a origem continua no PDF. */
+  .nota-extra { display: none; }
+
+  /* a tabela da semana tem 720px de largura mínima — em pé ela rola
+     para o lado e mostra dois dias e meio de cada vez, com o resto do
+     comprimento em linhas de horário vazias. A lista diz o mesmo em
+     uma coluna só. */
+  #gradeSemanal { overflow-x: visible; }
+  #gradeSemanal table.grade { display: none; }
+  .grade-dias { display: block; list-style: none; padding: 12px 14px 4px; }
+  .grade-dias-vazia { display: block; padding: 14px; }
+
+  /* a lista de escolhidas tem sete colunas e 520px de largura mínima:
+     em pé, ou rola para o lado, ou espreme "Machine Learning" em duas
+     linhas com o código vazando por cima da coluna vizinha. Cada linha
+     vira um cartão empilhado, que é a forma que uma tabela larga assume
+     no celular. Fica o que o aluno confere aqui — nome, horário e o
+     botão de tirar; turma, docente e carga estão no PDF e no catálogo. */
+  .escolhidas { overflow-x: visible; }
+  .escolhidas table { min-width: 0; font-size: 13px; }
+  .escolhidas thead,
+  .escolhidas td:nth-child(1),
+  .escolhidas td:nth-child(3),
+  .escolhidas td:nth-child(5),
+  .escolhidas td:nth-child(6) { display: none; }
+
+  .escolhidas table, .escolhidas tbody, .escolhidas tr, .escolhidas td { display: block; }
+  .escolhidas tr {
+    position: relative;
+    padding: 10px 40px 10px 0;
+    border-bottom: 1px solid var(--rule-soft);
+  }
+  .escolhidas td { padding: 0; border: 0; overflow-wrap: anywhere; }
+  .escolhidas td + td { margin-top: 3px; }
+  .escolhidas .c-acao {
+    position: absolute;
+    top: 8px; right: 0;
+    width: auto;
+    margin-top: 0;
+  }
+
+  /* quatro medidas em duas colunas: em linha única elas quebravam o
+     rótulo de "carga semanal" no meio */
+  .resumo { display: grid; grid-template-columns: 1fr 1fr; gap: 12px 14px; padding: 14px; }
+  .resumo dd { font-size: 22px; }
+
+  /* no celular o simulador já se identifica pela barra do curso; a
+     manchete só empurraria a grade para baixo. Sai da tela, fica no
+     leitor de tela — a página não pode ficar sem h1. */
+  body.is-montando .grade-hero {
+    position: absolute;
+    width: 1px; height: 1px;
+    padding: 0; margin: -1px;
+    overflow: hidden;
+    clip-path: inset(50%);
+  }
+
+  /* lado a lado, o título quebrava em duas linhas para caber junto da
+     dica; empilhados, cada um fica na sua linha inteira */
+  .bloco-head {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 2px;
+    padding: 14px 14px 10px;
+  }
+  .bloco-head .contador { font-size: 11px; }
+  .busca, .avisos { padding-inline: 14px; }
+  .resumo, .acoes, .sem-horario { padding-inline: 14px; }
+  .lista { padding: 8px; }
+}
+
+/* ---- Mobile S (320px): o menor aparelho que ainda importa ---- */
+@media (max-width: 400px) {
+  .grade-hero { padding-inline: 16px; }
+  .grade-hero h1 { font-size: 25px; }
+  .selecao { padding: 8px 16px 52px; }
+  .selecao-acao { margin-left: -16px; margin-right: -16px; }
+
+  /* o selo de 44px e o respiro do visto custam caro num cartão de
+     280px: o nome do curso fica com menos da metade da largura */
+  .curso { gap: 10px; padding: 12px 36px 12px 12px; }
+  .curso-sigla { width: 36px; height: 36px; font-size: 10px; }
+  .curso-nome { font-size: 14px; }
+  .curso-check { right: 10px; }
+
+  .curso-barra { padding: 12px; }
+  .curso-barra-sigla { width: 34px; height: 34px; }
+  .curso-barra-acoes .campo-inline { flex: 1 1 100%; }
+  .curso-barra-acoes .btn { font-size: 12.5px; }
+
+  /* dois botões lado a lado não cabem: cada um ocupa a linha toda,
+     o que também dá um alvo de toque decente */
+  .acoes .btn { flex: 1 1 100%; }
+}
+
+/* ============================================================
+   IMPRESSÃO / PDF
+   O PDF é a própria página impressa: nada de biblioteca, o texto
+   sai selecionável e o navegador cuida da paginação. A área
+   #impressao é montada pelo JS a partir do mesmo estado da tela.
+   ============================================================ */
+#impressao { display: none; }
+
+@media print {
+  @page { size: A4 landscape; margin: 11mm; }
+
+  html, body {
+    background: #fff !important;
+    color: #000;
+    font-size: 10pt;
+  }
+  body > *:not(#impressao) { display: none !important; }
+
+  #impressao {
+    display: block;
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
+  }
+
+  .imp-head {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    gap: 20px;
+    border-bottom: 1.5pt solid #1D4E89;
+    padding-bottom: 6pt;
+    margin-bottom: 10pt;
+  }
+  .imp-head h1 { font-family: var(--cond); font-size: 17pt; color: #1D4E89; line-height: 1.1; }
+  .imp-head p { font-size: 8.5pt; color: #444; }
+  .imp-head .imp-meta { text-align: right; font-family: var(--mono); font-size: 8pt; }
+
+  .imp-resumo {
+    display: flex;
+    gap: 18pt;
+    margin-bottom: 8pt;
+    font-family: var(--mono);
+    font-size: 8.5pt;
+  }
+  .imp-resumo b { font-size: 11pt; }
+
+  table.imp-grade, table.imp-lista { width: 100%; border-collapse: collapse; }
+  table.imp-grade { table-layout: fixed; margin-bottom: 12pt; }
+  table.imp-grade th, table.imp-grade td { border: .5pt solid #9AB0C8; vertical-align: top; padding: 3pt; }
+  table.imp-grade thead th { background: #E8EFF7; font-size: 8pt; text-transform: uppercase; letter-spacing: .04em; }
+  table.imp-grade tbody th { width: 46pt; font-family: var(--mono); font-size: 7.5pt; font-weight: 500; text-align: right; }
+  table.imp-grade td { height: 40pt; }
+
+  .imp-chip {
+    border: .5pt solid #9AB0C8;
+    border-left: 2pt solid #1D4E89;
+    border-radius: 2pt;
+    padding: 2pt 3pt;
+    margin-bottom: 2pt;
+    font-size: 7.5pt;
+    line-height: 1.25;
+    break-inside: avoid;
+  }
+  .imp-chip b { display: block; }
+  .imp-chip span { font-family: var(--mono); font-size: 6.5pt; color: #445; }
+  .imp-chip.is-choque { border-left-color: #BE3A2B; background: #FBECEA; }
+
+  .imp-lista { break-inside: auto; }
+  .imp-lista caption {
+    text-align: left;
+    font-family: var(--cond);
+    font-size: 12pt;
+    font-weight: 700;
+    padding: 6pt 0 4pt;
+  }
+  .imp-lista th, .imp-lista td { border-bottom: .5pt solid #C6D4E4; padding: 3.5pt 4pt; text-align: left; font-size: 8pt; }
+  .imp-lista thead th { background: #E8EFF7; font-size: 7pt; text-transform: uppercase; letter-spacing: .04em; }
+  .imp-lista tfoot td { font-weight: 700; border-top: 1pt solid #1D4E89; border-bottom: none; }
+  .imp-lista tr { break-inside: avoid; }
+
+  .imp-rodape { margin-top: 10pt; font-size: 7.5pt; color: #666; border-top: .5pt solid #C6D4E4; padding-top: 5pt; }
+}

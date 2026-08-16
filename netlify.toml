@@ -2,3 +2,28 @@
 [build]
   publish = "."
   command = ""
+
+# Cabeçalhos de segurança.
+#
+# O simulador de grade lê arquivos que o próprio aluno escolhe (.xlsx, .csv,
+# .json). Tudo é escapado antes de virar HTML, mas a CSP é a segunda tranca:
+# mesmo que um dia escape alguma coisa, o navegador se recusa a executar
+# script injetado e a mandar dado para fora do site.
+#
+# script-src usa o hash do único <script> inline (o que resolve o tema antes
+# da primeira pintura, idêntico em index.html e grade.html) em vez de
+# 'unsafe-inline'. Se aquele trecho mudar, o hash muda junto — recalcule com:
+#
+#   node -e "const fs=require('fs'),c=require('crypto');const h=fs.readFileSync('grade.html','utf8');const m=h.match(/<script>([\s\S]*?)<\/script>/);console.log('sha256-'+c.createHash('sha256').update(m[1]).digest('base64'))"
+#
+# style-src ainda precisa de 'unsafe-inline': a cor de cada disciplina vai
+# em style="--h:212" no próprio elemento, e atributo de estilo não tem hash.
+[[headers]]
+  for = "/*"
+  [headers.values]
+    Content-Security-Policy = "default-src 'self'; script-src 'self' 'sha256-KVV4q90ME9mFJTdRqWXLK92gkF8nsepa9aGvSxPT/RI='; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data:; connect-src 'self'; object-src 'none'; base-uri 'self'; form-action 'none'; frame-ancestors 'none'; upgrade-insecure-requests"
+    X-Content-Type-Options = "nosniff"
+    X-Frame-Options = "DENY"
+    Referrer-Policy = "strict-origin-when-cross-origin"
+    Permissions-Policy = "accelerometer=(), camera=(), geolocation=(), gyroscope=(), microphone=(), payment=(), usb=()"
+    Cross-Origin-Opener-Policy = "same-origin"

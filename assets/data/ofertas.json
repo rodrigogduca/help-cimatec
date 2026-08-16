@@ -1,0 +1,12 @@
+[
+  {
+    "id": "engenharia-de-computacao-2026.2",
+    "curso": "engenharia-de-computacao",
+    "cursoNome": "Engenharia de Computação",
+    "periodo": "2026.2",
+    "arquivo": "assets/data/engenharia-de-computacao-2026-2.json",
+    "turmas": 102,
+    "origem": "GRD_HORARIOS_20262_FINAL.xls",
+    "gerado": "2026-08-16"
+  }
+]

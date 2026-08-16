@@ -43,6 +43,18 @@
   --pass: #0F7A55;
   --fail: #BE3A2B;
 
+  /* o roxo da Grade — o terceiro caminho do topo.
+     Verde estava fora de questão: a régua logo acima já usa verde
+     para "aprovado", e um botão verde ao lado dela leria como nota.
+     O roxo é a única família que não colide com azul, laranja nem
+     com os veredictos, e é o que faz o botão saltar entre os dois. */
+  --roxo:      #6D28D9;
+  --roxo-hi:   #5B21B6;
+  --on-roxo:   #FFFFFF;
+  --tint-roxo: rgba(109, 40, 217, .13);
+  --shadow-roxo:    0 6px 18px rgba(109, 40, 217, .28);
+  --shadow-roxo-hi: 0 10px 26px rgba(109, 40, 217, .38);
+
   /* lavagens derivadas da marca */
   --tint-blue:        rgba(29, 78, 137, .10);
   --tint-blue-soft:   rgba(29, 78, 137, .07);
@@ -133,6 +145,15 @@
 
   --pass: #3FBE8C;
   --fail: #F0705F;
+
+  /* no escuro o roxo precisa subir de luminosidade junto com o resto
+     da paleta, senão vira um buraco preto ao lado do laranja */
+  --roxo:      #8B5CF6;
+  --roxo-hi:   #A78BFA;
+  --on-roxo:   #0B1522;
+  --tint-roxo: rgba(139, 92, 246, .18);
+  --shadow-roxo:    0 6px 18px rgba(139, 92, 246, .30);
+  --shadow-roxo-hi: 0 10px 26px rgba(139, 92, 246, .42);
 
   --tint-blue:        rgba(107, 166, 232, .13);
   --tint-blue-soft:   rgba(107, 166, 232, .08);
@@ -691,6 +712,24 @@ nav.scrolled {
   color: var(--on-blue);
 }
 
+/* o terceiro caminho do topo, preenchido em roxo para saltar entre o
+   laranja e o azul. A sombra colorida é o que o faz "acender": os
+   outros dois não têm, então o olho cai neste primeiro. */
+.btn-grade {
+  background: var(--roxo);
+  border-color: var(--roxo);
+  color: var(--on-roxo);
+  box-shadow: var(--shadow-roxo);
+}
+.btn-grade:hover {
+  background: var(--roxo-hi);
+  border-color: var(--roxo-hi);
+  color: var(--on-roxo);
+  box-shadow: var(--shadow-roxo-hi);
+  transform: translateY(-1px);
+}
+.btn-grade:active { transform: translateY(1px); }
+
 .btn-block { min-width: 250px; margin-top: 26px; }
 
 .btn-regulamento {
@@ -1224,12 +1263,16 @@ main { padding-bottom: 40px; }
 
 .recurso-cards {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
+  /* auto-fit em vez de contagem fixa: um recurso novo entra na fileira
+     sem deixar buraco no fim da grade */
+  grid-template-columns: repeat(auto-fit, minmax(232px, 1fr));
   gap: 16px;
 }
 
 .recurso-card {
   display: flex;
+  text-decoration: none;
+  color: inherit;
   flex-direction: column;
   align-items: flex-start;
   gap: 8px;
