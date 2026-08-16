@@ -12,7 +12,7 @@
 
 import {
   lerArquivo, montarOferta, sanearOferta, unirOfertas,
-  DIAS, AJUDA_PDF, semAcento, paraHora,
+  DIAS, AJUDA_PDF, semAcento, paraHora, compararTurmas, ingressoDoRotulo,
 } from './oferta.js';
 import { indexar, avaliar, montarMapa, resumo, paresEmChoque } from './regras.js';
 import { criarEstado, ondeSalva } from './estado.js';
@@ -113,9 +113,14 @@ function alvoBusca(turma) {
   return turma._busca;
 }
 
+/* O que o filtro de turma agrupa: o ingresso, quando o rótulo traz um.
+   Rótulo sem ano legível não tem por que virar ingresso inventado —
+   vira opção de si mesmo, e continua filtrável. */
+const chaveDeTurma = (turma) => ingressoDoRotulo(turma.turma) || turma.turma;
+
 function passaNosFiltros(turma, parecer) {
   if (filtros.curso && cursoDaTurma(turma) !== filtros.curso) return false;
-  if (filtros.turma && turma.turma !== filtros.turma) return false;
+  if (filtros.turma && chaveDeTurma(turma) !== filtros.turma) return false;
   if (filtros.dia && !turma.encontros.some((e) => e.dia === filtros.dia)) return false;
   if (filtros.turno) {
     const teste = TURNOS[filtros.turno];
@@ -292,7 +297,16 @@ function preencherFiltros() {
   if (cursoAtual && porCurso.has(cursoAtual.id) && cursos.length > 1) filtros.curso = cursoAtual.id;
   refs.filtroCurso.value = filtros.curso;
 
-  const turmas = [...new Set(oferta.turmas.map((t) => t.turma))].sort();
+  /* Uma opção por ingresso, do mais novo para o mais velho — e não uma
+     por ingresso × modalidade. Em 2026.2 eram 23 opções para 13
+     ingressos, com "2025.2 — Integral" e "2025.2 — Gerencial" em linhas
+     separadas; a modalidade é divisão interna do mesmo ingresso, e quem
+     abre esse seletor está procurando o ano em que entrou.
+
+     A ordem é a mesma do catálogo: o .sort() sem comparador ordenava por
+     alfabeto, então 2018 abria a lista e a turma de quem está montando a
+     grade ficava no fim. */
+  const turmas = [...new Set(oferta.turmas.map(chaveDeTurma))].sort(compararTurmas);
   refs.filtroTurma.innerHTML = opcao('', 'Todas as turmas') + turmas.map((t) => opcao(t, t)).join('');
 
   refs.filtroDia.innerHTML = opcao('', 'Qualquer dia') +

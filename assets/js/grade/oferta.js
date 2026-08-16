@@ -405,27 +405,50 @@ export function normalizarLinhas(linhasBrutas, opcoes = {}) {
 }
 
 /**
- * Da turma mais nova para a mais velha.
+ * Da turma mais nova para a mais velha, comparando dois rótulos —
+ * "2026.2 — Integral" vem antes de "2024.1 — Noturno".
  *
  * Quem abre o simulador está montando o próximo semestre, e a turma do
  * próprio ingresso é quase sempre uma das últimas: em ordem crescente,
  * o aluno de 2026.1 rolava oito anos de oferta antes de chegar nela.
- * Turma sem ano legível vai para o fim — não dá para dizer onde entra,
- * e chutar o começo seria pior do que assumir que é exceção.
+ * Rótulo sem ano legível vai para o fim — não dá para dizer onde entra,
+ * e chutar o começo seria pior do que assumir que é exceção. Empate no
+ * ano cai no alfabeto, que é o que separa Gerencial de Integral.
  *
+ * O ano sai do próprio rótulo, e não do campo `ingresso`: o filtro do
+ * catálogo ordena uma lista de rótulos, sem turma por trás, e um JSON
+ * anexado pode chegar com `ingresso` vazio ou mentindo. Assim a mesma
+ * regra vale para os dois, que é o que faz a primeira turma da lista
+ * ser também a primeira do seletor.
+ */
+export function compararTurmas(a, b) {
+  const anoA = ingressoDoRotulo(a);
+  const anoB = ingressoDoRotulo(b);
+  if (Boolean(anoA) !== Boolean(anoB)) return anoA ? -1 : 1;
+  if (anoA !== anoB) return anoB.localeCompare(anoA);
+  return String(a).localeCompare(String(b), 'pt-BR');
+}
+
+/**
+ * "2026.2 — Integral" -> "2026.2". Vazio quando o rótulo não traz ano.
+ *
+ * O ingresso é o que o aluno reconhece como "a minha turma": a
+ * modalidade que vem depois dele — Integral, Gerencial, Noturno — é uma
+ * divisão interna do mesmo ingresso, e separá-la no filtro dobrava a
+ * lista sem responder à pergunta que o aluno faz ali.
+ */
+export function ingressoDoRotulo(rotulo) {
+  return (String(rotulo == null ? '' : rotulo).match(/\d{4}\.\d/) || [''])[0];
+}
+
+/**
  * Ordena no lugar e devolve o mesmo array. Vive aqui, e não em quem
  * lê o arquivo, porque montarOferta() é o funil por onde passam todas
  * as origens — planilha, CSV, JSON importado e JSON publicado.
  */
 export function ordenarTurmas(turmas) {
-  return turmas.sort((a, b) => {
-    const temA = Boolean(a.ingresso);
-    const temB = Boolean(b.ingresso);
-    if (temA !== temB) return temA ? -1 : 1;
-    if (temA && a.ingresso !== b.ingresso) return b.ingresso.localeCompare(a.ingresso);
-    return a.turma.localeCompare(b.turma, 'pt-BR') ||
-      a.disciplina.localeCompare(b.disciplina, 'pt-BR');
-  });
+  return turmas.sort((a, b) => compararTurmas(a.turma, b.turma) ||
+    a.disciplina.localeCompare(b.disciplina, 'pt-BR'));
 }
 
 /**

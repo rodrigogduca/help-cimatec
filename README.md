@@ -303,6 +303,17 @@ próximo semestre, e a turma do próprio ingresso é quase sempre uma das últim
 o aluno de 2026.1 rolava oito anos de oferta antes de chegar nela. A ordenação mora em
 `montarOferta()`, que é o funil por onde passam todas as origens.
 
+O **filtro de turma** segue a mesma ordem, pelo mesmo comparador (`compararTurmas()`): seletor e
+lista discordando faria a primeira turma da lista não ser a primeira do seletor. O ano sai do
+próprio rótulo, e não do campo `ingresso`, porque o filtro ordena rótulos soltos — e porque um
+JSON anexado pode chegar com `ingresso` vazio ou mentindo.
+
+E ele tem **uma opção por ingresso, não por ingresso × modalidade**. Em 2026.2 isso é 15 opções em
+vez de 23: `2025.2 — Integral` e `2025.2 — Gerencial` eram duas linhas do seletor para a mesma
+pergunta, já que a modalidade é divisão interna do ingresso. Filtrar por `2025.2` traz as duas, e
+cada cartão do catálogo continua mostrando o rótulo inteiro — é lá que a distinção importa, na hora
+de escolher a turma.
+
 O separador do `.csv` é descoberto lendo as primeiras linhas inteiras, e não só a primeira: a
 planilha da coordenação abre com um título mesclado, sem separador nenhum, e um arquivo de ponto e
 vírgula era lido como uma coluna só. A tabulação entra na mesma disputa, porque `.tsv` é aceito.
