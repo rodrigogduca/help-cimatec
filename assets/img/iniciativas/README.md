@@ -20,10 +20,11 @@ arquivo — não se mexe no HTML, no CSS nem no JS.
 | TEC H2 Racing             | `tec-h2-racing.png`             | `tech2racing`              | H2    |
 | LaBIM                     | `labim-cimatec.png`             | `labim.cimatec`            | BIM   |
 | AIChE Cimatec             | `aiche-cimatec.png`             | `aichecimatec`             | AIC   |
+| DAEP Cimatec              | `daep-cimatec.png`              | `daepcimatec`              | DAEP  |
 | Garotas 4.0 STEM          | `garotas-4-0-stem.png`          | `garotas4.0stem`           | G4.0  |
 | Prometheus Aerodesign     | `prometheus-aerodesign.png`     | `prometheusaerodesign`     | PRO   |
 
-As 16 estão no lugar. A sigla é o plano B: enquanto o arquivo não existir, o slot mostra ela.
+As 17 estão no lugar. A sigla é o plano B: enquanto o arquivo não existir, o slot mostra ela.
 
 ## Como o slot se comporta
 
@@ -66,8 +67,8 @@ Foto de perfil pública do Instagram de cada iniciativa, entre 352 px e 1080 px 
 perfil, reduzida para 256×256 PNG. Os JPEG originais, em resolução cheia, ficam em
 `assets/brand/iniciativas/` com os mesmos nomes — é de lá que se regera esta pasta.
 
-Última coleta: 17/08/2026 (TEC H2 Racing, Prometheus Aerodesign, LaBIM, AIChE Cimatec
-e Garotas 4.0 STEM).
+Última coleta: 17/08/2026 (TEC H2 Racing, Prometheus Aerodesign, LaBIM, AIChE Cimatec,
+Garotas 4.0 STEM e DAEP Cimatec).
 
 ## Direitos
 
