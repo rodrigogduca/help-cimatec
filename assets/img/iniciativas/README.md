@@ -17,8 +17,13 @@ arquivo — não se mexe no HTML, no CSS nem no JS.
 | Cimatec JR                | `cimatec-jr.png`                | `cimatecjr`                | CJR   |
 | AIAS                      | `aias.png`                      | `aiascimatec`              | AIAS  |
 | DAEQ Cimatec              | `daeq-cimatec.png`              | `daeqcimatec`              | DAEQ  |
+| TEC H2 Racing             | `tec-h2-racing.png`             | `tech2racing`              | H2    |
+| LaBIM                     | `labim-cimatec.png`             | `labim.cimatec`            | BIM   |
+| AIChE Cimatec             | `aiche-cimatec.png`             | `aichecimatec`             | AIC   |
+| Garotas 4.0 STEM          | `garotas-4-0-stem.png`          | `garotas4.0stem`           | G4.0  |
+| Prometheus Aerodesign     | `prometheus-aerodesign.png`     | `prometheusaerodesign`     | PRO   |
 
-As 11 estão no lugar. A sigla é o plano B: enquanto o arquivo não existir, o slot mostra ela.
+As 16 estão no lugar. A sigla é o plano B: enquanto o arquivo não existir, o slot mostra ela.
 
 ## Como o slot se comporta
 
@@ -57,11 +62,12 @@ Transparência continua bem-vinda numa logo nova, mas agora é preferência, nã
 
 ## De onde vieram
 
-Foto de perfil pública do Instagram de cada iniciativa, entre 397 px e 1080 px conforme o
+Foto de perfil pública do Instagram de cada iniciativa, entre 352 px e 1080 px conforme o
 perfil, reduzida para 256×256 PNG. Os JPEG originais, em resolução cheia, ficam em
 `assets/brand/iniciativas/` com os mesmos nomes — é de lá que se regera esta pasta.
 
-Última coleta: 10/08/2026.
+Última coleta: 17/08/2026 (TEC H2 Racing, Prometheus Aerodesign, LaBIM, AIChE Cimatec
+e Garotas 4.0 STEM).
 
 ## Direitos
 

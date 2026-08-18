@@ -1261,6 +1261,103 @@ main { padding-bottom: 40px; }
 .recursos h2 { font-size: clamp(28px, 3.6vw, 40px); margin-bottom: 14px; }
 .recursos-desc { max-width: 62ch; color: var(--ink-2); font-size: 15.5px; margin-bottom: 32px; }
 
+/* ---- canal oficial da graduação ----
+   Ele não entra na grade de cards de propósito. Como card seria mais um
+   entre cinco; como faixa, é o cabeçalho da seção — a fonte oficial vindo
+   antes de tudo que é apoio. A barra azul à esquerda faz esse papel sem
+   precisar de mais uma borda laranja competindo com os destaques abaixo. */
+.canal-oficial {
+  display: grid;
+  grid-template-columns: 44px 1fr auto;
+  align-items: center;
+  column-gap: 18px;
+  margin-bottom: 20px;
+  padding: 20px 24px;
+  background: linear-gradient(90deg, var(--tint-blue-soft), transparent 70%), var(--paper-hi);
+  border: 1px solid var(--rule);
+  border-left: 3px solid var(--blue);
+  border-radius: var(--r-lg);
+  text-decoration: none;
+  color: inherit;
+  transition: border-color .2s var(--ease), box-shadow .2s var(--ease), transform .18s var(--ease);
+}
+.canal-oficial:hover {
+  border-color: var(--rule-strong);
+  border-left-color: var(--blue-hi);
+  box-shadow: var(--shadow-md);
+  transform: translateY(-2px);
+}
+.canal-oficial:active { transform: translateY(0); }
+
+.canal-oficial-marca {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 44px;
+  height: 44px;
+  border-radius: var(--r-lg);
+  background: var(--tint-blue);
+  color: var(--blue);
+}
+.canal-oficial-marca svg {
+  width: 22px; height: 22px;
+  fill: none; stroke: currentColor; stroke-width: 1.8;
+  stroke-linecap: round; stroke-linejoin: round;
+}
+
+.canal-oficial-texto { display: block; }
+.canal-oficial-selo {
+  display: inline-block;
+  margin-bottom: 6px;
+  padding: 3px 10px;
+  border-radius: 100px;
+  background: var(--blue);
+  color: var(--on-blue);
+  font-family: var(--mono);
+  font-size: 10.5px;
+  font-weight: 700;
+  letter-spacing: .06em;
+  text-transform: uppercase;
+}
+.canal-oficial-titulo {
+  display: block;
+  font-family: var(--cond);
+  font-size: 21px;
+  font-weight: 700;
+  color: var(--ink);
+}
+.canal-oficial-desc {
+  display: block;
+  max-width: 64ch;
+  margin-top: 4px;
+  color: var(--ink-2);
+  font-size: 14.5px;
+}
+
+.canal-oficial-cta {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 10px 18px;
+  background: var(--blue);
+  border-radius: var(--r);
+  color: var(--on-blue);
+  font-family: var(--mono);
+  font-size: 12.5px;
+  font-weight: 600;
+  letter-spacing: .04em;
+  white-space: nowrap;
+  transition: background .2s var(--ease);
+}
+.canal-oficial:hover .canal-oficial-cta { background: var(--blue-hi); }
+.canal-oficial-cta svg {
+  width: 14px; height: 14px;
+  fill: none; stroke: currentColor; stroke-width: 2;
+  stroke-linecap: round; stroke-linejoin: round;
+  transition: transform .18s var(--ease);
+}
+.canal-oficial:hover .canal-oficial-cta svg { transform: translateX(3px); }
+
 .recurso-cards {
   display: grid;
   /* auto-fit em vez de contagem fixa: um recurso novo entra na fileira
@@ -1401,6 +1498,15 @@ main { padding-bottom: 40px; }
 }
 
 .modal-intro { color: var(--ink-2); font-size: 15px; margin-bottom: 16px; }
+
+/* ressalva de fim de modal: vale menos que o conteúdo acima e é desenhada assim */
+.modal-body .modal-nota {
+  margin: 18px 0 0;
+  padding-top: 14px;
+  border-top: 1px solid var(--rule-soft);
+  color: var(--ink-3);
+  font-size: 13px;
+}
 
 /* ============================================================
    GUIA DO ESTUDANTE — índice recolhível
@@ -1829,6 +1935,15 @@ main .reveal.visible, .regras.reveal.visible {
   /* dois cards por linha, com o destaque ocupando a linha inteira */
   .recurso-cards { grid-template-columns: repeat(2, 1fr); }
   .recurso-card-featured { grid-column: 1 / -1; }
+
+  /* sem largura para as três colunas, o botão desce para a linha de baixo
+     e se alinha ao texto, não ao ícone */
+  .canal-oficial {
+    grid-template-columns: 44px 1fr;
+    align-items: start;
+    row-gap: 16px;
+  }
+  .canal-oficial-cta { grid-column: 2; justify-self: start; }
 }
 
 @media (max-width: 860px) {
@@ -1934,6 +2049,13 @@ main .reveal.visible, .regras.reveal.visible {
     color: var(--ink-3);
   }
   .af { padding: 22px 20px; }
+  /* no celular o ícone custa mais largura do que entrega: o texto ocupa a faixa inteira */
+  .canal-oficial {
+    grid-template-columns: 1fr;
+    padding: 20px;
+  }
+  .canal-oficial-marca { display: none; }
+  .canal-oficial-cta { grid-column: 1; justify-content: center; }
   .readout-split { grid-template-columns: repeat(auto-fit, minmax(130px, 1fr)); }
   /* rótulos como "limite de faltas" só cabem em uma linha se a célula
      abrir mão de um pouco de respiro — e uma linha mantém os números

@@ -24,9 +24,17 @@ Ferramentas acadêmicas para estudantes da **Universidade SENAI CIMATEC**.
   No passo de escolha do curso, um botão **Como usar o simulador** abre o passo a passo em modal:
   vem antes da escolha porque é ali que a dúvida aparece: depois de montar a grade, a página já
   se explicou sozinha.
-- **Guia do Estudante** — matrícula, Elementos, EDAG, Trilhas, Canvas, notas, monitoria,
-  iniciação científica, NAAE, contatos e benefícios do e-mail institucional, em abas
-  recolhíveis ordenadas pela jornada do aluno: fechado, o guia é o seu próprio índice.
+- **Guia do Estudante** — matrícula, Elementos, EDAG, Trilhas, dress code, horários das aulas,
+  Canvas, notas, segunda chamada, exercício domiciliar, biblioteca, monitoria, estágio,
+  atividades complementares, iniciação científica, intercâmbio, bolsas, NAAE e contatos, em abas
+  recolhíveis ordenadas pela jornada do aluno: fechado, o guia é o seu próprio índice. O conteúdo
+  segue o **Manual do Aluno**, o **Regimento Acadêmico**, o **Manual do EDAG** e o **Regulamento
+  de Monitoria** — os PDFs de origem ficam em `documentosoficiais/`.
+- **Benefícios de estudante** — o que o e-mail institucional destrava, de Office e Autodesk a
+  meia-entrada e meia passagem. Ficou **fora do guia**, como recurso próprio: dentro dele era uma
+  aba fechada entre outras vinte e oito, e benefício que ninguém sabe que existe não é procurado.
+- **Canal da Graduação** — faixa de destaque no topo dos Recursos (`.canal-oficial`), fora da
+  grade de cards: é a única fonte da seção que fala pela universidade, e tudo mais ali é apoio.
 - **Iniciativas Estudantis** — clubes, atléticas, ligas, equipes de competição e empresa
   júnior, cada uma com a área de curso, a logo e o link do Instagram.
 - **Wifi Cimatec** — as redes do campus e a senha de cada uma.
@@ -114,7 +122,17 @@ assets/img/iniciativas/        logo de cada iniciativa estudantil (ver README de
 
 assets/brand/                  artes originais em alta resolução
 assets/brand/iniciativas/      as logos das iniciativas em resolução cheia
+
+documentosoficiais/            os PDFs da universidade que embasam o Guia do Estudante
 ```
+
+`documentosoficiais/` é material de consulta e fica **fora do git** — `publish = "."` põe no ar
+todo arquivo versionado, e estes são documentos da universidade, não conteúdo nosso para
+redistribuir. O que vai para o ar é o texto do guia, escrito a partir deles. A pasta
+existe para que cada afirmação do guia possa ser conferida na fonte — Manual do Aluno, Regimento
+Acadêmico, Manual do EDAG, Regulamento de Monitoria, Regulamento Disciplinar e o Manual de
+Trabalhos Acadêmicos. Quando a universidade publicar uma revisão, é aqui que ela entra primeiro,
+e o guia se ajusta ao que mudou.
 
 Os ícones e o og-image não estão mais na raiz, então cada um depende da sua `<link>` ou
 `<meta>` no `index.html` para ser encontrado — mexer nesses caminhos derruba o favicon e o

@@ -25,3 +25,11 @@ package-lock.json
 
 # Netlify CLI (npx netlify dev)
 .netlify/
+
+# Os PDFs oficiais da universidade que embasam o Guia do Estudante.
+#
+# Mesmo motivo das planilhas: publish = "." põe no ar tudo que está
+# versionado, e estes são documentos da universidade, não conteúdo
+# nosso para redistribuir. O que é público é o texto do guia, escrito
+# a partir deles. Ver README.md.
+documentosoficiais/

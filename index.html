@@ -331,10 +331,20 @@
                 Abaixo de 3,0 não há Final: a reprovação é direta.
               </dd>
             </div>
+            <div>
+              <dt>As disciplinas sem EDAG</dt>
+              <dd>
+                Nem toda disciplina usa esses pesos. Em Estágio, PFC/TFG, Atividades
+                Complementares, nos Desafios (Técnico-gestor, Pesquisador e Empreendedor) e nas
+                disciplinas de trilha, o EDAG <strong>não entra</strong>: a média é aritmética
+                simples entre AV1, AV2 e AV3. Nesses casos, deixe o EDAG de fora da conta.
+              </dd>
+            </div>
           </dl>
           <p class="modal-intro">
-            As contas seguem o regulamento acadêmico da Universidade SENAI CIMATEC. Confira sempre
-            a nota oficial no portal antes de tomar qualquer decisão pelo resultado daqui.
+            As contas seguem o Regimento Acadêmico da Universidade SENAI CIMATEC (Art. 39 e 41).
+            Confira sempre a nota oficial no portal antes de tomar qualquer decisão pelo resultado
+            daqui.
           </p>
         </div>
       </dialog>
@@ -442,29 +452,40 @@
         <p class="eyebrow">Mais sobre a Universidade SENAI CIMATEC</p>
         <h2>Recursos para o dia a dia</h2>
         <p class="recursos-desc">
-          O wifi do campus, os grupos estudantis ativos e tudo que todo calouro devia saber sobre
-          matrícula, notas, Canvas e benefícios de estudante.
+          O canal oficial da graduação, o wifi do campus, os grupos estudantis ativos, o que o seu
+          e-mail institucional destrava e tudo que todo calouro devia saber sobre matrícula,
+          notas e Canvas.
         </p>
 
+        <!-- O canal oficial vem antes dos cards de propósito: é a única fonte
+             desta seção que fala pela universidade, e tudo mais aqui é apoio. -->
+        <a class="canal-oficial" href="https://bit.ly/grdCIMATEC" target="_blank" rel="noopener noreferrer">
+          <span class="canal-oficial-marca" aria-hidden="true">
+            <svg viewBox="0 0 24 24"><path d="M3.5 20.5l1.3-4.6A8.2 8.2 0 1 1 8.1 19.2l-4.6 1.3Z"/><path d="M9 8.2c.3-.8 1.5-.8 1.8 0l.5 1.3a1 1 0 0 1-.3 1.1l-.4.4a5.5 5.5 0 0 0 2.4 2.4l.4-.4a1 1 0 0 1 1.1-.3l1.3.5c.8.3.8 1.5 0 1.8-1.6.7-3.5.2-5-1.3s-2-3.4-1.8-5.5Z"/></svg>
+          </span>
+          <span class="canal-oficial-texto">
+            <span class="canal-oficial-selo">Avisos oficiais</span>
+            <span class="canal-oficial-titulo">Canal da Graduação no WhatsApp</span>
+            <span class="canal-oficial-desc">
+              É por onde a Universidade SENAI CIMATEC publica os comunicados oficiais da
+              graduação. Prazo de matrícula, mudança de calendário e edital novo aparecem
+              ali antes de virarem conversa de corredor — entre e deixe as notificações ligadas.
+            </span>
+          </span>
+          <span class="canal-oficial-cta">
+            Entrar no canal
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+          </span>
+        </a>
+
         <div class="recurso-cards">
-          <a href="grade.html" class="recurso-card recurso-card-featured">
-            <span class="icon-badge is-orange" aria-hidden="true">
-              <svg viewBox="0 0 24 24"><rect x="3" y="4.5" width="18" height="16" rx="1.5"/><path d="M3 9.5h18M9 9.5v11M15 9.5v11M8 2.5v4M16 2.5v4"/></svg>
-            </span>
-            <span class="recurso-card-badge">Pré-matrícula</span>
-            <span class="recurso-card-title">Simulador de Grade</span>
-            <span class="recurso-card-desc">Monte a grade do semestre e veja os choques de horário antes de se matricular</span>
-            <span class="recurso-card-cta">Abrir simulador
-              <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
-            </span>
-          </a>
           <button type="button" class="recurso-card recurso-card-featured" data-modal="modalGuiaEstudante">
             <span class="icon-badge is-orange" aria-hidden="true">
               <svg viewBox="0 0 24 24"><path d="M12 6c-2-1.3-5-2-8-2v14c3 0 6 .7 8 2 2-1.3 5-2 8-2V4c-3 0-6 .7-8 2Z"/><path d="M12 6v14"/></svg>
             </span>
             <span class="recurso-card-badge">Comece por aqui</span>
             <span class="recurso-card-title">Guia do Estudante</span>
-            <span class="recurso-card-desc">Matrícula, notas, Canvas e benefícios de estudante</span>
+            <span class="recurso-card-desc">Matrícula, notas, Canvas, estágio e o resto do que ninguém explica</span>
             <span class="recurso-card-cta">Abrir guia
               <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
             </span>
@@ -476,6 +497,16 @@
             <span class="recurso-card-title">Wifi Cimatec</span>
             <span class="recurso-card-desc">As redes disponíveis no campus e como se conectar</span>
             <span class="recurso-card-cta">Ver redes
+              <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+            </span>
+          </button>
+          <button type="button" class="recurso-card" data-modal="modalBeneficios">
+            <span class="icon-badge" aria-hidden="true">
+              <svg viewBox="0 0 24 24"><rect x="2.5" y="5.5" width="19" height="13" rx="2"/><path d="M2.5 8.5L12 14l9.5-5.5"/></svg>
+            </span>
+            <span class="recurso-card-title">Benefícios de estudante</span>
+            <span class="recurso-card-desc">O que o e-mail institucional destrava de graça ou com desconto</span>
+            <span class="recurso-card-cta">Ver benefícios
               <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
             </span>
           </button>
@@ -580,6 +611,15 @@
             mais áreas de curso. A maioria aceita alunos de vários cursos, não só do curso "dono"
             da iniciativa.
           </p>
+          <p class="modal-intro">
+            Não é atividade paralela: o Cimatec <strong>fomenta, orienta e financia</strong> as
+            iniciativas, e publica todo ano o <strong>Edital de Fomento a Projetos de Iniciativas
+            Estudantis</strong>, com dinheiro para protótipo, competição e evento — os valores
+            saem em <a href="https://academicocimatec.fieb.org.br/" target="_blank" rel="noopener noreferrer">academicocimatec.fieb.org.br</a>.
+            Participar também conta como <strong>Atividade Complementar</strong> (Grupo 4), que é
+            requisito para colar grau. Outra iniciativa oficial que não está na lista abaixo é o
+            <strong>CREA-Jr</strong>.
+          </p>
           <dl class="iniciativas-list">
             <div>
               <span class="iniciativa-logo" data-sigla="CP">
@@ -665,6 +705,33 @@
               </a>
             </div>
             <div>
+              <span class="iniciativa-logo" data-sigla="H2">
+                <img src="assets/img/iniciativas/tec-h2-racing.png" alt="" loading="lazy" decoding="async">
+              </span>
+              <dt>TEC H2 Racing <span class="iniciativa-area">Engenharias</span></dt>
+              <dd>
+                Equipe de competição que desenvolve veículos movidos a hidrogênio e a
+                propulsão elétrica. Reúne estudantes de várias engenharias.
+              </dd>
+              <a class="ig-btn" href="https://www.instagram.com/tech2racing/" target="_blank" rel="noopener noreferrer">
+                <svg class="ig-icon" viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.3" cy="6.7" r="1.1" fill="currentColor" stroke="none"/></svg>
+                Instagram
+              </a>
+            </div>
+            <div>
+              <span class="iniciativa-logo" data-sigla="PRO">
+                <img src="assets/img/iniciativas/prometheus-aerodesign.png" alt="" loading="lazy" decoding="async">
+              </span>
+              <dt>Prometheus Aerodesign <span class="iniciativa-area">Engenharias</span></dt>
+              <dd>
+                Equipe de competição de aeronaves rádio-controladas, da categoria SAE Aerodesign.
+              </dd>
+              <a class="ig-btn" href="https://www.instagram.com/prometheusaerodesign" target="_blank" rel="noopener noreferrer">
+                <svg class="ig-icon" viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.3" cy="6.7" r="1.1" fill="currentColor" stroke="none"/></svg>
+                Instagram
+              </a>
+            </div>
+            <div>
               <span class="iniciativa-logo" data-sigla="IEEE">
                 <img src="assets/img/iniciativas/ieee-cimatec.png" alt="" loading="lazy" decoding="async">
               </span>
@@ -701,12 +768,54 @@
               </a>
             </div>
             <div>
+              <span class="iniciativa-logo" data-sigla="BIM">
+                <img src="assets/img/iniciativas/labim-cimatec.png" alt="" loading="lazy" decoding="async">
+              </span>
+              <dt>LaBIM <span class="iniciativa-area">Arquitetura e Eng. Civil</span></dt>
+              <dd>
+                Liga acadêmica de BIM (Building Information Modeling), a forma de projetar
+                e construir em modelo digital que o mercado de arquitetura e construção usa hoje.
+              </dd>
+              <a class="ig-btn" href="https://www.instagram.com/labim.cimatec" target="_blank" rel="noopener noreferrer">
+                <svg class="ig-icon" viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.3" cy="6.7" r="1.1" fill="currentColor" stroke="none"/></svg>
+                Instagram
+              </a>
+            </div>
+            <div>
               <span class="iniciativa-logo" data-sigla="DAEQ">
                 <img src="assets/img/iniciativas/daeq-cimatec.png" alt="" loading="lazy" decoding="async">
             </span>
               <dt>DAEQ Cimatec <span class="iniciativa-area">Eng. Química</span></dt>
               <dd>Diretório acadêmico do curso de Engenharia Química.</dd>
               <a class="ig-btn" href="https://www.instagram.com/daeqcimatec/" target="_blank" rel="noopener noreferrer">
+                <svg class="ig-icon" viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.3" cy="6.7" r="1.1" fill="currentColor" stroke="none"/></svg>
+                Instagram
+              </a>
+            </div>
+            <div>
+              <span class="iniciativa-logo" data-sigla="AIC">
+                <img src="assets/img/iniciativas/aiche-cimatec.png" alt="" loading="lazy" decoding="async">
+              </span>
+              <dt>AIChE Cimatec <span class="iniciativa-area">Eng. Química</span></dt>
+              <dd>
+                Capítulo estudantil do American Institute of Chemical Engineers, a entidade
+                internacional da Engenharia Química.
+              </dd>
+              <a class="ig-btn" href="https://www.instagram.com/aichecimatec/" target="_blank" rel="noopener noreferrer">
+                <svg class="ig-icon" viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.3" cy="6.7" r="1.1" fill="currentColor" stroke="none"/></svg>
+                Instagram
+              </a>
+            </div>
+            <div>
+              <span class="iniciativa-logo" data-sigla="G4.0">
+                <img src="assets/img/iniciativas/garotas-4-0-stem.png" alt="" loading="lazy" decoding="async">
+              </span>
+              <dt>Garotas 4.0 STEM <span class="iniciativa-area">Todos os cursos</span></dt>
+              <dd>
+                Programa da Universidade SENAI CIMATEC que aproxima meninas da educação básica
+                das áreas de STEM — ciência, tecnologia, engenharia e matemática.
+              </dd>
+              <a class="ig-btn" href="https://www.instagram.com/garotas4.0stem/" target="_blank" rel="noopener noreferrer">
                 <svg class="ig-icon" viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.3" cy="6.7" r="1.1" fill="currentColor" stroke="none"/></svg>
                 Instagram
               </a>
@@ -763,6 +872,13 @@
                 no
                 <a href="https://senaiweb6.fieb.org.br/framehtml/web/app/edu/PortalEducacional/login/" target="_blank" rel="noopener noreferrer">Portal do Aluno</a>.
               </p>
+              <p>
+                As datas de tudo isso — abertura da matrícula, início das aulas, avaliações,
+                recessos, prazo de cancelamento de disciplina — saem no
+                <strong>calendário acadêmico</strong>, em
+                <a href="https://academicocimatec.fieb.org.br/" target="_blank" rel="noopener noreferrer">academicocimatec.fieb.org.br</a>.
+                É de lá que vem quase todo prazo citado neste guia.
+              </p>
             </div>
           </details>
 
@@ -818,12 +934,89 @@
             <div class="guia-conteudo">
               <p>
                 O EDAG vale <strong>20% da sua média do semestre (AG)</strong> em cada disciplina
-                — quase o mesmo peso de uma AV1 ou de uma AV2. Não é uma prova para deixar por
-                último: um EDAG fraco derruba a média mesmo quando as outras notas estão boas.
+                — quase o mesmo peso de uma AV1 ou de uma AV2. E é uma prova só: a mesma nota
+                entra como quarta unidade avaliativa em <strong>todas</strong> as suas disciplinas.
+                Não é uma prova para deixar por último: um EDAG fraco derruba a média do semestre
+                inteiro mesmo quando as outras notas estão boas.
               </p>
               <p>
-                Datas, formato e conteúdo ficam no
-                <a href="https://sites.google.com/doc.senaicimatec.edu.br/edag" target="_blank" rel="noopener noreferrer">site do EDAG</a>.
+                A prova tem dois eixos — <strong>Formação Geral</strong> e
+                <strong>Componente Específico</strong> — e o seu tipo de prova depende do semestre
+                em que você está. Quem entrou agora faz a menor: 9 objetivas e 1 discursiva, em
+                90 minutos. A prova vai crescendo a cada semestre até chegar a 40 questões e 240
+                minutos no fim do curso.
+              </p>
+
+              <h4>A nota não é a porcentagem de acerto</h4>
+              <p>
+                O que sai da prova é o <strong>Coeficiente de Desempenho</strong>, de 0 a 100. A
+                nota do EDAG vem de uma tabela de faixas — e ela é generosa nas pontas: um
+                coeficiente 70 já vale 10,0, e a diferença entre 39 e 40 pontos vale um ponto
+                inteiro de nota.
+              </p>
+              <dl class="beneficios-list">
+                <div><dt>0 a 9</dt><dd>Nota 0,0</dd></div>
+                <div><dt>10 a 19</dt><dd>Nota 1,0</dd></div>
+                <div><dt>20 a 29</dt><dd>Nota 3,0</dd></div>
+                <div><dt>30 a 39</dt><dd>Nota 5,0</dd></div>
+                <div><dt>40 a 49</dt><dd>Nota 6,0</dd></div>
+                <div><dt>50 a 59</dt><dd>Nota 7,0</dd></div>
+                <div><dt>60 a 69</dt><dd>Nota 8,0</dd></div>
+                <div><dt>70 a 100</dt><dd>Nota 10,0</dd></div>
+              </dl>
+              <p>
+                Repare no que isso significa na prática: sair de 69 para 70 no coeficiente vale
+                <strong>dois pontos</strong> na nota. Nas faixas de cima, cada questão a mais rende
+                muito.
+              </p>
+
+              <h4>As regras do dia da prova</h4>
+              <p>
+                Estas são as que mais custam nota — e nenhuma delas tem recurso depois:
+              </p>
+              <ul class="modal-ul">
+                <li>
+                  <strong>30 minutos de permanência mínima.</strong> Quem sai antes disso leva
+                  <strong>zero</strong>, por melhor que tenha ido na prova.
+                </li>
+                <li>
+                  <strong>30 minutos de tolerância para entrar.</strong> Passou disso, não entra —
+                  e quem chega atrasado dentro da tolerância perde o tempo do atraso.
+                </li>
+                <li>
+                  <strong>Aparelho eletrônico é zero.</strong> Ser visto manuseando o celular
+                  durante a prova zera o exame <em>mesmo com o aparelho desligado</em>. Guarde antes
+                  de sentar.
+                </li>
+                <li><strong>Calculadora não é permitida.</strong></li>
+                <li>Só caneta esferográfica <strong>preta ou azul</strong>; resposta rasurada é desconsiderada.</li>
+                <li>Nas objetivas só vale o que está na folha de respostas — marcação no caderno não conta.</li>
+                <li>Banheiro só depois de 2 horas de prova, acompanhado de fiscal.</li>
+                <li>
+                  Leve <strong>documento de identidade original com foto</strong>. Cópia não é
+                  aceita, nem autenticada; documento digital tem que ser aberto no aplicativo oficial
+                  na hora.
+                </li>
+              </ul>
+
+              <h4>Gabarito e recurso</h4>
+              <p>
+                O gabarito preliminar sai em até <strong>48 horas</strong> depois da prova, e a
+                partir daí você tem outras <strong>48 horas</strong> para registrar considerações —
+                só em dois casos: falta de informação que impeça resolver a questão, ou discordância
+                do gabarito. Fora do prazo não se analisa. Questão anulada não vira acerto: o valor
+                dela se redistribui entre as outras questões do mesmo eixo.
+              </p>
+              <p>
+                <strong>Faltou ao EDAG?</strong> Dá para pedir segunda chamada por requerimento no
+                Portal do Aluno. Ela é aplicada em <strong>sábado à tarde</strong>, em data
+                divulgada com antecedência — e, se o requerimento for indeferido, a nota é zero.
+              </p>
+              <p>
+                Convocação, local, horário e gabaritos ficam no
+                <a href="https://sites.google.com/doc.senaicimatec.edu.br/edag" target="_blank" rel="noopener noreferrer">site do EDAG</a>
+                (a lista de convocados sai pelo menos 15 dias antes). Dúvidas:
+                <a href="mailto:edag@fieb.org.br">edag@fieb.org.br</a>.
               </p>
             </div>
           </details>
@@ -837,8 +1030,30 @@
                 exatamente a distância entre fechar o semestre e ir para a Avaliação Final.
               </p>
               <p>
+                A lógica do programa é essa: ele revisa conteúdo de <strong>semestres
+                anteriores</strong>, justamente o que o EDAG cobra e que já saiu do seu radar. Se
+                você ficou com dívida em alguma matéria de base, é aqui que ela se resolve antes de
+                virar nota baixa.
+              </p>
+              <p>
                 Quais disciplinas entram e como participar:
                 <a href="https://sites.google.com/doc.senaicimatec.edu.br/revisoes" target="_blank" rel="noopener noreferrer">site do Programa de Revisões</a>.
+              </p>
+            </div>
+          </details>
+
+          <details class="guia-item" id="guia-teaching-support">
+            <summary>Teaching Support: o professor fora da aula</summary>
+            <div class="guia-conteudo">
+              <p>
+                Além da monitoria, existe atendimento <strong>com o próprio professor</strong>, em
+                salas reservadas para isso — individual ou em grupo. Serve para dúvida de conteúdo,
+                projeto, experimento e relatório.
+              </p>
+              <p>
+                Os horários de cada professor são divulgados por ele no <strong>Canvas</strong>. É o
+                recurso mais subutilizado do Cimatec: quase ninguém aparece, e quem aparece
+                costuma ter o professor só para si.
               </p>
             </div>
           </details>
@@ -876,7 +1091,102 @@
             </div>
           </details>
 
+          <details class="guia-item" id="guia-colacao">
+            <summary>O que o diploma exige no fim</summary>
+            <div class="guia-conteudo">
+              <p>
+                Vale conhecer esta lista cedo, porque três itens dela se constroem ao longo de anos
+                e não dá para resolver no último semestre. O requerimento de colação de grau
+                <strong>só pode ser aberto depois</strong> de todos eles estarem cumpridos:
+              </p>
+              <ul class="modal-ul">
+                <li>Aprovação em todas as disciplinas da matriz.</li>
+                <li>Estágio curricular concluído, quando o curso o exige.</li>
+                <li>Todos os relatórios de estágio entregues.</li>
+                <li>ENADE realizado, quando você for convocado.</li>
+                <li>Carga horária de <strong>Atividades Complementares</strong> cumprida.</li>
+                <li>PFC defendido — ou TFG, em Arquitetura.</li>
+              </ul>
+              <p>
+                Quem estiver irregular em qualquer um deles não cola grau nem participa da
+                formatura como formando. Sem exceção.
+              </p>
+              <p>
+                O <strong>ENADE</strong> merece atenção especial: é componente curricular
+                obrigatório para quem é convocado e condição para colar grau — faltar a ele trava o
+                diploma.
+              </p>
+              <p>
+                Depois da colação, o diploma é <strong>digital</strong> e chega em até
+                <strong>150 dias úteis</strong> a partir da solicitação. As trilhas também rendem
+                <strong>certificação intermediária</strong> quando você fecha o conjunto de
+                disciplinas — mas ela não sai sozinha: é preciso pedir por requerimento.
+              </p>
+            </div>
+          </details>
+
           <p class="guia-grupo">No dia a dia das aulas</p>
+
+          <details class="guia-item" id="guia-dresscode">
+            <summary>Dress code: o que barra você na portaria</summary>
+            <div class="guia-conteudo">
+              <p>
+                O Cimatec adota código de vestimenta, e ele é aplicado na entrada — não é
+                recomendação. <strong>Não é permitido</strong> entrar no campus de shorts, bermuda,
+                minissaia, top, camiseta sem manga, chinelo, boné ou chapéu.
+              </p>
+              <p>
+                Nos <strong>laboratórios e oficinas</strong> a régua aperta mais: além do que já
+                vale para o campus, ficam de fora sapato aberto, salto alto e adereços — brinco,
+                pulseira, colar. Alguns laboratórios exigem jaleco para entrar, aluno ou professor.
+                Vale conferir a norma do seu antes do primeiro dia de prática.
+              </p>
+              <p>
+                A entrada é pela catraca, com o <strong>seu CPF</strong>. Emprestar o cadastro para
+                alguém entrar não é permitido.
+              </p>
+              <p>
+                Quem tem mobilidade reduzida, permanente ou temporária, pode pedir acesso às vagas
+                especiais do estacionamento por requerimento no Portal do Aluno.
+              </p>
+            </div>
+          </details>
+
+          <details class="guia-item" id="guia-horarios-aula">
+            <summary>Os horários das aulas</summary>
+            <div class="guia-conteudo">
+              <p>
+                A aula é organizada em blocos de <strong>50 minutos</strong>, e cada turno tem seis
+                blocos. Saber onde eles caem ajuda a montar a grade sem descobrir tarde demais que
+                a matéria da tarde começa antes de o almoço acabar.
+              </p>
+              <dl class="beneficios-list">
+                <div>
+                  <dt>Manhã — 7h10 às 12h30</dt>
+                  <dd>7h10, 8h00, 9h00, 9h50, 10h50 e 11h40.</dd>
+                </div>
+                <div>
+                  <dt>Tarde — 13h00 às 18h20</dt>
+                  <dd>13h00, 13h50, 14h50, 15h40, 16h40 e 17h30.</dd>
+                </div>
+                <div>
+                  <dt>Noite — 18h30 às 22h00</dt>
+                  <dd>18h30, 19h20, 20h20 e 21h10.</dd>
+                </div>
+              </dl>
+              <p>
+                Repare que o intervalo não cai no meio exato do turno: os blocos andam em pares, e
+                a folga de dez minutos aparece depois do segundo e do quarto. As
+                <strong>Práticas Integradas</strong> fogem desse desenho — são encontros de 100
+                minutos, às segundas, quartas e sextas.
+              </p>
+              <p>
+                O horário das suas disciplinas e a sala de cada uma ficam em
+                <strong>Minha Aula</strong>, no Portal do Aluno — e também nos monitores de TV
+                espalhados pelos prédios.
+              </p>
+            </div>
+          </details>
 
           <details class="guia-item" id="guia-salas">
             <summary>Onde fica a sua sala</summary>
@@ -999,11 +1309,92 @@
                 erro. Um pedido com evidência anda muito mais rápido do que um “minha nota está
                 errada”.
               </p>
+
+              <h4>Revisão de prova: o prazo começa na devolutiva</h4>
               <p>
-                <strong>Segunda chamada:</strong> o atestado precisa ser enviado em até
-                <strong>48 horas</strong> depois da prova, por requerimento no
-                <a href="https://senaiweb6.fieb.org.br/framehtml/web/app/edu/PortalEducacional/login/" target="_blank" rel="noopener noreferrer">Aluno Online</a>.
-                Esse prazo corre sozinho, então resolva isso antes de qualquer outra coisa.
+                O momento certo de contestar uma correção é <strong>na hora da devolutiva</strong>,
+                com o professor, quando a avaliação é entregue. Confira a correção ali mesmo — é o
+                caminho que resolve sem burocracia.
+              </p>
+              <p>
+                Se mesmo depois da explicação do professor você continuar discordando, ainda dá
+                para pedir revisão por requerimento, mas o prazo é curto:
+                <strong>2 dias úteis</strong> contados da entrega da avaliação. Para provas de
+                segunda chamada e para a Avaliação Final, os mesmos 2 dias úteis contam a partir da
+                divulgação formal do resultado. O EDAG não entra aqui: ele tem fluxo próprio de
+                recurso de gabarito.
+              </p>
+
+              <h4>Segunda chamada</h4>
+              <p>
+                Faltou a uma avaliação? O Regimento Acadêmico dá <strong>até 5 dias</strong>,
+                contados da data da avaliação, para abrir o requerimento no
+                <a href="https://senaiweb6.fieb.org.br/framehtml/web/app/edu/PortalEducacional/login/" target="_blank" rel="noopener noreferrer">Portal do Aluno</a>
+                com o documento que comprove o motivo. Não conte com o prazo cheio: ele corre
+                sozinho, e um requerimento aberto no mesmo dia nunca é problema.
+              </p>
+              <p>Os motivos que o Regimento aceita, todos mediante comprovação:</p>
+              <ul class="modal-ul">
+                <li>Problema de saúde emergencial ou intervenção médica não eletiva.</li>
+                <li>Acompanhamento de parente enfermo (cônjuge, pai, mãe ou filho).</li>
+                <li>Falecimento de familiar próximo.</li>
+                <li>Casamento ou nascimento de filho.</li>
+                <li>Doação de órgãos.</li>
+                <li>Obrigações com o serviço militar.</li>
+                <li>Convocação do poder judiciário ou da justiça eleitoral.</li>
+                <li>Exercício do voto, quando a eleição cai no dia da prova (ou um dia antes ou depois).</li>
+                <li>Viagem a trabalho, comprovada por declaração do departamento de pessoal da empresa.</li>
+                <li>Viagem autorizada pela instituição para representá-la em atividade esportiva, cultural, de ensino ou pesquisa.</li>
+              </ul>
+              <p>
+                Deferido o pedido, as provas escritas caem numa
+                <strong>Segunda Chamada Unificada</strong> no fim do semestre: uma prova só, com
+                todo o conteúdo da disciplina, independentemente de qual avaliação você perdeu. Se
+                você faltou a mais de uma, essa prova substitui todas as unidades sem nota — menos
+                o EDAG, que tem segunda chamada própria. Para trabalho, seminário e outros
+                instrumentos que não sejam prova escrita, a reposição é combinada com o professor.
+              </p>
+            </div>
+          </details>
+
+          <details class="guia-item" id="guia-ed">
+            <summary>Exercício Domiciliar: quando você não pode vir por semanas</summary>
+            <div class="guia-conteudo">
+              <p>
+                Segunda chamada resolve uma prova perdida. Para um afastamento longo — cirurgia,
+                doença, gestação — existe outro instrumento: o
+                <strong>Regime de Exercícios Domiciliares (ED)</strong>, em que você cumpre as
+                atividades de casa, por um período definido.
+              </p>
+              <p>
+                O ED <strong>não abona falta</strong>: ele compensa. As atividades que você entrega
+                durante o afastamento é que cobrem as ausências, e só depois de corrigidas e
+                aprovadas pelo professor.
+              </p>
+              <ul class="modal-ul">
+                <li>
+                  <strong>Abra o requerimento em até 5 dias úteis</strong> depois do fato que
+                  causou o afastamento.
+                </li>
+                <li>
+                  Anexe atestado ou laudo com <strong>assinatura, CRM, período de afastamento e
+                  CID</strong>. Sem o CID o pedido não se sustenta.
+                </li>
+                <li>Liste no requerimento as disciplinas e os respectivos professores.</li>
+                <li>
+                  O período vai de <strong>15 a 45 dias corridos</strong>. Afastamento menor que 15
+                  dias não entra no ED — cabe dentro dos 25% de falta que todo mundo tem.
+                </li>
+                <li>
+                  Estudante gestante pode pedir a partir do <strong>8º mês</strong>, pelo prazo de
+                  três meses.
+                </li>
+              </ul>
+              <p>
+                Dois limites que costumam pegar de surpresa: o ED
+                <strong>não vale para aulas práticas</strong>, e ele não dispensa você das
+                avaliações, das práticas obrigatórias nem do estágio — tudo isso é remarcado para
+                depois da volta.
               </p>
             </div>
           </details>
@@ -1039,9 +1430,66 @@
                 <strong>primeira mesa à esquerda</strong>.
               </p>
               <p>
-                É lá que também se imprime. O pagamento da impressão é feito com
-                <strong>dinheiro em mãos ou pelo PayPal</strong>, então deixe um dos dois preparado
-                antes de descer correndo com o trabalho para entregar.
+                É lá que também se imprime, em <strong>A3 e A4</strong>. O pagamento da impressão é
+                feito com <strong>dinheiro em mãos ou pelo PayPal</strong> — o crédito do PayPal é
+                recarregado no seu cadastro —, então deixe um dos dois preparado antes de descer
+                correndo com o trabalho para entregar. A reprografia funciona de
+                <strong>segunda a sexta, das 7h às 21h45</strong>, e aos
+                <strong>sábados das 7h às 13h</strong>.
+              </p>
+
+              <h4>Consultar o acervo: Pergamum</h4>
+              <p>
+                O <a href="https://bit.ly/3TTew1l?r=lp&amp;m=Mn38hBMBNje" target="_blank" rel="noopener noreferrer">Pergamum</a>
+                é o sistema onde se pesquisa o acervo da biblioteca: dá para ver se o livro
+                existe, quantos exemplares há e se algum está disponível. Vale conferir antes de
+                subir até o CIMATEC 3 — principalmente na semana de provas, quando a bibliografia
+                da disciplina some das prateleiras no mesmo dia.
+              </p>
+
+              <h4>Biblioteca Virtual Pearson</h4>
+              <p>
+                O acervo digital da Pearson soma <strong>mais de 15 mil títulos</strong> e não tem
+                fila, exemplar esgotado nem prazo de devolução. É o caminho mais rápido quando o
+                livro físico já saiu, e funciona de casa, a qualquer hora.
+              </p>
+              <ul class="modal-ul">
+                <li>
+                  <strong>Acesso:</strong>
+                  <a href="https://plataforma.bvirtual.com.br/Account/Login?redirectUrl=%2F" target="_blank" rel="noopener noreferrer">plataforma.bvirtual.com.br</a>
+                </li>
+                <li><strong>Usuário:</strong> seu e-mail institucional</li>
+                <li><strong>Senha inicial:</strong> <code>123789@mudaR</code></li>
+              </ul>
+              <p>
+                A senha acima é a padrão de todo mundo — <strong>troque no primeiro acesso</strong>.
+              </p>
+              <p>
+                A biblioteca digital tem ainda leitura em voz alta, marcação de trechos e
+                comentários, e permite imprimir <strong>até 2 páginas por vez</strong> de uma obra.
+              </p>
+
+              <h4>Normas ABNT liberadas</h4>
+              <p>
+                Você não precisa comprar norma da ABNT para escrever trabalho: a instituição assina
+                a coleção e libera para os alunos em
+                <a href="https://www.abntcolecao.com.br" target="_blank" rel="noopener noreferrer">abntcolecao.com.br</a>.
+              </p>
+              <ul class="modal-ul">
+                <li><strong>Login:</strong> <code>SENAIDN</code></li>
+                <li><strong>Usuário e senha:</strong> <code>alunosenaiba</code></li>
+              </ul>
+              <p>
+                A biblioteca também dá acesso ao <strong>Portal de Periódicos da CAPES</strong> —
+                onde estão os artigos científicos que o PFC vai pedir — e mantém o
+                <strong>Manual de Trabalhos Acadêmicos</strong> do Cimatec, que é o formato oficial
+                exigido no PFC e no TFG.
+              </p>
+              <p>
+                Contato da biblioteca:
+                <a href="mailto:biblioteca.cimatec@fieb.org.br">biblioteca.cimatec@fieb.org.br</a>,
+                (71) 3462-9541. Funciona de <strong>segunda a sexta, 7h às 22h</strong>, e aos
+                <strong>sábados das 7h às 13h</strong>.
               </p>
             </div>
           </details>
@@ -1058,9 +1506,38 @@
                 o conteúdo e conta como experiência no currículo.
               </p>
               <p>
-                As vagas podem ser com ou sem bolsa e são preenchidas por processo seletivo.
-                Como funciona e quando abre:
+                As vagas podem ser com ou sem bolsa e são preenchidas por processo seletivo. Pelo
+                Regulamento da Monitoria, a seleção tem três etapas:
+                <strong>análise do desempenho acadêmico, uma prova didática (miniaula) e
+                entrevista</strong> — a classificação é a média das três. Se der empate, quem não
+                acumula outra bolsa da instituição leva vantagem.
+              </p>
+              <p>Vale saber antes de se inscrever:</p>
+              <ul class="modal-ul">
+                <li>A carga é de <strong>10 a 20 horas semanais</strong>.</li>
+                <li>Dá para ser monitor de <strong>até duas disciplinas</strong> ao mesmo tempo.</li>
+                <li>A bolsa dura <strong>dois semestres consecutivos</strong> e é paga mensalmente.</li>
+                <li>
+                  Para a monitoria <strong>com bolsa</strong> não pode haver vínculo empregatício;
+                  na <strong>voluntária</strong>, pode — e ela vale igual no currículo.
+                </li>
+                <li>
+                  Qualquer aluno de qualquer curso de graduação do Cimatec pode se candidatar, não
+                  só o da disciplina.
+                </li>
+              </ul>
+              <p>
+                Você é acompanhado por um professor orientador e avaliado mensalmente. Desempenho
+                acadêmico insuficiente durante a bolsa pode cancelá-la.
+              </p>
+              <p>
+                Regulamento, horários de atendimento, local e quem é o monitor de cada disciplina:
                 <a href="https://sites.google.com/doc.senaicimatec.edu.br/monitoria" target="_blank" rel="noopener noreferrer">site da Monitoria</a>.
+              </p>
+              <p>
+                O programa tem ainda um <strong>aplicativo próprio</strong>, onde a monitoria é
+                acompanhada no dia a dia:
+                <a href="https://bit.ly/appMonitoria" target="_blank" rel="noopener noreferrer">app da Monitoria</a>.
               </p>
             </div>
           </details>
@@ -1108,6 +1585,123 @@
               <p>
                 Além desses, muitos projetos de inovação tocados na instituição abrem bolsas
                 científicas periodicamente — vale acompanhar.
+              </p>
+              <p>
+                A seleção é por <strong>edital anual</strong>, e quem é selecionado recebe a bolsa
+                por <strong>12 meses</strong>. Editais e inscrições:
+                <a href="https://bit.ly/icCIMATEC" target="_blank" rel="noopener noreferrer">página oficial de Iniciação Científica</a>.
+              </p>
+            </div>
+          </details>
+
+          <details class="guia-item" id="guia-estagio">
+            <summary>Estágio</summary>
+            <div class="guia-conteudo">
+              <p>
+                O estágio vem em duas formas. O <strong>obrigatório</strong> é o que o projeto do
+                seu curso exige: a carga horária dele é requisito para aprovação e para o diploma.
+                O <strong>não obrigatório</strong> é opcional, entra como carga extra e existe pela
+                experiência (e pela bolsa).
+              </p>
+              <p>
+                Quem cuida disso é o <strong>NCP — Núcleo de Carreira Profissional</strong>:
+                oportunidades, trâmites, documentação e relatórios passam por ele.
+              </p>
+
+              <h4>As vagas chegam no seu e-mail institucional</h4>
+              <p>
+                Este é o detalhe que mais gente descobre tarde: o Cimatec
+                <strong>envia oportunidades de estágio por e-mail</strong>, para o endereço
+                <code>@aln.senaicimatec.edu.br</code>. Não há mural, grupo ou aviso paralelo — se
+                você não abre esse e-mail, as vagas simplesmente passam.
+              </p>
+              <p>
+                Então faça duas coisas ainda no primeiro semestre: <strong>configure o e-mail
+                institucional no celular</strong> e pare de tratá-lo como caixa de recado da
+                secretaria. É por ali que a primeira vaga vai chegar — e as boas fecham rápido.
+              </p>
+              <p>
+                Oportunidades, manual de estágio e contato do núcleo:
+                <a href="https://bit.ly/carreiraCIMATEC" target="_blank" rel="noopener noreferrer">site do NCP</a>
+                — <a href="mailto:carreiras.cimatec@fieb.org.br">carreiras.cimatec@fieb.org.br</a>,
+                (71) 3462-8423.
+              </p>
+              <p>
+                Dois avisos do Regimento que evitam retrabalho: não vale aproveitar estágio feito
+                <strong>fora do período em que você esteve matriculado</strong>, nem reaproveitar
+                um estágio que já foi usado para outro fim. Registre tudo enquanto acontece.
+              </p>
+            </div>
+          </details>
+
+          <details class="guia-item" id="guia-complementares">
+            <summary>Atividades Complementares</summary>
+            <div class="guia-conteudo">
+              <p>
+                As Atividades Complementares não estão na matriz, mas
+                <strong>são requisito para colar grau</strong>. Elas existem para dar crédito ao que
+                você faz fora da sala — e é exatamente por isso que deixá-las para o fim é o erro
+                clássico: a carga horária existe, e ninguém consegue produzir três anos de
+                atividade no último semestre.
+              </p>
+              <p>Elas se dividem em quatro grupos:</p>
+              <dl class="beneficios-list">
+                <div>
+                  <dt>Grupo 1</dt>
+                  <dd>Atividades de educação e aprendizagem profissional — cursos, certificações, eventos técnicos.</dd>
+                </div>
+                <div>
+                  <dt>Grupo 2</dt>
+                  <dd>Pesquisa e iniciação científica.</dd>
+                </div>
+                <div>
+                  <dt>Grupo 3</dt>
+                  <dd>Atividades esportivas, culturais e comunitárias.</dd>
+                </div>
+                <div>
+                  <dt>Grupo 4</dt>
+                  <dd>Empresa júnior e demais iniciativas estudantis.</dd>
+                </div>
+              </dl>
+              <p>
+                Repare que o Grupo 4 é a Cimatec JR e as iniciativas da lista deste site, e o Grupo
+                3 inclui a Cimatlética. O que já é a sua vida no campus provavelmente conta —
+                <strong>desde que você guarde o certificado</strong>. Crie uma pasta hoje e jogue
+                cada comprovante nela na hora que receber.
+              </p>
+              <p>
+                A carga horária exigida e as equivalências de cada grupo estão no Regulamento de
+                Atividades Complementares, no Portal do Aluno.
+              </p>
+            </div>
+          </details>
+
+          <details class="guia-item" id="guia-intercambio">
+            <summary>Intercâmbio</summary>
+            <div class="guia-conteudo">
+              <p>
+                Cursar um período fora é uma das oportunidades que menos aparecem no radar de
+                quem está começando — e é justamente uma das que mais exigem antecedência.
+                Processo seletivo, prova de idioma, documentação e prazo de inscrição costumam
+                correr com meses de folga em relação ao semestre em que a viagem acontece.
+              </p>
+              <p>
+                Por isso vale acompanhar as chamadas desde cedo, mesmo sem intenção de se
+                inscrever agora: quando o edital que serve para você aparecer, o que decide é
+                estar com idioma e documentos em dia.
+              </p>
+              <p>
+                A internacionalização acontece por <strong>parceria com instituições de outros
+                países</strong>, e cada oportunidade sai em edital próprio — não há inscrição
+                aberta o ano todo. A instituição também mantém parcerias com escolas de idiomas,
+                com condições especiais e, quando dá, aulas no próprio campus: é o caminho de quem
+                está construindo o idioma para a candidatura.
+              </p>
+              <p>
+                Editais e regras oficiais:
+                <a href="https://bit.ly/internacionalizacaoCIMATEC" target="_blank" rel="noopener noreferrer">página de Internacionalização do Cimatec</a>.
+                As oportunidades também circulam no
+                <a href="https://bit.ly/3UjAafa?r=lp&amp;m=Mn38hBMBNje" target="_blank" rel="noopener noreferrer">grupo de intercâmbio no WhatsApp</a>.
               </p>
             </div>
           </details>
@@ -1161,8 +1755,59 @@
                 mental ou sensorial e transtornos do neurodesenvolvimento da aprendizagem.
               </p>
               <p>
+                A equipe é formada por <strong>pedagogo, psicopedagogo e psicólogo</strong>, e o
+                atendimento pode ser individual ou em grupo. Entre o que o núcleo acompanha estão
+                transtornos de aprendizagem — <strong>TDA, TDAH e dislexia</strong>, entre outros —,
+                acessibilidade e inclusão, orientação de plano de estudos e adaptação ao ambiente
+                acadêmico.
+              </p>
+              <p>
                 Não é preciso esperar a situação apertar para procurar.
-                <a href="https://sites.google.com/doc.senaicimatec.edu.br/naae" target="_blank" rel="noopener noreferrer">Site do NAAE</a>.
+                <a href="https://sites.google.com/doc.senaicimatec.edu.br/naae" target="_blank" rel="noopener noreferrer">Site do NAAE</a>
+                — <a href="mailto:naaecimatec@fieb.org.br">naaecimatec@fieb.org.br</a>,
+                (71) 3879-5494, de segunda a sexta, das 8h às 17h.
+              </p>
+            </div>
+          </details>
+
+          <details class="guia-item" id="guia-bolsas">
+            <summary>Bolsas e crédito estudantil</summary>
+            <div class="guia-conteudo">
+              <p>
+                Todos os cursos de graduação reservam <strong>10% das vagas</strong> para o Programa
+                de Bolsas de Graduação. A entrada é por um processo seletivo anual, a
+                <strong>Seleção Social</strong>, e os critérios são de renda e origem escolar:
+              </p>
+              <ul class="modal-ul">
+                <li>
+                  Vir do Ensino Médio de rede pública, do SESI-BA, ou de escola privada
+                  <strong>como bolsista integral</strong>.
+                </li>
+                <li>
+                  Renda domiciliar por pessoa de até <strong>1,5 salário mínimo</strong> para bolsa
+                  integral, ou até <strong>2,5</strong> para bolsa parcial.
+                </li>
+                <li>Não ser beneficiário de outro programa de bolsa ou crédito (PROUNI, por exemplo).</li>
+                <li>Não ter concluído outra graduação, nem ter vínculo com instituição pública de ensino superior.</li>
+                <li>Não ser funcionário do Sistema FIEB.</li>
+              </ul>
+              <p>
+                <strong>Manter a bolsa tem regra própria:</strong> é preciso aprovação em pelo menos
+                <strong>60% das disciplinas</strong> cursadas a cada semestre. Ficar abaixo disso
+                cancela o benefício — o que faz a decisão de quantas disciplinas pegar na matrícula
+                pesar bem mais para quem é bolsista.
+              </p>
+              <p>
+                Existe ainda o <strong>CredIES CIMATEC</strong>, o crédito estudantil operado pela
+                Fundacred, aberto a calouros e veteranos: você paga cerca de metade da mensalidade
+                durante o curso e o restante depois de formado, parcelado no dobro do tempo do
+                curso.
+              </p>
+              <p>
+                Regulamento e editais em
+                <a href="https://academicocimatec.fieb.org.br/" target="_blank" rel="noopener noreferrer">academicocimatec.fieb.org.br</a>.
+                Dúvida sobre mensalidade é com o Núcleo Financeiro:
+                <a href="mailto:financeirosenaicimatec@fieb.org.br">financeirosenaicimatec@fieb.org.br</a>.
               </p>
             </div>
           </details>
@@ -1171,6 +1816,12 @@
             <summary>Contatos do Cimatec</summary>
             <div class="guia-conteudo">
               <ul class="modal-ul">
+                <li>
+                  <strong>Canal da Graduação no WhatsApp:</strong>
+                  <a href="https://bit.ly/grdCIMATEC" target="_blank" rel="noopener noreferrer">entrar no canal</a>.
+                  É por onde saem os comunicados oficiais da universidade — vale entrar no
+                  primeiro dia e deixar as notificações ligadas.
+                </li>
                 <li>
                   <strong>WhatsApp do Cimatec:</strong>
                   <a href="tel:+557181104473">(71) 8110-4473</a>
@@ -1189,81 +1840,179 @@
                 Para problema com nota, o caminho é outro: veja o tópico
                 <strong>Notas e segunda chamada</strong>.
               </p>
+
+              <h4>Os núcleos, um por um</h4>
+              <p>
+                Quase toda dúvida tem um núcleo dono. Mandar direto para ele economiza uma semana
+                de encaminhamento:
+              </p>
+              <dl class="beneficios-list">
+                <div>
+                  <dt>Secretaria Geral de Cursos</dt>
+                  <dd>
+                    Requerimentos, atestados, declarações, histórico e diploma — e também os
+                    achados e perdidos.
+                    <a href="mailto:cimatecsecretariageraldecursos@fieb.org.br">cimatecsecretariageraldecursos@fieb.org.br</a>,
+                    (71) 3462-9558. Seg a sex, 7h–21h; sáb, 7h–13h.
+                  </dd>
+                </div>
+                <div>
+                  <dt>Central de Atendimento / Matrícula</dt>
+                  <dd>
+                    <a href="mailto:cimatec-centraldeatendimento@fieb.org.br">cimatec-centraldeatendimento@fieb.org.br</a>,
+                    (71) 3462-9501. Seg a sex, 8h–21h; sáb, 8h–12h.
+                  </dd>
+                </div>
+                <div>
+                  <dt>NAAE — apoio ao estudante</dt>
+                  <dd>
+                    <a href="mailto:naaecimatec@fieb.org.br">naaecimatec@fieb.org.br</a>,
+                    (71) 3879-5494. Seg a sex, 8h–17h.
+                  </dd>
+                </div>
+                <div>
+                  <dt>NCP — carreira e estágio</dt>
+                  <dd>
+                    <a href="mailto:carreiras.cimatec@fieb.org.br">carreiras.cimatec@fieb.org.br</a>,
+                    (71) 3462-8423. Seg a sex, 8h–21h.
+                  </dd>
+                </div>
+                <div>
+                  <dt>NQA — qualidade acadêmica e monitoria</dt>
+                  <dd>
+                    <a href="mailto:qualidade.academica@fieb.org.br">qualidade.academica@fieb.org.br</a>,
+                    (71) 3879-5596. Seg a sex, 8h–21h30.
+                  </dd>
+                </div>
+                <div>
+                  <dt>Coordenação Pedagógica</dt>
+                  <dd>
+                    <a href="mailto:coordenacaopedagogicagraduacao@fieb.org.br">coordenacaopedagogicagraduacao@fieb.org.br</a>,
+                    (71) 3879-5407. Seg a sex, 9h30–18h30.
+                  </dd>
+                </div>
+                <div>
+                  <dt>Núcleo Financeiro</dt>
+                  <dd>
+                    Mensalidade, boleto e negociação.
+                    <a href="mailto:financeirosenaicimatec@fieb.org.br">financeirosenaicimatec@fieb.org.br</a>,
+                    (71) 3462-9576. Seg a sex, 8h–21h.
+                  </dd>
+                </div>
+                <div>
+                  <dt>Biblioteca</dt>
+                  <dd>
+                    <a href="mailto:biblioteca.cimatec@fieb.org.br">biblioteca.cimatec@fieb.org.br</a>,
+                    (71) 3462-9541. Seg a sex, 7h–22h; sáb, 7h–13h.
+                  </dd>
+                </div>
+                <div>
+                  <dt>FaleCom — a ouvidoria</dt>
+                  <dd>
+                    Para quando o canal normal não resolveu, ou para reclamação formal.
+                    <a href="mailto:falecomsenaicimatec@fieb.org.br">falecomsenaicimatec@fieb.org.br</a>,
+                    (71) 3462-9580. Seg a sex, 7h–22h; sáb, 7h–12h.
+                  </dd>
+                </div>
+              </dl>
+              <p>
+                <strong>Perdeu alguma coisa no campus?</strong> Objetos esquecidos vão para a
+                Secretaria Geral de Cursos e ficam <strong>30 dias</strong> à espera. Para retirar,
+                leve documento com foto.
+              </p>
             </div>
           </details>
 
-          <details class="guia-item" id="guia-beneficios">
-            <summary>Benefícios do e-mail institucional</summary>
-            <div class="guia-conteudo">
-              <p>
-                O e-mail institucional destrava uma lista grande de benefícios de estudante. São
-                dois endereços, e alguns serviços só aceitam um deles — se um for recusado, tente
-                o outro antes de desistir:
-              </p>
-              <ul class="modal-ul">
-                <li><code>RA@universidadesenaicimatec.edu.br</code></li>
-                <li><code>nome@aln.senaicimatec.edu.br</code></li>
-              </ul>
-              <dl class="beneficios-list">
-                <div>
-                  <dt>Notion for Education</dt>
-                  <dd>Desconto para estudantes. <a href="https://www.notion.com/pt/help/notion-for-education" target="_blank" rel="noopener noreferrer">Saiba mais</a></dd>
-                </div>
-                <div>
-                  <dt>GitHub Student Pack</dt>
-                  <dd>Inclui GitHub Copilot e outros benefícios para estudantes. <a href="https://education.github.com/pack" target="_blank" rel="noopener noreferrer">Saiba mais</a></dd>
-                </div>
-                <div>
-                  <dt>Microsoft Office 365</dt>
-                  <dd>Pacote gratuito usando o e-mail <code>RA@universidadesenaicimatec.edu.br</code>.</dd>
-                </div>
-                <div>
-                  <dt>Autodesk Education</dt>
-                  <dd>Acesso gratuito a softwares como o AutoCAD. <a href="https://www.autodesk.com/br/education/home" target="_blank" rel="noopener noreferrer">Saiba mais</a></dd>
-                </div>
-                <div>
-                  <dt>Canva Pro + Google Workspace</dt>
-                  <dd>Liberado com o e-mail <code>nome@aln.senaicimatec.edu.br</code>.</dd>
-                </div>
-                <div>
-                  <dt>Documento do Estudante</dt>
-                  <dd>Carteirinha para meia-entrada. <a href="https://www.documentodoestudante.com.br/" target="_blank" rel="noopener noreferrer">Saiba mais</a></dd>
-                </div>
-                <div>
-                  <dt>Meia passagem</dt>
-                  <dd>Ônibus e metrô, pelo SalvadorCard. <a href="https://www.salvadorcard.com.br/produtos/meia-passagem/" target="_blank" rel="noopener noreferrer">Saiba mais</a></dd>
-                </div>
-                <div>
-                  <dt>Adobe Education</dt>
-                  <dd>Desconto em Photoshop, Illustrator e outras ferramentas. <a href="https://www.adobe.com/br/education.html" target="_blank" rel="noopener noreferrer">Saiba mais</a></dd>
-                </div>
-                <div>
-                  <dt>Spotify Student</dt>
-                  <dd>Desconto de estudante no Premium. <a href="https://www.spotify.com/br-pt/student/" target="_blank" rel="noopener noreferrer">Saiba mais</a></dd>
-                </div>
-                <div>
-                  <dt>YouTube Premium Student</dt>
-                  <dd>Desconto de estudante. <a href="https://www.youtube.com/premium/student" target="_blank" rel="noopener noreferrer">Saiba mais</a></dd>
-                </div>
-                <div>
-                  <dt>Samsung, Dell e Apple</dt>
-                  <dd>Descontos em eletrônicos para universitários: Samsung até 30%, Dell entre 6% e 8%, Apple com ofertas sazonais.</dd>
-                </div>
-                <div>
-                  <dt>Jornais e revistas acadêmicas</dt>
-                  <dd>Assinaturas com preço reduzido em veículos como Folha de S.Paulo, Estadão e revistas científicas.</dd>
-                </div>
-                <div>
-                  <dt>Coursera e Udemy</dt>
-                  <dd>Cursos gratuitos ou com desconto de estudante.</dd>
-                </div>
-                <div>
-                  <dt>LinkedIn Premium Student</dt>
-                  <dd>R$ 24,90/mês (valor normal R$ 59,90). <a href="https://www.linkedin.com/premium/" target="_blank" rel="noopener noreferrer">Saiba mais</a></dd>
-                </div>
-              </dl>
+        </div>
+      </dialog>
+
+      <!-- ---- modal: Benefícios do e-mail institucional ---- -->
+      <dialog class="modal" id="modalBeneficios">
+        <div class="modal-head">
+          <div>
+            <p class="eyebrow">Não deixe na mesa</p>
+            <h3>Benefícios de estudante</h3>
+          </div>
+          <button type="button" class="modal-close" aria-label="Fechar">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"/></svg>
+          </button>
+        </div>
+        <div class="modal-body">
+          <p class="modal-intro">
+            Seu e-mail institucional é uma chave. Ele destrava software caro de graça, desconto em
+            serviço que você já paga e a carteirinha de meia-entrada — e a maior parte disso
+            ninguém vem te avisar.
+          </p>
+          <p class="modal-intro">
+            São <strong>dois endereços</strong>, e alguns serviços só aceitam um deles. Se um for
+            recusado, tente o outro antes de desistir:
+          </p>
+          <ul class="modal-ul">
+            <li><code>RA@universidadesenaicimatec.edu.br</code></li>
+            <li><code>nome@aln.senaicimatec.edu.br</code></li>
+          </ul>
+          <dl class="beneficios-list">
+            <div>
+              <dt>Notion for Education</dt>
+              <dd>Desconto para estudantes. <a href="https://www.notion.com/pt/help/notion-for-education" target="_blank" rel="noopener noreferrer">Saiba mais</a></dd>
             </div>
-          </details>
+            <div>
+              <dt>GitHub Student Pack</dt>
+              <dd>Inclui GitHub Copilot e outros benefícios para estudantes. <a href="https://education.github.com/pack" target="_blank" rel="noopener noreferrer">Saiba mais</a></dd>
+            </div>
+            <div>
+              <dt>Microsoft Office 365</dt>
+              <dd>Pacote gratuito usando o e-mail <code>RA@universidadesenaicimatec.edu.br</code>.</dd>
+            </div>
+            <div>
+              <dt>Autodesk Education</dt>
+              <dd>Acesso gratuito a softwares como o AutoCAD. <a href="https://www.autodesk.com/br/education/home" target="_blank" rel="noopener noreferrer">Saiba mais</a></dd>
+            </div>
+            <div>
+              <dt>Canva Pro + Google Workspace</dt>
+              <dd>Liberado com o e-mail <code>nome@aln.senaicimatec.edu.br</code>.</dd>
+            </div>
+            <div>
+              <dt>Documento do Estudante</dt>
+              <dd>Carteirinha para meia-entrada. <a href="https://www.documentodoestudante.com.br/" target="_blank" rel="noopener noreferrer">Saiba mais</a></dd>
+            </div>
+            <div>
+              <dt>Meia passagem</dt>
+              <dd>Ônibus e metrô, pelo SalvadorCard. <a href="https://www.salvadorcard.com.br/produtos/meia-passagem/" target="_blank" rel="noopener noreferrer">Saiba mais</a></dd>
+            </div>
+            <div>
+              <dt>Adobe Education</dt>
+              <dd>Desconto em Photoshop, Illustrator e outras ferramentas. <a href="https://www.adobe.com/br/education.html" target="_blank" rel="noopener noreferrer">Saiba mais</a></dd>
+            </div>
+            <div>
+              <dt>Spotify Student</dt>
+              <dd>Desconto de estudante no Premium. <a href="https://www.spotify.com/br-pt/student/" target="_blank" rel="noopener noreferrer">Saiba mais</a></dd>
+            </div>
+            <div>
+              <dt>YouTube Premium Student</dt>
+              <dd>Desconto de estudante. <a href="https://www.youtube.com/premium/student" target="_blank" rel="noopener noreferrer">Saiba mais</a></dd>
+            </div>
+            <div>
+              <dt>Samsung, Dell e Apple</dt>
+              <dd>Descontos em eletrônicos para universitários: Samsung até 30%, Dell entre 6% e 8%, Apple com ofertas sazonais.</dd>
+            </div>
+            <div>
+              <dt>Jornais e revistas acadêmicas</dt>
+              <dd>Assinaturas com preço reduzido em veículos como Folha de S.Paulo, Estadão e revistas científicas.</dd>
+            </div>
+            <div>
+              <dt>Coursera e Udemy</dt>
+              <dd>Cursos gratuitos ou com desconto de estudante.</dd>
+            </div>
+            <div>
+              <dt>LinkedIn Premium Student</dt>
+              <dd>R$ 24,90/mês (valor normal R$ 59,90). <a href="https://www.linkedin.com/premium/" target="_blank" rel="noopener noreferrer">Saiba mais</a></dd>
+            </div>
+          </dl>
+          <p class="modal-nota">
+            Os descontos mudam sem aviso e alguns pedem recomprovação a cada ano. Se um link
+            recusar seu e-mail, tente o outro endereço antes de dar o benefício como perdido.
+          </p>
         </div>
       </dialog>
 
